@@ -68,11 +68,42 @@
         <span class="btn-symbol">&minus;</span>
       </button>
     </section>
+
+    <!-- Essence Section (bottom strip) -->
+    <section class="tracker-section essence-section" id="essence-section">
+      <div class="watermark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/>
+          <path d="M12 1L5.5 5.5L4 12L12 12Z" opacity="0.3"/>
+          <path d="M12 1L18.5 5.5L20 12L12 12Z" opacity="0.15"/>
+          <path d="M12 23L5.5 18.5L4 12L12 12Z" opacity="0.15"/>
+          <path d="M12 23L18.5 18.5L20 12L12 12Z" opacity="0.3"/>
+        </svg>
+      </div>
+      <button class="btn essence-btn" data-stat="essence" data-action="increment" aria-label="Increase Essence">
+        <span class="btn-symbol">+</span>
+      </button>
+      <div class="essence-display">
+        <button class="essence-value-btn" id="essence-reset" aria-label="Reset Essence">
+          <span class="stat-value essence-stat-value" id="essence-value">0</span>
+        </button>
+      </div>
+      <button class="btn essence-btn" data-stat="essence" data-action="decrement" aria-label="Decrease Essence">
+        <span class="btn-symbol">&minus;</span>
+      </button>
+    </section>
   </div>
 
   <!-- ── Hero Select Screen ──────────────── -->
   <div id="select-screen" class="hidden">
     <h1 class="select-title">Choose Your Hero</h1>
+    <label class="toggle-row">
+      <span class="toggle-label">Show Essence</span>
+      <div class="toggle-switch">
+        <input type="checkbox" id="show-essence-toggle" checked>
+        <span class="toggle-slider"></span>
+      </div>
+    </label>
     <div class="hero-grid" id="hero-grid"></div>
   </div>
 

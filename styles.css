@@ -83,8 +83,22 @@ html, body {
   overflow: hidden;
 }
 
+/* When essence is visible, LP and SP shrink to make room */
+.essence-visible .lp-section,
+.essence-visible .sp-section {
+  height: 37.5dvh;
+}
+
+.essence-section {
+  height: 25dvh;
+}
+
 .lp-section {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.essence-visible .sp-section {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
 }
 
 /* ── Watermark Icons ─────────────────────── */
@@ -107,6 +121,11 @@ html, body {
 
 .sp-section .watermark {
   color: #6a5a8e;
+  opacity: 0.35;
+}
+
+.essence-section .watermark {
+  color: #b89530;
   opacity: 0.35;
 }
 
@@ -324,6 +343,10 @@ html, body {
   color: #6a5a8e;
 }
 
+.hero-stat-essence .hero-stat-icon {
+  color: #b89530;
+}
+
 /* ── Hero Name Banner ────────────────────── */
 
 .hero-name {
@@ -333,4 +356,106 @@ html, body {
   text-align: center;
   color: #f0e8d8;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* ── Essence Section Layout ────────────────── */
+
+.essence-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.essence-btn {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.essence-display {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 2px solid rgba(255, 255, 255, 0.25);
+  border-right: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.essence-value-btn {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.essence-stat-value {
+  font-size: 20vw;
+  color: #fff;
+}
+
+/* ── Show Essence Toggle ───────────────────── */
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.toggle-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: calc(1.5rem - 6px);
+  height: calc(1.5rem - 6px);
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background: #b89530;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(1.25rem);
 }

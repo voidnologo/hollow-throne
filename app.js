@@ -3,11 +3,11 @@
    ─────────────────────────────────────────── */
 
 const HEROES = [
-  { name: 'Iron Warden',    slug: 'iron-warden',    lp: 27, sp: 15 },
-  { name: 'Bone Tyrant',    slug: 'bone-tyrant',    lp: 21, sp: 21 },
-  { name: 'Thread-Cutter',  slug: 'thread-cutter',  lp: 18, sp: 24 },
-  { name: 'Void Scholar',   slug: 'void-scholar',   lp: 18, sp: 24 },
-  { name: 'Crimson Ranger', slug: 'crimson-ranger',  lp: 24, sp: 18 },
+  { name: 'Iron Warden',    slug: 'iron-warden',    lp: 27, sp: 15, essence: 2 },
+  { name: 'Bone Tyrant',    slug: 'bone-tyrant',    lp: 21, sp: 21, essence: 2 },
+  { name: 'Thread-Cutter',  slug: 'thread-cutter',  lp: 18, sp: 24, essence: 3 },
+  { name: 'Void Scholar',   slug: 'void-scholar',   lp: 18, sp: 24, essence: 3 },
+  { name: 'Crimson Ranger', slug: 'crimson-ranger',  lp: 24, sp: 18, essence: 2 },
 ];
 
 const LP_ICON = `<svg viewBox="0 0 24 24" fill="currentColor">
@@ -27,21 +27,39 @@ const SP_ICON = `<svg viewBox="0 0 24 24" fill="currentColor">
     stroke="currentColor" stroke-width="1" stroke-linecap="round" fill="none"/>
 </svg>`;
 
+const ESSENCE_ICON = `<svg viewBox="0 0 24 24" fill="currentColor">
+  <path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/>
+  <path d="M12 1L5.5 5.5L4 12L12 12Z" opacity="0.3"/>
+  <path d="M12 1L18.5 5.5L20 12L12 12Z" opacity="0.15"/>
+  <path d="M12 23L5.5 18.5L4 12L12 12Z" opacity="0.15"/>
+  <path d="M12 23L18.5 18.5L20 12L12 12Z" opacity="0.3"/>
+</svg>`;
+
 const trackerScreen = document.getElementById('tracker-screen');
 const selectScreen = document.getElementById('select-screen');
 const lpDisplay = document.getElementById('lp-value');
 const spDisplay = document.getElementById('sp-value');
+const essenceDisplay = document.getElementById('essence-value');
 const heroGrid = document.getElementById('hero-grid');
+const essenceSection = document.getElementById('essence-section');
+const lpSection = document.getElementById('lp-section');
+const spSection = document.getElementById('sp-section');
+const showEssenceToggle = document.getElementById('show-essence-toggle');
 
-const state = { lp: 20, sp: 20 };
-const displays = { lp: lpDisplay, sp: spDisplay };
+const storedShowEssence = localStorage.getItem('showEssence');
+const showEssenceDefault = storedShowEssence === null ? true : storedShowEssence === 'true';
 
+const state = { lp: 20, sp: 20, essence: 0, essenceBase: 0, showEssence: showEssenceDefault };
+const displays = { lp: lpDisplay, sp: spDisplay, essence: essenceDisplay };
+
+showEssenceToggle.checked = state.showEssence;
+applyEssenceVisibility();
 buildHeroGrid();
 render();
 
 /* ── Tracker Buttons ─────────────────────── */
 
-document.querySelectorAll('.btn').forEach(btn => {
+document.querySelectorAll('.btn[data-stat]').forEach(btn => {
   btn.addEventListener('click', () => {
     const stat = btn.dataset.stat;
     const delta = btn.dataset.action === 'increment' ? 1 : -1;
@@ -55,6 +73,23 @@ document.querySelectorAll('.btn').forEach(btn => {
   });
 });
 
+/* ── Essence Reset Button ──────────────────── */
+
+document.getElementById('essence-reset').addEventListener('click', () => {
+  state.essence = state.essenceBase;
+  render();
+  flashNumber('essence');
+});
+
+/* ── Show Essence Toggle ───────────────────── */
+
+showEssenceToggle.addEventListener('change', () => {
+  state.showEssence = showEssenceToggle.checked;
+  localStorage.setItem('showEssence', state.showEssence);
+  applyEssenceVisibility();
+  rebuildHeroGrid();
+});
+
 /* ── Hamburger → Hero Select ─────────────── */
 
 document.getElementById('hamburger-btn').addEventListener('click', () => {
@@ -63,6 +98,16 @@ document.getElementById('hamburger-btn').addEventListener('click', () => {
 });
 
 /* ── Hero Grid Builder ───────────────────── */
+
+function buildEssenceStat(hero) {
+  if (!state.showEssence) return '';
+  return `
+    <div class="hero-stat hero-stat-essence">
+      <div class="hero-stat-icon">${ESSENCE_ICON}<span class="hero-stat-num">${hero.essence}</span></div>
+      <span class="hero-stat-label">ESS</span>
+    </div>
+  `;
+}
 
 function buildHeroGrid() {
   HEROES.forEach(hero => {
@@ -80,6 +125,7 @@ function buildHeroGrid() {
             <div class="hero-stat-icon">${SP_ICON}<span class="hero-stat-num">${hero.sp}</span></div>
             <span class="hero-stat-label">SP</span>
           </div>
+          ${buildEssenceStat(hero)}
         </div>
         <div class="hero-name">${hero.name}</div>
       </div>
@@ -89,11 +135,18 @@ function buildHeroGrid() {
   });
 }
 
+function rebuildHeroGrid() {
+  heroGrid.innerHTML = '';
+  buildHeroGrid();
+}
+
 /* ── Hero Selection ──────────────────────── */
 
 function selectHero(hero) {
   state.lp = hero.lp;
   state.sp = hero.sp;
+  state.essence = hero.essence;
+  state.essenceBase = hero.essence;
   render();
   selectScreen.classList.add('hidden');
   trackerScreen.classList.remove('hidden');
@@ -104,6 +157,17 @@ function selectHero(hero) {
 function render() {
   lpDisplay.textContent = state.lp;
   spDisplay.textContent = state.sp;
+  essenceDisplay.textContent = state.essence;
+}
+
+function applyEssenceVisibility() {
+  if (state.showEssence) {
+    essenceSection.classList.remove('hidden');
+    trackerScreen.classList.add('essence-visible');
+  } else {
+    essenceSection.classList.add('hidden');
+    trackerScreen.classList.remove('essence-visible');
+  }
 }
 
 function flashNumber(stat) {
