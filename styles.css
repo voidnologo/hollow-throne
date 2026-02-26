@@ -367,6 +367,8 @@ html, body {
 }
 
 .essence-btn {
+  position: relative;
+  z-index: 1;
   flex: 1;
   height: 100%;
   display: flex;
@@ -375,6 +377,8 @@ html, body {
 }
 
 .essence-display {
+  position: relative;
+  z-index: 1;
   flex: 1;
   height: 100%;
   display: flex;
