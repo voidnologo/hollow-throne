@@ -1,0 +1,144 @@
+/* ───────────────────────────────────────────
+   LP/SP Tracker — V1 Styles
+   Mobile-first, full-screen, dark theme
+   ─────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', monospace;
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+/* ── Section Layout ────────────────────── */
+
+.tracker-section {
+  position: relative;
+  width: 100%;
+  height: 50dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.lp-section {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Watermark Icons ───────────────────── */
+
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  max-width: 280px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lp-section .watermark {
+  color: #8b3a3a;
+  opacity: 0.35;
+}
+
+.sp-section .watermark {
+  color: #6a5a8e;
+  opacity: 0.35;
+}
+
+.watermark svg {
+  width: 100%;
+  height: auto;
+}
+
+/* ── Buttons ───────────────────────────── */
+
+.btn {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.1s ease;
+}
+
+.btn:active {
+  background-color: transparent;
+}
+
+.btn-plus {
+  width: 50%;
+  justify-content: flex-start;
+  padding-left: 1.5rem;
+}
+
+.btn-minus {
+  width: 50%;
+  justify-content: flex-end;
+  padding-right: 1.5rem;
+}
+
+.btn-symbol {
+  font-family: inherit;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #fff;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* ── Stat Display ──────────────────────── */
+
+.stat-display {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stat-value {
+  font-size: 22vw;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Number Flash Animation ────────────── */
+
+@keyframes number-flash {
+  0% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.stat-value.flash {
+  animation: number-flash 0.15s ease-out;
+}
