@@ -196,6 +196,21 @@ html, body {
   line-height: 1;
   letter-spacing: -0.02em;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease;
+}
+
+/* Warning: stat at 1 or 2 */
+.tracker-section.warning .stat-value {
+  color: #f5c542;
+}
+
+/* Loss: stat hit 0 */
+.tracker-section.loss {
+  background: #6b1010;
+}
+
+.tracker-section.loss .stat-value {
+  color: #f5c542;
 }
 
 /* ── Number Flash Animation ──────────────── */

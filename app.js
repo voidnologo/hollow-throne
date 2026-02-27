@@ -158,6 +158,14 @@ function render() {
   lpDisplay.textContent = state.lp;
   spDisplay.textContent = state.sp;
   essenceDisplay.textContent = state.essence;
+
+  applyStatWarnings(lpSection, state.lp);
+  applyStatWarnings(spSection, state.sp);
+}
+
+function applyStatWarnings(section, value) {
+  section.classList.toggle('loss', value === 0);
+  section.classList.toggle('warning', value > 0 && value <= 2);
 }
 
 function applyEssenceVisibility() {
