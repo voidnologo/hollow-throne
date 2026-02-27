@@ -2,111 +2,920 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>LP / SP Tracker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hollow Throne — Dark Fantasy Card Game</title>
+  <link rel="icon" type="image/png" href="assets/logo/favicon.png">
+  <style>
+    /* ── Fonts ────────────────────────────────────────────── */
+    @font-face {
+      font-family: 'Cinzel';
+      src: url('assets/fonts/Cinzel-Regular.ttf') format('truetype');
+      font-weight: 400; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Cinzel';
+      src: url('assets/fonts/Cinzel-Bold.ttf') format('truetype');
+      font-weight: 700; font-display: swap;
+    }
+    @font-face {
+      font-family: 'FiraSans';
+      src: url('assets/fonts/FiraSans-Regular.ttf') format('truetype');
+      font-weight: 400; font-display: swap;
+    }
+    @font-face {
+      font-family: 'FiraSans';
+      src: url('assets/fonts/FiraSans-Bold.ttf') format('truetype');
+      font-weight: 700; font-display: swap;
+    }
+    @font-face {
+      font-family: 'FiraSans';
+      src: url('assets/fonts/FiraSans-Italic.ttf') format('truetype');
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+
+    /* ── Design Tokens ────────────────────────────────────── */
+    :root {
+      --void:        #060810;
+      --ash:         #0a0e18;
+      --ember:       #101a26;
+      --gold:        #c8a84b;
+      --gold-dim:    #7a6530;
+      --gold-bright: #e8c46a;
+      --bone:        #e0d5be;
+      --bone-dim:    #9a8e7c;
+
+      --warden:  #8b4513;
+      --scholar: #4b1080;
+      --ranger:  #8b1212;
+      --tyrant:  #2d4a3e;
+      --cutter:  #0a5c5c;
+    }
+
+    /* ── Reset ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--void);
+      color: var(--bone);
+      font-family: 'FiraSans', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── Shared Components ────────────────────────────────── */
+
+    .section-header { text-align: center; padding: 5rem 2rem 3rem; }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--bone);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-desc {
+      color: var(--bone-dim);
+      max-width: 520px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+    }
+
+    /* Gold ornament divider */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 300px;
+      margin: 0 auto 1.25rem;
+    }
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+    }
+    .ornament-line-l { background: linear-gradient(to right, transparent, var(--gold-dim)); }
+    .ornament-line-r { background: linear-gradient(to left,  transparent, var(--gold-dim)); }
+    .ornament-gem {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2.2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--void);
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .btn-primary:hover {
+      background: var(--gold-bright);
+      box-shadow: 0 0 40px rgba(200, 168, 75, 0.5);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+    }
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold-bright);
+      box-shadow: 0 0 20px rgba(200, 168, 75, 0.12), inset 0 0 20px rgba(200, 168, 75, 0.04);
+    }
+
+    /* Scroll-triggered reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+    .reveal.visible          { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1          { transition-delay: 0.12s; }
+    .reveal-delay-2          { transition-delay: 0.24s; }
+    .reveal-delay-3          { transition-delay: 0.36s; }
+    .reveal-delay-4          { transition-delay: 0.48s; }
+
+    /* ════════════════════════════════════════════════════════
+       SECTION 1 — OPENING HERO
+    ════════════════════════════════════════════════════════ */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Throne-room atmosphere — warm candlelight at center, pure void at edges */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 75% 60% at 50% 44%, #0e1a32 0%, #080e1e 45%, var(--void) 100%);
+      z-index: 0;
+    }
+
+    /* SVG fractal noise grain layer */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.042;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+
+    /* Card-frame corner brackets */
+    .frame-corner {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-color: var(--gold-dim);
+      border-style: solid;
+      opacity: 0.22;
+      z-index: 2;
+      animation: fadeIn 2.5s 0.8s ease both;
+    }
+    .frame-corner.tl { top: 28px;  left: 28px;  border-width: 2px 0 0 2px; }
+    .frame-corner.tr { top: 28px;  right: 28px; border-width: 2px 2px 0 0; }
+    .frame-corner.bl { bottom: 56px; left: 28px;  border-width: 0 0 2px 2px; }
+    .frame-corner.br { bottom: 56px; right: 28px; border-width: 0 2px 2px 0; }
+
+    /* Inner corner dot */
+    .frame-corner::before {
+      content: '';
+      position: absolute;
+      width: 5px; height: 5px;
+      background: var(--gold-dim);
+      opacity: 0.8;
+    }
+    .frame-corner.tl::before { top: -1px;    left: -1px;   }
+    .frame-corner.tr::before { top: -1px;    right: -1px;  }
+    .frame-corner.bl::before { bottom: -1px; left: -1px;   }
+    .frame-corner.br::before { bottom: -1px; right: -1px;  }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.4rem;
+    }
+
+    .hero-logo {
+      width: min(560px, 82vw);
+      height: auto;
+      filter: drop-shadow(0 0 55px rgba(200, 168, 75, 0.22));
+      animation: logoReveal 2.2s ease both;
+    }
+
+    /* Hairline rule beneath logo */
+    .hero-hairline {
+      width: clamp(160px, 38vw, 260px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .hero-tagline {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.7rem, 1.8vw, 0.92rem);
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.88;
+      animation: fadeInUp 1.8s 0.5s ease both;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.88rem, 2vw, 1rem);
+      color: var(--bone-dim);
+      max-width: 460px;
+      padding: 0 1rem;
+      animation: fadeInUp 1.8s 0.7s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 1.8s 0.9s ease both;
+    }
+
+    /* Gradient bleed from section into next */
+    .hero-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to bottom, transparent, var(--void));
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* Scroll indicator */
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gold-dim);
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1s 2.2s ease forwards;
+    }
+
+    .scroll-cue-line {
+      width: 1px;
+      height: 0;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+      animation: growLine 1.5s 2.8s ease forwards, pulseLine 2.2s 4.5s infinite;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       SECTION 2 — CHAMPION FILMSTRIP
+    ════════════════════════════════════════════════════════ */
+    .champions-section { background: var(--ash); }
+
+    .filmstrip {
+      display: flex;
+      height: 560px;
+      overflow: hidden;
+    }
+
+    .champion-panel {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      border-right: 1px solid rgba(200, 168, 75, 0.07);
+      transition: flex 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .champion-panel:last-child { border-right: none; }
+
+    /* Compress siblings when any panel is hovered */
+    .filmstrip:hover .champion-panel        { flex: 0.55; }
+    .filmstrip:hover .champion-panel:hover  { flex: 3.8; }
+
+    .champion-portrait {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: saturate(0.45) brightness(0.5);
+      transition: filter 0.8s ease, transform 0.8s ease;
+    }
+    .champion-panel:hover .champion-portrait {
+      filter: saturate(0.88) brightness(0.72);
+      transform: scale(1.04);
+    }
+
+    /* Per-hero color wash (mix-blend-mode: color) */
+    .champion-tint {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      mix-blend-mode: color;
+      transition: opacity 0.8s ease;
+    }
+    .champion-panel:hover .champion-tint { opacity: 0.55; }
+
+    .champion-panel[data-hero="warden"]  .champion-tint { background: var(--warden); }
+    .champion-panel[data-hero="scholar"] .champion-tint { background: var(--scholar); }
+    .champion-panel[data-hero="ranger"]  .champion-tint { background: var(--ranger); }
+    .champion-panel[data-hero="tyrant"]  .champion-tint { background: var(--tyrant); }
+    .champion-panel[data-hero="cutter"]  .champion-tint { background: var(--cutter); }
+
+    /* Top color bar sweeps in from left */
+    .champion-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s 0.2s ease;
+      z-index: 3;
+    }
+    .champion-panel:hover .champion-bar { transform: scaleX(1); }
+    .champion-panel[data-hero="warden"]  .champion-bar { background: var(--warden); }
+    .champion-panel[data-hero="scholar"] .champion-bar { background: var(--scholar); }
+    .champion-panel[data-hero="ranger"]  .champion-bar { background: var(--ranger); }
+    .champion-panel[data-hero="tyrant"]  .champion-bar { background: var(--tyrant); }
+    .champion-panel[data-hero="cutter"]  .champion-bar { background: var(--cutter); }
+
+    /* Bottom info overlay */
+    .champion-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 4rem 1.5rem 1.5rem;
+      background: linear-gradient(to top, rgba(4,2,8,0.97) 0%, rgba(4,2,8,0.65) 55%, transparent 100%);
+      z-index: 2;
+    }
+
+    /* Gold vertical tick */
+    .champion-tick {
+      display: block;
+      width: 2px; height: 0;
+      background: var(--gold);
+      margin-bottom: 0;
+      transition: height 0.5s 0.22s ease, margin-bottom 0.4s 0.22s ease;
+    }
+    .champion-panel:hover .champion-tick {
+      height: 26px;
+      margin-bottom: 0.6rem;
+    }
+
+    .champion-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.78rem, 1.4vw, 1.2rem);
+      font-weight: 700;
+      color: var(--bone);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.3s ease;
+      margin-bottom: 0.3rem;
+    }
+    .champion-panel:hover .champion-name { color: var(--gold-bright); }
+
+    .champion-identity {
+      font-size: 0.82rem;
+      color: var(--bone-dim);
+      line-height: 1.55;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.55s 0.18s ease, opacity 0.45s 0.28s ease;
+    }
+    .champion-panel:hover .champion-identity {
+      max-height: 110px;
+      opacity: 1;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       SECTION 3 — MECHANICS
+    ════════════════════════════════════════════════════════ */
+    .mechanics-section {
+      padding: 6rem 2rem;
+      background: var(--void);
+      position: relative;
+    }
+
+    /* Vertical gold thread leading into section */
+    .mechanics-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--gold-dim));
+    }
+
+    .mechanics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+      max-width: 1080px;
+      margin: 3rem auto 0;
+    }
+
+    .mechanic-card {
+      padding: 2.5rem 2rem;
+      background: var(--ash);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.35s ease;
+    }
+    .mechanic-card:hover { background: var(--ember); }
+
+    /* Gold line sweeps in at bottom on hover */
+    .mechanic-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .mechanic-card:hover::after { opacity: 1; }
+
+    .mechanic-numeral {
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.16;
+      line-height: 1;
+      margin-bottom: 1rem;
+      user-select: none;
+    }
+
+    .mechanic-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--bone);
+      margin-bottom: 0.75rem;
+    }
+
+    .mechanic-text {
+      font-size: 0.88rem;
+      color: var(--bone-dim);
+      line-height: 1.78;
+    }
+    .mechanic-text strong { color: var(--gold); font-weight: 600; }
+
+    /* ════════════════════════════════════════════════════════
+       SECTION 4 — CARD ART MARQUEE
+    ════════════════════════════════════════════════════════ */
+    .cards-section {
+      padding: 5rem 0;
+      background: var(--ash);
+      overflow: hidden;
+    }
+
+    .cards-section .section-header { padding-bottom: 2.5rem; }
+
+    .marquee-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .marquee-row {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Edge fade-outs for seamless bleed */
+    .marquee-row::before,
+    .marquee-row::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 200px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marquee-row::before { left: 0;  background: linear-gradient(to right, var(--ash), transparent); }
+    .marquee-row::after  { right: 0; background: linear-gradient(to left,  var(--ash), transparent); }
+
+    .marquee-track {
+      display: flex;
+      gap: 1.5rem;
+      width: max-content;
+    }
+    .marquee-track.fwd  { animation: marqueeL 55s linear infinite; }
+    .marquee-track.bwd  { animation: marqueeR 55s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    .card-thumb {
+      width: 120px;
+      height: 160px;
+      object-fit: cover;
+      object-position: top center;
+      border: 1px solid rgba(200, 168, 75, 0.14);
+      filter: saturate(0.65) brightness(0.6);
+      flex-shrink: 0;
+      position: relative;
+      transition: filter 0.4s ease, transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .card-thumb:hover {
+      filter: saturate(1) brightness(0.9);
+      border-color: var(--gold);
+      box-shadow: 0 0 26px rgba(200, 168, 75, 0.35);
+      transform: translateY(-12px) scale(1.08);
+      z-index: 10;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       SECTION 5 — CTA
+    ════════════════════════════════════════════════════════ */
+    .cta-section {
+      padding: 8rem 2rem;
+      text-align: center;
+      background: var(--void);
+      position: relative;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 8%; right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    }
+
+    .cta-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 700;
+      color: var(--bone);
+      line-height: 1.05;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-tagline {
+      font-style: italic;
+      color: var(--gold);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      letter-spacing: 0.04em;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════════════════ */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--bone-dim);
+      opacity: 0.38;
+      border-top: 1px solid rgba(200, 168, 75, 0.07);
+    }
+
+    /* ════════════════════════════════════════════════════════
+       KEYFRAMES
+    ════════════════════════════════════════════════════════ */
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes logoReveal {
+      from { opacity: 0; transform: scale(0.93); filter: drop-shadow(0 0 0px rgba(200,168,75,0)); }
+      to   { opacity: 1; transform: scale(1);    filter: drop-shadow(0 0 55px rgba(200,168,75,0.22)); }
+    }
+    @keyframes growLine {
+      from { height: 0; } to { height: 42px; }
+    }
+    @keyframes pulseLine {
+      0%, 100% { opacity: 0.45; } 50% { opacity: 1; }
+    }
+    @keyframes marqueeL {
+      from { transform: translateX(0); } to { transform: translateX(-50%); }
+    }
+    @keyframes marqueeR {
+      from { transform: translateX(-50%); } to { transform: translateX(0); }
+    }
+
+    /* ════════════════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .filmstrip {
+        flex-direction: column;
+        height: auto;
+      }
+      .champion-panel {
+        flex: none !important;
+        height: 220px;
+        border-right: none;
+        border-bottom: 1px solid rgba(200, 168, 75, 0.07);
+        cursor: default;
+      }
+      /* Always show info on mobile — no hover */
+      .champion-identity { max-height: 80px !important; opacity: 1 !important; }
+      .champion-tick     { height: 16px !important; margin-bottom: 0.4rem !important; }
+      .champion-portrait { filter: saturate(0.75) brightness(0.65) !important; }
+
+      .frame-corner { display: none; }
+      .mechanics-grid { grid-template-columns: 1fr; }
+      .marquee-row::before, .marquee-row::after { width: 80px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- ── Tracker Screen ──────────────────── -->
-  <div id="tracker-screen">
-    <!-- Hamburger Menu -->
-    <button class="hamburger" id="hamburger-btn" aria-label="Select hero">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
 
-    <!-- LP Section (top half) -->
-    <section class="tracker-section lp-section" id="lp-section">
-      <div class="watermark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-            2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
-            C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
-            c0 3.78-3.4 6.86-8.55 11.54z"/>
-        </svg>
-      </div>
-      <button class="btn btn-plus" data-stat="lp" data-action="increment" aria-label="Increase LP">
-        <span class="btn-symbol">+</span>
-      </button>
-      <div class="stat-display">
-        <span class="stat-value" id="lp-value">20</span>
-      </div>
-      <button class="btn btn-minus" data-stat="lp" data-action="decrement" aria-label="Decrease LP">
-        <span class="btn-symbol">&minus;</span>
-      </button>
-    </section>
+  <!-- ═══════════════════════════════════════════════════
+       1. HERO
+  ════════════════════════════════════════════════════ -->
+  <section class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="frame-corner tl"></div>
+    <div class="frame-corner tr"></div>
+    <div class="frame-corner bl"></div>
+    <div class="frame-corner br"></div>
 
-    <!-- SP Section (bottom half) -->
-    <section class="tracker-section sp-section" id="sp-section">
-      <div class="watermark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 4C6 4 1.5 10 1 12c.5 2 5 8 11 8s10.5-6 11-8
-            c-.5-2-5-8-11-8zm0 2c4.5 0 8 4.2 8.8 6-.8 1.8-4.3 6-8.8
-            6s-8-4.2-8.8-6c.8-1.8 4.3-6 8.8-6z"/>
-          <circle cx="12" cy="12" r="4.5"/>
-          <circle cx="12" cy="12" r="2" opacity="0.3"/>
-          <path d="M3.5 7L1.5 4.5M20.5 7l2-2.5M3.5 17L1.5 19.5M20.5 17l2 2.5"
-            stroke="currentColor" stroke-width="1" stroke-linecap="round" fill="none"/>
-        </svg>
+    <div class="hero-content">
+      <img src="assets/logo/logo-landing.png" alt="Hollow Throne" class="hero-logo">
+      <div class="hero-hairline"></div>
+      <p class="hero-tagline">Everything has a cost. Hit hard, burn out.</p>
+      <p class="hero-sub">A dark fantasy 1v1 card game of resource war, creature combat, and desperate last stands. Five heroes. Two ways to die. One throne.</p>
+      <div class="hero-cta">
+        <a href="app/" class="btn btn-primary">Game Tracker</a>
+        <a href="rules/" class="btn btn-secondary">Read the Rules</a>
       </div>
-      <button class="btn btn-plus" data-stat="sp" data-action="increment" aria-label="Increase SP">
-        <span class="btn-symbol">+</span>
-      </button>
-      <div class="stat-display">
-        <span class="stat-value" id="sp-value">20</span>
-      </div>
-      <button class="btn btn-minus" data-stat="sp" data-action="decrement" aria-label="Decrease SP">
-        <span class="btn-symbol">&minus;</span>
-      </button>
-    </section>
+    </div>
 
-    <!-- Essence Section (bottom strip) -->
-    <section class="tracker-section essence-section" id="essence-section">
-      <div class="watermark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/>
-          <path d="M12 1L5.5 5.5L4 12L12 12Z" opacity="0.3"/>
-          <path d="M12 1L18.5 5.5L20 12L12 12Z" opacity="0.15"/>
-          <path d="M12 23L5.5 18.5L4 12L12 12Z" opacity="0.15"/>
-          <path d="M12 23L18.5 18.5L20 12L12 12Z" opacity="0.3"/>
-        </svg>
-      </div>
-      <button class="btn essence-btn" data-stat="essence" data-action="increment" aria-label="Increase Essence">
-        <span class="btn-symbol">+</span>
-      </button>
-      <div class="essence-display">
-        <button class="essence-value-btn" id="essence-reset" aria-label="Reset Essence">
-          <span class="stat-value essence-stat-value" id="essence-value">0</span>
-        </button>
-      </div>
-      <button class="btn essence-btn" data-stat="essence" data-action="decrement" aria-label="Decrease Essence">
-        <span class="btn-symbol">&minus;</span>
-      </button>
-    </section>
-  </div>
+    <div class="hero-fade"></div>
+    <div class="scroll-cue">
+      Descend
+      <div class="scroll-cue-line"></div>
+    </div>
+  </section>
 
-  <!-- ── Hero Select Screen ──────────────── -->
-  <div id="select-screen" class="hidden">
-    <h1 class="select-title">Choose Your Hero</h1>
-    <label class="toggle-row">
-      <span class="toggle-label">Show Essence</span>
-      <div class="toggle-switch">
-        <input type="checkbox" id="show-essence-toggle" checked>
-        <span class="toggle-slider"></span>
+  <!-- ═══════════════════════════════════════════════════
+       2. CHAMPIONS FILMSTRIP
+  ════════════════════════════════════════════════════ -->
+  <section class="champions-section">
+    <div class="section-header">
+      <p class="section-label reveal">The Contenders</p>
+      <h2 class="section-title reveal reveal-delay-1">Five Heroes.<br>One Throne.</h2>
+      <div class="ornament reveal reveal-delay-2">
+        <div class="ornament-line ornament-line-l"></div>
+        <div class="ornament-gem"></div>
+        <div class="ornament-line ornament-line-r"></div>
       </div>
-    </label>
-    <div class="hero-grid" id="hero-grid"></div>
-  </div>
+      <p class="section-desc reveal reveal-delay-2">Each champion fights with a unique deck, a distinct resource budget, and their own path to victory. Choose carefully.</p>
+    </div>
 
-  <script src="app.js"></script>
+    <div class="filmstrip reveal">
+      <div class="champion-panel" data-hero="warden">
+        <div class="champion-bar"></div>
+        <img src="assets/art/iron-warden-hero.webp" alt="Iron Warden" class="champion-portrait">
+        <div class="champion-tint"></div>
+        <div class="champion-info">
+          <span class="champion-tick"></span>
+          <div class="champion-name">Iron Warden</div>
+          <div class="champion-identity">Flood the board with iron creatures. Heal at end of every turn. Outlast, overrun, and grind your enemy to nothing.</div>
+        </div>
+      </div>
+
+      <div class="champion-panel" data-hero="scholar">
+        <div class="champion-bar"></div>
+        <img src="assets/art/void-scholar-hero.webp" alt="Void Scholar" class="champion-portrait">
+        <div class="champion-tint"></div>
+        <div class="champion-info">
+          <span class="champion-tick"></span>
+          <div class="champion-name">Void Scholar</div>
+          <div class="champion-identity">Command spell-weaving mastery. Convert Sanity into raw Essence. The Void Collapse ends games — when the moment is right.</div>
+        </div>
+      </div>
+
+      <div class="champion-panel" data-hero="ranger">
+        <div class="champion-bar"></div>
+        <img src="assets/art/crimson-ranger-hero.webp" alt="Crimson Ranger" class="champion-portrait">
+        <div class="champion-tint"></div>
+        <div class="champion-info">
+          <span class="champion-tick"></span>
+          <div class="champion-name">Crimson Ranger</div>
+          <div class="champion-identity">Bleed your prey. Drain their life. Tax their sanity. Every step your opponent takes costs them something.</div>
+        </div>
+      </div>
+
+      <div class="champion-panel" data-hero="tyrant">
+        <div class="champion-bar"></div>
+        <img src="assets/art/bone-tyrant-hero.webp" alt="Bone Tyrant" class="champion-portrait">
+        <div class="champion-tint"></div>
+        <div class="champion-info">
+          <span class="champion-tick"></span>
+          <div class="champion-name">Bone Tyrant</div>
+          <div class="champion-identity">Sacrifice your own for power. Drag the dead back from the grave. In this army, death is a resource — not an obstacle.</div>
+        </div>
+      </div>
+
+      <div class="champion-panel" data-hero="cutter">
+        <div class="champion-bar"></div>
+        <img src="assets/art/thread-cutter-hero.webp" alt="Thread-Cutter" class="champion-portrait">
+        <div class="champion-tint"></div>
+        <div class="champion-info">
+          <span class="champion-tick"></span>
+          <div class="champion-name">Thread-Cutter</div>
+          <div class="champion-identity">Unmake cards from existence. Devour your opponent's hand. React, disrupt, deny — until there is nothing left to play.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       3. MECHANICS
+  ════════════════════════════════════════════════════ -->
+  <section class="mechanics-section">
+    <div class="section-header">
+      <p class="section-label reveal">The Rules of War</p>
+      <h2 class="section-title reveal reveal-delay-1">Two Ways to Die.</h2>
+      <div class="ornament reveal reveal-delay-2">
+        <div class="ornament-line ornament-line-l"></div>
+        <div class="ornament-gem"></div>
+        <div class="ornament-line ornament-line-r"></div>
+      </div>
+      <p class="section-desc reveal reveal-delay-2">Hollow Throne isn't just combat. Every resource has a purpose — and a price you'll feel.</p>
+    </div>
+
+    <div class="mechanics-grid">
+      <div class="mechanic-card reveal reveal-delay-1">
+        <div class="mechanic-numeral">I</div>
+        <h3 class="mechanic-title">Dual Loss Conditions</h3>
+        <p class="mechanic-text">Reduce your opponent's <strong>Life Points to 0</strong> through combat — or drain their <strong>Sanity Points to 0</strong> through spell costs and direct pressure. Both tracks are always live. Neither is safe to ignore.</p>
+      </div>
+      <div class="mechanic-card reveal reveal-delay-2">
+        <div class="mechanic-numeral">II</div>
+        <h3 class="mechanic-title">Deck Construction</h3>
+        <p class="mechanic-text">Cut your hero's 19-card pool to <strong>15</strong> before each match. Then secretly draft the shared Marketplace with your opponent — three picks each, revealed simultaneously, filled randomly. No two games are identical.</p>
+      </div>
+      <div class="mechanic-card reveal reveal-delay-3">
+        <div class="mechanic-numeral">III</div>
+        <h3 class="mechanic-title">Reactive Windows</h3>
+        <p class="mechanic-text">Spells don't sleep. Two windows open on your opponent's turn — after summon, and after attackers are declared. Cast into them, but know the cost: any reactive spell is <strong>permanently removed</strong> from the game.</p>
+      </div>
+      <div class="mechanic-card reveal reveal-delay-4">
+        <div class="mechanic-numeral">IV</div>
+        <h3 class="mechanic-title">Everything Has a Cost</h3>
+        <p class="mechanic-text">End-of-turn discards cost <strong>1 LP or SP</strong>. Exhaust abilities tap creatures. Marketplace buys drain resources. Every powerful spell burns forever. The throne exacts its toll on every decision you make.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       4. CARD ART MARQUEE
+  ════════════════════════════════════════════════════ -->
+  <section class="cards-section">
+    <div class="section-header">
+      <p class="section-label reveal">The Arsenal</p>
+      <h2 class="section-title reveal reveal-delay-1">Ink &amp; Iron.</h2>
+      <div class="ornament reveal reveal-delay-2">
+        <div class="ornament-line ornament-line-l"></div>
+        <div class="ornament-gem"></div>
+        <div class="ornament-line ornament-line-r"></div>
+      </div>
+      <p class="section-desc reveal reveal-delay-2">Over 150 unique cards across five hero decks and a shared Marketplace.</p>
+    </div>
+
+    <div class="marquee-wrapper">
+      <div class="marquee-row">
+        <div class="marquee-track fwd" id="row1"></div>
+      </div>
+      <div class="marquee-row">
+        <div class="marquee-track bwd" id="row2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       5. CTA
+  ════════════════════════════════════════════════════ -->
+  <section class="cta-section">
+    <h2 class="cta-title reveal">Ready to Take<br>the Throne?</h2>
+    <p class="cta-tagline reveal reveal-delay-1">"Everything has a cost. Hit hard, burn out."</p>
+    <div class="cta-buttons reveal reveal-delay-2">
+      <a href="app/" class="btn btn-primary">Launch Tracker</a>
+      <a href="rules/" class="btn btn-secondary">Read the Rulebook</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Hollow Throne &mdash; A dark fantasy card game</p>
+  </footer>
+
+  <script>
+    // ── Scroll-triggered reveals ───────────────────────────
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Card art marquee ───────────────────────────────────
+    // Row 1: undead + ranger cards (dark, grim)
+    const row1 = [
+      'bone-tyrant-bone-dragon', 'bone-tyrant-death-knight', 'bone-tyrant-lich',
+      'bone-tyrant-plague-bearer', 'bone-tyrant-soul-collector', 'bone-tyrant-risen-soldier',
+      'bone-tyrant-skeletal-thrall', 'bone-tyrant-undying-aura', 'bone-tyrant-ghoul',
+      'bone-tyrant-corpse-garden', 'bone-tyrant-mass-reanimate', 'bone-tyrant-bone-guard',
+      'crimson-ranger-alpha-predator', 'crimson-ranger-blood-hawk', 'crimson-ranger-dire-wolf',
+      'crimson-ranger-crimson-rain', 'crimson-ranger-venomfang-viper', 'crimson-ranger-scout',
+      'crimson-ranger-beast-handler', 'crimson-ranger-sanguine-moon',
+    ];
+
+    // Row 2: warden + scholar + cutter + marketplace (varied)
+    const row2 = [
+      'iron-warden-siege-titan', 'iron-warden-iron-golem', 'iron-warden-war-banner',
+      'iron-warden-shield-maiden', 'iron-warden-warhorse-knight', 'iron-warden-berserker',
+      'void-scholar-abyssal-horror', 'void-scholar-mind-flayer', 'void-scholar-void-collapse',
+      'void-scholar-eldritch-storm', 'void-scholar-arcane-familiar', 'void-scholar-tome-of-shadows',
+      'thread-cutter-unmake', 'thread-cutter-the-unraveling', 'thread-cutter-pale-witness',
+      'thread-cutter-weave-stalker', 'thread-cutter-loom-guardian', 'thread-cutter-frayed-specter',
+      'marketplace-pit-fiend', 'marketplace-deep-one', 'marketplace-shadow-stalker',
+      'marketplace-cursed-knight', 'marketplace-gargoyle-sentinel', 'marketplace-mercenary-captain',
+    ];
+
+    function buildTrack(id, cards) {
+      const track = document.getElementById(id);
+      // Duplicate for seamless loop (animate translates by -50%)
+      [...cards, ...cards].forEach(name => {
+        const img = document.createElement('img');
+        img.src  = `assets/art/${name}.webp`;
+        img.alt  = name.replace(/-/g, ' ');
+        img.className = 'card-thumb';
+        track.appendChild(img);
+      });
+    }
+
+    buildTrack('row1', row1);
+    buildTrack('row2', row2);
+  </script>
 </body>
 </html>
