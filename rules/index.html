@@ -8,27 +8,27 @@
   /* ── Fonts ────────────────────────────────────────────── */
   @font-face {
     font-family: 'Cinzel';
-    src: url('../assets/fonts/Cinzel-Regular.ttf') format('truetype');
+    src: url('../../assets/fonts/Cinzel-Regular.ttf') format('truetype');
     font-weight: 400; font-display: swap;
   }
   @font-face {
     font-family: 'Cinzel';
-    src: url('../assets/fonts/Cinzel-Bold.ttf') format('truetype');
+    src: url('../../assets/fonts/Cinzel-Bold.ttf') format('truetype');
     font-weight: 700; font-display: swap;
   }
   @font-face {
     font-family: 'FiraSans';
-    src: url('../assets/fonts/FiraSans-Regular.ttf') format('truetype');
+    src: url('../../assets/fonts/FiraSans-Regular.ttf') format('truetype');
     font-weight: 400; font-display: swap;
   }
   @font-face {
     font-family: 'FiraSans';
-    src: url('../assets/fonts/FiraSans-Bold.ttf') format('truetype');
+    src: url('../../assets/fonts/FiraSans-Bold.ttf') format('truetype');
     font-weight: 700; font-display: swap;
   }
   @font-face {
     font-family: 'FiraSans';
-    src: url('../assets/fonts/FiraSans-Italic.ttf') format('truetype');
+    src: url('../../assets/fonts/FiraSans-Italic.ttf') format('truetype');
     font-weight: 400; font-style: italic; font-display: swap;
   }
 
@@ -400,7 +400,7 @@
   <div class="frame-corner br"></div>
 
   <div class="cover-content">
-    <img src="../assets/logo/logo-landing.png" alt="Hollow Throne" class="cover-logo">
+    <img src="../../assets/logo/logo-landing.png" alt="Hollow Throne" class="cover-logo">
     <div class="cover-hairline"></div>
     <p class="cover-subtitle">Rulebook</p>
     <p class="cover-tagline">Everything has a cost. Hit hard, burn out.</p>
@@ -513,7 +513,7 @@ cycle/burn behavior when played reactively. See
 <h3 id="equipment">Equipment</h3>
 <p>Permanent attachments. Attach to a creature or your hero (as specified).
 One equipment per creature/hero. Attaching a new one sends the old one to
-discard. Equipment on a dead creature goes to your discard.</p>
+discard. Equipment on a creature that leaves the field of play goes to your discard.</p>
 
 <h3 id="enchantments">Enchantments</h3>
 <p>Permanent effects that stay on the battlefield. Some have upkeep costs.</p>
@@ -547,7 +547,7 @@ into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
 <h3 id="income-step">3. Income Step</h3>
 <ul>
   <li><strong>Reset Essence to 0</strong>, then gain your hero's Essence per turn.</li>
-  <li>Add bonus Essence from enchantments (e.g., Leyline Conduit, Bleed the Land).</li>
+  <li>Add bonus Essence from enchantments, equipment, or other sources (e.g., Leyline Conduit, Bleed the Land).</li>
   <li>Essence does NOT carry over between turns.</li>
 </ul>
 
@@ -581,6 +581,7 @@ into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
 
 <h3 id="end-phase">6. End Phase</h3>
 <ul>
+  <li>Passive healing effects trigger (e.g., Iron Discipline).</li>
   <li><strong>Voluntary discard:</strong> You may discard any cards you don't want.
     Each discard: <a href="#kw-toll"><strong>Toll(1)</strong></a>.</li>
   <li><strong>Hand limit:</strong> If you still have more than 5 cards, discard down to 5.
@@ -589,7 +590,6 @@ into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
     for unspent non-income Essence. Each point from non-income sources (sacrifice,
     discard, exhaust abilities, hero powers):
     <a href="#kw-toll"><strong>Toll(1)</strong></a> per point to that player.</li>
-  <li>Passive healing effects trigger (e.g., Iron Discipline).</li>
   <li>Temporary buffs clear. All remaining Essence is lost.</li>
 </ul>
 
@@ -806,7 +806,7 @@ Essence. Each point of unspent Essence from non-income sources
 (<a href="#sacrifice">sacrifice</a>, discard-for-Essence, Toll-for-Essence,
 exhaust abilities, <a href="#hero-powers">hero powers</a>):
 <a href="#kw-toll"><strong>Toll(1)</strong></a> per point to that player. Essence from
-your <a href="#income-step">Income Step</a> (hero base + enchantment bonuses) is
+your <a href="#income-step">Income Step</a> (hero base + enchantment + equipment bonuses) is
 safe — you are not punished for unspent income. Then all remaining Essence
 is lost.</p>
 <p><strong>Spending order:</strong> Income Essence is always spent first. If you have 3
