@@ -760,7 +760,7 @@ draws to reach exactly 10 types. Always 10 types (20 cards) per game.</p>
 
 <table>
   <tr><th>Hero</th><th>Power</th><th>Type</th><th>Effect</th></tr>
-  <tr><td><strong>Bone Tyrant</strong></td><td>Grave Touch</td><td>Activated (2SP, once/turn)</td><td>Return target creature from your <a href="#zone-graveyard">graveyard</a> to your hand.</td></tr>
+  <tr><td><strong>Bone Tyrant</strong></td><td>Grave Touch</td><td>Activated (2SP, once/turn)</td><td>Return target creature from your <a href="#zone-graveyard">graveyard</a> to your hand. You may cast it for 1 less Essence this turn.</td></tr>
   <tr><td><strong>Crimson Ranger</strong></td><td>Marked Prey</td><td>Activated (free, once/turn)</td><td>Deal 1 damage to target creature.</td></tr>
   <tr><td><strong>Iron Warden</strong></td><td>Iron Discipline</td><td>Passive</td><td>At end of turn, heal 1 damage from each of your creatures.</td></tr>
   <tr><td><strong>Thread-Cutter</strong></td><td>Fate's Glimpse</td><td>Activated (1E + 1SP, once/turn)</td><td>Draw 1 card, then target opponent discards 1 card from their hand.</td></tr>
@@ -829,6 +829,10 @@ other leave-play effects fire. It cannot be returned to play by any effect
 explicit card text that says
 "Unmake" causes this; normal destruction always sends creatures to the
 Graveyard.</p>
+<p><strong>Exception:</strong> A card whose trigger text explicitly names Unmake
+(e.g., Bone Tithe: "dies or is Unmade") fires when a creature is Unmade because
+the card itself says so — this is not a death trigger firing. Such cards are the
+only effects that acknowledge an Unmake.</p>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="quick-reference">Quick Reference</h2>
@@ -844,7 +848,7 @@ Graveyard.</p>
 <p><strong>Essence:</strong> Resets to 0 each turn. Gain from: hero income, exhausting
 creatures, discarding cards, <a href="#sacrifice">sacrificing</a>
 (<a href="#offering">Offering</a>), <a href="#hero-powers">hero powers</a>, enchantments,
-Temporal Cache / Spell Vault tokens,
+Temporal Cache / Spell Vault / Bone Tithe tokens,
 <a href="#kw-toll">Toll(1)</a> (pay 1 LP or SP &rarr; gain 1 Essence, any time).
 Unspent non-income Essence: <a href="#kw-toll">Toll(1)</a> per point at end of
 every turn — checked for both players, not just the active player
