@@ -1071,14 +1071,15 @@
   <li><a href="#game-layout">Game Layout</a></li>
   <li><a href="#card-types">Card Types</a></li>
   <li><a href="#card-anatomy">Card Anatomy</a></li>
+  <li><a href="#zones">Zones</a></li>
   <li><a href="#turn-structure">Turn Structure</a></li>
   <li><a href="#combat">Combat</a></li>
   <li><a href="#reactive-play">Reactive Play</a></li>
+  <li><a href="#sacrifice">Sacrifice</a></li>
   <li><a href="#keywords">Keywords</a></li>
-  <li><a href="#zones">Zones</a></li>
   <li><a href="#marketplace">The Marketplace</a></li>
   <li><a href="#hero-powers">Hero Powers</a></li>
-  <li><a href="#core-rules">Core Rules</a></li>
+  <li><a href="#special-rules">Special Rules</a></li>
   <li><a href="#quick-reference">Quick Reference</a></li>
   <li><a href="#glossary">Glossary</a></li>
   <li><a href="#errata">Errata</a></li>
@@ -1093,16 +1094,17 @@ hero with their own playstyle and signature power, build their forces and battle
 destroy their opponent. Deploy creatures, cast spells, attach equipment, and invoke
 enchantments that twist the rules of the game in your favor.</p>
 
-<p>Each hero has two vital resources: <strong>Life Points (LP)</strong>, their physical
-resilience, and <strong>Sanity Points (SP)</strong>, their mental fortitude and magical
-reserves. Exhaust your opponent's body or break their mind — either path leads to
-victory.</p>
+<p>Each hero has three core resources: <strong>Life Points (LP)</strong>, their physical
+resilience; <strong>Sanity Points (SP)</strong>, their mental fortitude and magical
+reserves; and <strong>Essence (E)</strong>, the primary currency for playing cards — it resets
+each turn and must be generated, spent, or lost. Exhaust your opponent's body or
+break their mind — either path leads to victory.</p>
 
 <p><strong>Each player brings:</strong></p>
 <ul>
   <li>1 Hero card (sets your LP, SP, Essence income, and unique hero power)</li>
-  <li>A 15-card deck, chosen before the match from your hero's ~19-card pool</li>
-  <li>Access to the shared <a href="#marketplace">Marketplace (The Armory)</a> — neutral cards available to both players</li>
+  <li>A 15-card deck, chosen before the match from the hero's card pool (hero pools vary in size)</li>
+  <li>Access to the shared <a href="#marketplace">Marketplace</a> — neutral cards available to both players</li>
 </ul>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -1118,7 +1120,7 @@ either resource changes, mid-combat or mid-turn. The game ends immediately.</p>
 
 <ol>
   <li><strong>Choose heroes.</strong> Each player selects one of the available heroes.</li>
-  <li><strong>Build decks.</strong> From your hero's card pool (~19 cards), select 15 to form
+  <li><strong>Build decks.</strong> From your hero's card pool, select 15 cards to form
     your deck for this match. Set the remaining cards aside — they are not used.</li>
   <li><strong>Draft the marketplace.</strong> Each player secretly selects 3 neutral card types
     they want available. Reveal choices simultaneously and combine into a single list
@@ -1128,7 +1130,11 @@ either resource changes, mid-combat or mid-turn. The game ends immediately.</p>
     values. Place your hero card face-up in your hero zone.</li>
   <li><strong>Shuffle and draw.</strong> Shuffle your 15-card deck and draw 5 cards.</li>
   <li><strong>Determine first player.</strong> Flip a coin or agree randomly.</li>
+  <li><strong>First player adjustment.</strong> The first player does not draw the mandatory
+    +1 card during their first Draw Phase. They play their first turn with their
+    initial 5-card hand.</li>
 </ol>
+<p><strong>There is no mulligan.</strong> Play with the hand dealt.</p>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="game-layout">Game Layout</h2>
@@ -1205,7 +1211,7 @@ visible to your opponent. A typical setup is shown below.</p>
 
   <!-- ── Marketplace ────────────────────────────────── -->
   <div class="board-market">
-    <div class="board-market-label">— Marketplace (The Armory) —</div>
+    <div class="board-market-label">— The Marketplace —</div>
     <div class="board-market-cards">
       <div class="board-market-card"><img src="../assets/art/marketplace-pit-fiend.webp" alt=""></div>
       <div class="board-market-card"><img src="../assets/art/marketplace-deep-one.webp" alt=""></div>
@@ -1343,14 +1349,14 @@ their subtype:</p>
   <li><strong id="cycled">Cycled:</strong> After use, the card goes to your
     <a href="#zone-discard">discard pile</a> and will eventually reshuffle back into
     your deck. Repeatable over the course of a long game.</li>
-  <li><strong id="burned">Burned:</strong> After use, the card is
-    <a href="#zone-removed">permanently removed from the game</a>. Burned spells tend
-    to be more powerful — but you only get one use, ever.</li>
+  <li><strong id="burned">Burned:</strong> After use, the card is placed in the
+    <a href="#zone-removed">Removed zone</a>. Burned spells tend to be more powerful —
+    but you only get one use, ever.</li>
 </ul>
 <p>Spells are normally cast during your <a href="#main-phase">Main Phase</a>. They can
 also be cast during <a href="#reactive-play"><strong>Reactive Windows</strong></a> on
-your opponent's turn — but any spell played reactively is <strong>permanently removed
-from the game</strong>, even if it would normally Cycle. The one exception: spells with
+your opponent's turn — but any spell played reactively is placed in the
+<a href="#zone-removed"><strong>Removed zone</strong></a>, even if it would normally Cycle. The one exception: spells with
 the <a href="#kw-reaction"><strong>Reaction</strong></a> keyword keep their normal
 cycle/burn behavior when played reactively. See
 <a href="#reactive-play"><strong>Reactive Play</strong></a> for the full rules.</p>
@@ -1363,7 +1369,7 @@ sends the old one to your discard pile. If the equipped creature leaves the
 battlefield for any reason, the equipment also goes to your discard.</p>
 <p>Some equipment have abilities you can trigger by exhausting the equipment itself
 (rotating it sideways). Only the equipment becomes exhausted when this happens —
-the creature or hero equiping it is unaffected and remains ready.</p>
+the creature or hero equipping it is unaffected and remains ready.</p>
 
 <h3 id="enchantments">Enchantments</h3>
 <p>Permanent cards that occupy your enchantment zone and reshape the game's rules
@@ -1708,6 +1714,23 @@ enchantment is destroyed and sent to your discard pile.</p>
 </dl>
 
 <!-- ═══════════════════════════════════════════════════════ -->
+<h2 id="zones">Zones</h2>
+
+<p>Each area of play has distinct rules for what enters, what can leave, and how cards there
+interact with effects. The board diagram above shows where each zone sits physically;
+this section covers the rules for each.</p>
+
+<table>
+  <tr><th>Zone</th><th>Rules</th></tr>
+  <tr id="zone-battlefield"><td><strong>Battlefield</strong></td><td>Where active permanents live: creatures, enchantments, and attached equipment. Cards here can attack, block, be targeted, and use abilities.</td></tr>
+  <tr id="zone-hand"><td><strong>Hand</strong></td><td>Cards held privately. Maximum 5 at end of turn. You may look at your own hand at any time; your opponent may not.</td></tr>
+  <tr id="zone-deck"><td><strong>Deck</strong></td><td>Your face-down draw pile. When empty and you need to draw, reshuffle your Discard into a new deck and take <a href="#cycle-damage">Toll(2)</a>. If both deck and discard are empty, take <a href="#draw-damage">Draw Damage</a> instead.</td></tr>
+  <tr id="zone-discard"><td><strong>Discard</strong></td><td>Used <a href="#cycled">Cycled</a> spells, destroyed or replaced equipment, and destroyed enchantments. This pile reshuffles into your deck when you need to draw from an empty deck.</td></tr>
+  <tr id="zone-graveyard"><td><strong>Graveyard</strong></td><td>Dead creatures. Your graveyard is public and can be targeted by resurrection and recursion effects. It does <em>not</em> reshuffle into your deck.</td></tr>
+  <tr id="zone-removed"><td><strong>Removed</strong></td><td>Cards permanently out of the game. Contains: <a href="#burned">Burned</a> spells after use, non-<a href="#kw-reaction">Reaction</a> spells played during <a href="#reactive-play">Reactive Windows</a>, <a href="#unmade">Unmade</a> creatures, and cards removed by <a href="#kw-devouring">Devouring</a>. Nothing in this zone can ever be retrieved by any effect.</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="turn-structure">Turn Structure</h2>
 
 <p>Every turn follows the same six phases in order. You cannot skip or rearrange
@@ -1761,24 +1784,15 @@ this bypasses the cycle entirely and cannot be split into SP.</p>
   <tr><td><strong>Buy from <a href="#marketplace">marketplace</a></strong></td><td>Pay buy cost in Essence (card goes to hand)</td></tr>
   <tr><td><strong><a href="#sacrifice">Sacrifice</a> a creature</strong></td><td>Free — choose <a href="#offering">Offering</a> (Essence) or <a href="#consume">Consume</a> (SP)</td></tr>
   <tr><td><strong>Exhaust</strong> a creature</td><td>Use its exhaust ability (if it has one)</td></tr>
-  <tr><td><strong>Discard for Essence</strong></td><td>Discard 1 card from hand, gain 1 Essence (no limit per turn)</td></tr>
+  <tr><td><strong>Discard for Essence</strong></td><td>Discard 1 card from hand, gain 1 non-income Essence (no limit per turn)</td></tr>
   <tr><td><strong><a href="#kw-toll">Toll</a> for Essence</strong></td><td><a href="#kw-toll">Toll(1)</a> to gain 1 Essence — no limit, available at any time including Reactive Windows</td></tr>
-  <tr><td><strong>Use <a href="#hero-powers">hero power</a></strong></td><td>Pay cost (if any)</td></tr>
+  <tr><td><strong>Use <a href="#hero-powers">hero power</a></strong></td><td>Pay cost (if any); activated (Exhaust) powers are Main Phase only</td></tr>
   <tr><td><strong>Activate an ability</strong></td><td>Follow card text</td></tr>
   <tr><td><strong>Declare <a href="#combat">combat</a></strong></td><td>Once per turn (see Combat below)</td></tr>
   <tr><td><strong>Pass</strong></td><td>End your main phase</td></tr>
 </table>
 
 <p>You may take actions before AND after combat.</p>
-
-<h3 id="sacrifice">Sacrifice</h3>
-<p>You may sacrifice any creature you control at any time during your Main Phase, or during a
-<a href="#reactive-play">Reactive Window</a>. Choose one:</p>
-<ul>
-  <li><strong id="consume">Consume:</strong> Recover SP equal to the creature's <strong>SV</strong> (Sacrifice Value).</li>
-  <li><strong id="offering">Offering:</strong> Gain Essence equal to the creature's <strong>SV</strong>.</li>
-</ul>
-<p>Any triggered abilities on the sacrificed creature resolve first (e.g., "When this creature dies, deal 1 damage"). The creature then moves to your <a href="#zone-graveyard">graveyard</a>.</p>
 
 <h3 id="end-phase">6. End Phase</h3>
 <ul>
@@ -1879,8 +1893,8 @@ what you've prepared or what you're willing to sacrifice:</p>
   <li><strong>One spell per window.</strong> You get one chance to respond. The reactive spell
     resolves immediately — it does not open another window. There are no chains, stacks,
     or priority passes.</li>
-  <li>Spells cast during a Reactive Window are <strong>permanently
-    <a href="#zone-removed">removed from the game</a></strong>, even if they would normally
+  <li>Spells cast during a Reactive Window are placed in the
+    <a href="#zone-removed"><strong>Removed zone</strong></a>, even if they would normally
     Cycle. Exception: spells with the
     <a href="#kw-reaction"><strong>Reaction</strong></a> keyword keep their normal cycle/burn
     behavior when played reactively.</li>
@@ -1892,6 +1906,18 @@ what you've prepared or what you're willing to sacrifice:</p>
     exceptions (e.g., Spell Vault).</li>
   <li>Enchantments and Equipment cannot be played during Reactive Windows.</li>
 </ul>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2 id="sacrifice">Sacrifice</h2>
+
+<p>You may sacrifice any creature you control during your <a href="#main-phase">Main Phase</a>
+or during a <a href="#reactive-play">Reactive Window</a>. Choose one:</p>
+<ul>
+  <li><strong id="offering">Offering:</strong> Gain Essence equal to the creature's <strong>SV</strong> (Sacrifice Value).</li>
+  <li><strong id="consume">Consume:</strong> Recover SP equal to the creature's <strong>SV</strong>.</li>
+</ul>
+<p>Any triggered abilities on the sacrificed creature resolve first (e.g., "When this creature
+dies, deal 1 damage"). The creature then moves to your <a href="#zone-graveyard">graveyard</a>.</p>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="keywords">Keywords</h2>
@@ -1913,24 +1939,7 @@ what you've prepared or what you're willing to sacrifice:</p>
 </table>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<h2 id="zones">Zones</h2>
-
-<p>Each area of play has distinct rules for what enters, what can leave, and how cards there
-interact with effects. The board diagram above shows where each zone sits physically;
-this section covers the rules for each.</p>
-
-<table>
-  <tr><th>Zone</th><th>Rules</th></tr>
-  <tr id="zone-battlefield"><td><strong>Battlefield</strong></td><td>Where active permanents live: creatures, enchantments, and attached equipment. Cards here can attack, block, be targeted, and use abilities.</td></tr>
-  <tr id="zone-hand"><td><strong>Hand</strong></td><td>Cards held privately. Maximum 5 at end of turn. You may look at your own hand at any time; your opponent may not.</td></tr>
-  <tr id="zone-deck"><td><strong>Deck</strong></td><td>Your face-down draw pile. When empty and you need to draw, reshuffle your Discard into a new deck and take <a href="#cycle-damage">Toll(2)</a>. If both deck and discard are empty, take <a href="#draw-damage">Draw Damage</a> instead.</td></tr>
-  <tr id="zone-discard"><td><strong>Discard</strong></td><td>Used <a href="#cycled">Cycled</a> spells, destroyed or replaced equipment, and destroyed enchantments. This pile reshuffles into your deck when you need to draw from an empty deck.</td></tr>
-  <tr id="zone-graveyard"><td><strong>Graveyard</strong></td><td>Dead creatures. Your graveyard is public and can be targeted by resurrection and recursion effects. It does <em>not</em> reshuffle into your deck.</td></tr>
-  <tr id="zone-removed"><td><strong>Removed</strong></td><td>Permanently out of the game. Contains: <a href="#burned">Burned</a> spells after use, non-<a href="#kw-reaction">Reaction</a> spells played during <a href="#reactive-play">Reactive Windows</a>, <a href="#unmade">Unmade</a> creatures, and cards removed by <a href="#kw-devouring">Devouring</a>. Nothing in this zone can ever be retrieved by any effect.</td></tr>
-</table>
-
-<!-- ═══════════════════════════════════════════════════════ -->
-<h2 id="marketplace">The Marketplace (The Armory)</h2>
+<h2 id="marketplace">The Marketplace</h2>
 
 <p>The Marketplace is a shared row of neutral cards running down the center of the
 table, accessible to both players. It offers mercenaries, spells, and equipment
@@ -1954,9 +1963,10 @@ freshly drafted marketplace, so available cards vary game to game.</p>
 <p>Every hero carries a unique power that defines part of their playstyle. Powers come
 in two forms:</p>
 <ul>
-  <li><strong>Passive</strong> — triggers automatically each turn with no action required.</li>
-  <li><strong>Exhaust</strong> — an activated ability you use once per turn as a Main Phase
-    action. Exhaust your hero card when used; it readies at the start of your next turn.</li>
+  <li><strong>Passive</strong> — triggers automatically at its specified timing with no action required.</li>
+  <li><strong>Exhaust</strong> — an activated ability you use once per turn during your
+    <a href="#main-phase">Main Phase</a> only. Exhaust your hero card when used; it readies
+    at the start of your next turn.</li>
 </ul>
 
 <table>
@@ -1969,7 +1979,7 @@ in two forms:</p>
 </table>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<h2 id="core-rules">Core Rules</h2>
+<h2 id="special-rules">Special Rules</h2>
 
 <h3 id="feedback">Feedback</h3>
 <p>Essence is volatile — generating more than you spend has consequences. At the end of
@@ -2066,7 +2076,7 @@ response to your opponent declaring attackers
 (<a href="#attack-window">Attack Window</a>) or casting a spell
 (<a href="#spell-window">Spell Window</a>). The reactive spell resolves immediately —
 no chains. Counterspells cancel the triggering spell entirely. Reactive spells are
-permanently <a href="#zone-removed">removed from the game</a> unless they carry the
+placed in the <a href="#zone-removed">Removed zone</a> unless they carry the
 <a href="#kw-reaction">Reaction</a> keyword.</p>
 
 <p><strong><a href="#unmade">Unmade</a>:</strong> Unmade creatures go to the
@@ -2091,7 +2101,7 @@ either resource changes.</p>
   <dd>Keyword. Places a bleed token on a damaged target; the token deals 1 damage at the start of that target's controller's next turn. Can also be placed directly by card effects.</dd>
 
   <dt><a href="#burned">Burned</a></dt>
-  <dd>Spell subtype. After use, permanently removed from the game.</dd>
+  <dd>Spell subtype. After use, placed in the <a href="#zone-removed">Removed zone</a>.</dd>
 
   <dt><a href="#consume">Consume</a></dt>
   <dd><a href="#sacrifice">Sacrifice</a> option. Recover SP equal to the creature's SV.</dd>
@@ -2145,7 +2155,7 @@ either resource changes.</p>
   <dd>A window during your opponent's turn where you may play one spell. Two types: <a href="#attack-window">Attack Window</a> and <a href="#spell-window">Spell Window</a>.</dd>
 
   <dt>Ready</dt>
-  <dd>An untapped permanent, able to attack or block. All permanents ready at start of turn.</dd>
+  <dd>A readied permanent, able to attack or block. All permanents ready at the start of their controller's turn.</dd>
 
   <dt><a href="#kw-shield">Shield</a></dt>
   <dd>Keyword. Reduces damage from each source by 1.</dd>
@@ -2188,9 +2198,9 @@ player's turn — broader than the two standard Reactive Windows.</p>
     <a href="#summoning-sickness"><strong>Summoning sickness</strong></a> clears at the start
     of your turn, so the creature is ready to attack immediately when your
     turn starts.</li>
-  <li>Spells deployed from Spell Vault on your opponent's turn are permanently
-    <a href="#zone-removed">removed from the game</a> (Removed zone) unless they have
-    the <a href="#kw-reaction"><strong>Reaction</strong></a> keyword.</li>
+  <li>Spells deployed from Spell Vault on your opponent's turn are placed in the
+    <a href="#zone-removed">Removed zone</a> unless they have the
+    <a href="#kw-reaction"><strong>Reaction</strong></a> keyword.</li>
   <li>Creatures, Enchantments, and Equipment deployed from Spell Vault enter play
     immediately regardless of whose turn it is.</li>
   <li>You may place a card under Spell Vault and fire it in the same action if
