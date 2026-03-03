@@ -150,21 +150,22 @@
     gap: 1rem;
   }
 
-  /* Pull logo up close under emblem */
-  .cover-logo { margin-top: -0.5rem; }
-
   .cover-emblem {
-    width: min(260px, 50vw);
+    width: min(500px, 74vw);
     height: auto;
-    filter: drop-shadow(0 0 80px rgba(200, 168, 75, 0.5)) drop-shadow(0 0 24px rgba(200, 168, 75, 0.3));
+    filter: drop-shadow(0 0 120px rgba(200, 168, 75, 0.6)) drop-shadow(0 0 40px rgba(200, 168, 75, 0.35));
     animation: logoReveal 2.2s ease both;
   }
 
-  .cover-logo {
-    width: min(400px, 68vw);
-    height: auto;
-    filter: drop-shadow(0 0 30px rgba(200, 168, 75, 0.15));
-    animation: logoReveal 2.2s 0.2s ease both;
+  .cover-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--bone);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0;
+    animation: fadeInUp 1.8s 0.4s ease both;
   }
 
   .cover-hairline {
@@ -1039,7 +1040,8 @@
 
   <div class="cover-content">
     <img src="../assets/logo/throne-emblem.png" alt="" class="cover-emblem">
-    <img src="../assets/logo/logo-landing.png" alt="Hollow Throne" class="cover-logo">
+    <div class="cover-hairline"></div>
+    <p class="cover-title">Hollow Throne</p>
     <div class="cover-hairline"></div>
     <p class="cover-subtitle">Rulebook</p>
     <p class="cover-tagline">Everything has a cost. Hit hard, burn out.</p>

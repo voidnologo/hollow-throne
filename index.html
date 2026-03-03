@@ -233,18 +233,21 @@
     }
 
     .hero-emblem {
-      width: min(320px, 58vw);
+      width: min(560px, 80vw);
       height: auto;
-      filter: drop-shadow(0 0 120px rgba(200, 168, 75, 0.55)) drop-shadow(0 0 40px rgba(200, 168, 75, 0.3));
+      filter: drop-shadow(0 0 140px rgba(200, 168, 75, 0.65)) drop-shadow(0 0 50px rgba(200, 168, 75, 0.35));
       animation: logoReveal 2.2s ease both;
     }
 
-    .hero-logo {
-      width: min(440px, 72vw);
-      height: auto;
-      filter: drop-shadow(0 0 40px rgba(200, 168, 75, 0.18));
-      animation: logoReveal 2.2s 0.15s ease both;
-      margin-top: -0.6rem;
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--bone);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin: 0;
+      animation: fadeInUp 1.8s 0.4s ease both;
     }
 
     /* Hairline rule beneath logo */
@@ -704,7 +707,7 @@
 
     <div class="hero-content">
       <img src="assets/logo/throne-emblem.png" alt="" class="hero-emblem">
-      <img src="assets/logo/logo-landing.png" alt="Hollow Throne" class="hero-logo">
+      <h1 class="hero-title">Hollow Throne</h1>
       <div class="hero-hairline"></div>
       <p class="hero-tagline">Everything has a cost. Hit hard, burn out.</p>
       <p class="hero-sub">A dark fantasy 1v1 card game of resource war, creature combat, and desperate last stands. Five heroes. Two ways to die. One throne.</p>
