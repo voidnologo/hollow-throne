@@ -175,12 +175,12 @@
       text-align: center;
     }
 
-    /* Throne-room atmosphere — warm candlelight at center, pure void at edges */
+    /* Throne-room atmosphere — subtle lightening at center, pure void at edges */
     .hero-bg {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 75% 60% at 50% 44%, #0e1a32 0%, #080e1e 45%, var(--void) 100%);
+        radial-gradient(ellipse at 50% 44%, #0e1a32 0%, #0a1224 25%, #080e1e 50%, var(--void) 100%);
       z-index: 0;
     }
 
@@ -235,7 +235,7 @@
     .hero-emblem {
       width: min(92vw, 820px);
       height: auto;
-      animation: emblemReveal 2s ease both, emblemGlow 5s 2.2s ease-in-out infinite;
+      animation: emblemReveal 2s ease both;
     }
 
     .hero-title {
@@ -654,14 +654,8 @@
       to   { opacity: 1; transform: scale(1);    filter: drop-shadow(0 0 55px rgba(200,168,75,0.22)); }
     }
     @keyframes emblemReveal {
-      from { opacity: 0; transform: scale(0.92);
-             filter: drop-shadow(0 0 0px rgba(200,168,75,0)); }
-      to   { opacity: 1; transform: scale(1);
-             filter: drop-shadow(0 0 200px rgba(200,168,75,0.9)) drop-shadow(0 0 80px rgba(200,168,75,0.6)) drop-shadow(0 0 20px rgba(200,168,75,0.5)); }
-    }
-    @keyframes emblemGlow {
-      0%, 100% { filter: drop-shadow(0 0 200px rgba(200,168,75,0.9)) drop-shadow(0 0 80px rgba(200,168,75,0.6)) drop-shadow(0 0 20px rgba(200,168,75,0.5)); }
-      50%       { filter: drop-shadow(0 0 280px rgba(200,168,75,1.0)) drop-shadow(0 0 120px rgba(200,168,75,0.75)) drop-shadow(0 0 30px rgba(200,168,75,0.65)); }
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
     }
     @keyframes growLine {
       from { height: 0; } to { height: 42px; }
