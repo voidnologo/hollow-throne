@@ -147,14 +147,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .cover-emblem {
-    width: min(500px, 74vw);
+    width: min(88vw, 720px);
     height: auto;
-    filter: drop-shadow(0 0 120px rgba(200, 168, 75, 0.6)) drop-shadow(0 0 40px rgba(200, 168, 75, 0.35));
-    animation: logoReveal 2.2s ease both;
+    animation: emblemReveal 2s ease both, emblemGlow 5s 2.2s ease-in-out infinite;
   }
 
   .cover-title {
@@ -409,6 +408,16 @@
   @keyframes logoReveal {
     from { opacity: 0; transform: scale(0.95); filter: drop-shadow(0 0 0px rgba(200,168,75,0)); }
     to   { opacity: 1; transform: scale(1);    filter: drop-shadow(0 0 60px rgba(200,168,75,0.2)); }
+  }
+  @keyframes emblemReveal {
+    from { opacity: 0; transform: scale(0.92);
+           filter: drop-shadow(0 0 0px rgba(200,168,75,0)); }
+    to   { opacity: 1; transform: scale(1);
+           filter: drop-shadow(0 0 180px rgba(200,168,75,0.85)) drop-shadow(0 0 70px rgba(200,168,75,0.55)) drop-shadow(0 0 20px rgba(200,168,75,0.45)); }
+  }
+  @keyframes emblemGlow {
+    0%, 100% { filter: drop-shadow(0 0 180px rgba(200,168,75,0.85)) drop-shadow(0 0 70px rgba(200,168,75,0.55)) drop-shadow(0 0 20px rgba(200,168,75,0.45)); }
+    50%       { filter: drop-shadow(0 0 260px rgba(200,168,75,1.0)) drop-shadow(0 0 110px rgba(200,168,75,0.7)) drop-shadow(0 0 30px rgba(200,168,75,0.6)); }
   }
 
   /* ════════════════════════════════════════════════════════
