@@ -8,27 +8,27 @@
   /* ── Fonts ────────────────────────────────────────────── */
   @font-face {
     font-family: 'Cinzel';
-    src: url('../../assets/fonts/Cinzel-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/Cinzel-Regular.ttf') format('truetype');
     font-weight: 400; font-display: swap;
   }
   @font-face {
     font-family: 'Cinzel';
-    src: url('../../assets/fonts/Cinzel-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/Cinzel-Bold.ttf') format('truetype');
     font-weight: 700; font-display: swap;
   }
   @font-face {
     font-family: 'FiraSans';
-    src: url('../../assets/fonts/FiraSans-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/FiraSans-Regular.ttf') format('truetype');
     font-weight: 400; font-display: swap;
   }
   @font-face {
     font-family: 'FiraSans';
-    src: url('../../assets/fonts/FiraSans-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/FiraSans-Bold.ttf') format('truetype');
     font-weight: 700; font-display: swap;
   }
   @font-face {
     font-family: 'FiraSans';
-    src: url('../../assets/fonts/FiraSans-Italic.ttf') format('truetype');
+    src: url('../assets/fonts/FiraSans-Italic.ttf') format('truetype');
     font-weight: 400; font-style: italic; font-display: swap;
   }
 
@@ -147,14 +147,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
+    gap: 1rem;
+  }
+
+  /* Pull logo up close under emblem */
+  .cover-logo { margin-top: -0.5rem; }
+
+  .cover-emblem {
+    width: min(260px, 50vw);
+    height: auto;
+    filter: drop-shadow(0 0 80px rgba(200, 168, 75, 0.5)) drop-shadow(0 0 24px rgba(200, 168, 75, 0.3));
+    animation: logoReveal 2.2s ease both;
   }
 
   .cover-logo {
-    width: min(520px, 78vw);
+    width: min(400px, 68vw);
     height: auto;
-    filter: drop-shadow(0 0 60px rgba(200, 168, 75, 0.2));
-    animation: logoReveal 2.2s ease both;
+    filter: drop-shadow(0 0 30px rgba(200, 168, 75, 0.15));
+    animation: logoReveal 2.2s 0.2s ease both;
   }
 
   .cover-hairline {
@@ -1028,7 +1038,8 @@
   <div class="frame-corner br"></div>
 
   <div class="cover-content">
-    <img src="../../assets/logo/logo-landing.png" alt="Hollow Throne" class="cover-logo">
+    <img src="../assets/logo/throne-emblem.png" alt="" class="cover-emblem">
+    <img src="../assets/logo/logo-landing.png" alt="Hollow Throne" class="cover-logo">
     <div class="cover-hairline"></div>
     <p class="cover-subtitle">Rulebook</p>
     <p class="cover-tagline">Everything has a cost. Hit hard, burn out.</p>

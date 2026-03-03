@@ -232,11 +232,19 @@
       gap: 1.4rem;
     }
 
-    .hero-logo {
-      width: min(560px, 82vw);
+    .hero-emblem {
+      width: min(320px, 58vw);
       height: auto;
-      filter: drop-shadow(0 0 55px rgba(200, 168, 75, 0.22));
+      filter: drop-shadow(0 0 120px rgba(200, 168, 75, 0.55)) drop-shadow(0 0 40px rgba(200, 168, 75, 0.3));
       animation: logoReveal 2.2s ease both;
+    }
+
+    .hero-logo {
+      width: min(440px, 72vw);
+      height: auto;
+      filter: drop-shadow(0 0 40px rgba(200, 168, 75, 0.18));
+      animation: logoReveal 2.2s 0.15s ease both;
+      margin-top: -0.6rem;
     }
 
     /* Hairline rule beneath logo */
@@ -695,6 +703,7 @@
     <div class="frame-corner br"></div>
 
     <div class="hero-content">
+      <img src="assets/logo/throne-emblem.png" alt="" class="hero-emblem">
       <img src="assets/logo/logo-landing.png" alt="Hollow Throne" class="hero-logo">
       <div class="hero-hairline"></div>
       <p class="hero-tagline">Everything has a cost. Hit hard, burn out.</p>
