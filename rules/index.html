@@ -1690,7 +1690,8 @@ enchantment is destroyed and sent to your discard pile.</p>
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="turn-structure">Turn Structure</h2>
 
-<p>Each turn follows these phases in order:</p>
+<p>Every turn follows the same six phases in order. You cannot skip or rearrange
+phases, though most phases are quick and automatic:</p>
 
 <h3 id="ready-step">1. Ready Step</h3>
 <ul>
@@ -1702,13 +1703,16 @@ enchantment is destroyed and sent to your discard pile.</p>
 <h3 id="draw-phase">2. Draw Phase</h3>
 <ul>
   <li><strong>Replenish:</strong> Draw cards until you have 5 in hand.</li>
-  <li><strong>Mandatory draw:</strong> Draw 1 additional card (you always draw at least 1).</li>
-  <li>After this phase you have up to 6 cards in hand.</li>
+  <li><strong>Mandatory draw:</strong> Draw 1 additional card. You always draw at least 1 card,
+    even if you started the phase with a full hand of 5.</li>
+  <li>You end this phase with up to 6 cards. The hand limit of 5 is enforced at the
+    <a href="#end-phase">End Phase</a>, not here.</li>
 </ul>
-<p>If your deck is empty when you need to draw, reshuffle your discard pile
-into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
-<a href="#cycle-damage">cycle damage</a>. If both deck and discard are empty, take
-<strong>1 LP <a href="#draw-damage">draw damage</a></strong> per missing card instead.</p>
+<p>If your deck is empty when you need to draw, reshuffle your discard pile into a new
+deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
+(<a href="#cycle-damage">cycle damage</a>). If both your deck and discard are empty,
+take <strong>1 LP</strong> <a href="#draw-damage">draw damage</a> per missing card instead —
+this bypasses the cycle entirely and cannot be split into SP.</p>
 
 <h3 id="income-step">3. Income Step</h3>
 <ul>
@@ -1719,8 +1723,10 @@ into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
 
 <h3 id="upkeep-step">4. Upkeep Step</h3>
 <ul>
-  <li>Pay upkeep costs for your permanents (Equipment, Enchantments).</li>
-  <li>If you can't or choose not to pay, that permanent is destroyed.</li>
+  <li>Pay any upkeep costs on your equipment and enchantments. Each card that has an
+    upkeep cost specifies what must be paid.</li>
+  <li>If you cannot or choose not to pay a card's upkeep, it is immediately destroyed
+    and sent to your discard pile.</li>
 </ul>
 
 <h3 id="main-phase">5. Main Phase</h3>
@@ -1733,7 +1739,7 @@ into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
   <tr><td><strong>Play an enchantment</strong> from hand</td><td>Pay Essence and/or SP cost</td></tr>
   <tr><td><strong>Attach equipment</strong> from hand</td><td>Pay Essence cost</td></tr>
   <tr><td><strong>Buy from <a href="#marketplace">marketplace</a></strong></td><td>Pay buy cost in Essence (card goes to hand)</td></tr>
-  <tr><td><strong><a href="#sacrifice">Sacrifice</a> a creature</strong></td><td>Free (see Sacrifice below)</td></tr>
+  <tr><td><strong><a href="#sacrifice">Sacrifice</a> a creature</strong></td><td>Free — choose <a href="#offering">Offering</a> (Essence) or <a href="#consume">Consume</a> (SP)</td></tr>
   <tr><td><strong>Exhaust</strong> a creature</td><td>Use its exhaust ability (if it has one)</td></tr>
   <tr><td><strong>Discard for Essence</strong></td><td>Discard 1 card from hand, gain 1 Essence (no limit per turn)</td></tr>
   <tr><td><strong><a href="#kw-toll">Toll</a> for Essence</strong></td><td><a href="#kw-toll">Toll(1)</a> to gain 1 Essence — no limit, available at any time including Reactive Windows</td></tr>
@@ -1756,16 +1762,16 @@ into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
 
 <h3 id="end-phase">6. End Phase</h3>
 <ul>
-  <li>Passive healing effects trigger (e.g., Iron Discipline).</li>
-  <li><strong>Voluntary discard:</strong> You may discard any cards you don't want.
-    Each discard: <a href="#kw-toll"><strong>Toll(1)</strong></a>.</li>
-  <li><strong>Hand limit:</strong> If you still have more than 5 cards, discard down to 5.
-    Each discard: <a href="#kw-toll"><strong>Toll(1)</strong></a>.</li>
-  <li><strong><a href="#feedback">Feedback</a>:</strong> <em>Both</em> players check
-    for unspent non-income Essence. Each point from non-income sources (sacrifice,
-    discard, exhaust abilities, hero powers):
+  <li>Passive hero powers trigger now (end-of-turn effects on your hero card resolve).</li>
+  <li><strong>Voluntary discard:</strong> You may discard any cards you no longer want.
+    Each card discarded here costs <a href="#kw-toll"><strong>Toll(1)</strong></a>.</li>
+  <li><strong>Hand limit:</strong> If you have more than 5 cards, discard down to 5.
+    Each forced discard also costs <a href="#kw-toll"><strong>Toll(1)</strong></a>.</li>
+  <li><strong><a href="#feedback">Feedback</a>:</strong> <em>Both</em> players check for
+    unspent non-income Essence. Each unspent point from non-income sources (sacrifice,
+    discard-for-Essence, exhaust abilities, hero powers) costs
     <a href="#kw-toll"><strong>Toll(1)</strong></a> per point to that player.</li>
-  <li>Temporary buffs clear. All remaining Essence is lost.</li>
+  <li>All temporary buffs expire. All remaining Essence is lost.</li>
 </ul>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -1811,58 +1817,59 @@ within a single combat.</p>
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="reactive-play">Reactive Play</h2>
 
-<p>Either player may play spells during two <strong>Reactive Windows</strong> on the
-opponent's turn:</p>
+<p>The game doesn't pause during your opponent's turn — you can act. Either player may
+cast spells during two designated <strong>Reactive Windows</strong> on the active player's
+turn:</p>
 <ul>
-  <li><strong id="attack-window">Attack Window:</strong> After the active player declares
-    attackers, before blockers are assigned.</li>
-  <li><strong id="spell-window">Spell Window:</strong> After the active player casts a spell
-    and pays its costs, before the spell resolves.</li>
+  <li><strong id="attack-window">Attack Window:</strong> Opens after the active player
+    declares attackers, before the defender assigns blockers. Use this window to
+    remove a threat before it connects, buff your own blockers, or drain the attacker's
+    resources.</li>
+  <li><strong id="spell-window">Spell Window:</strong> Opens after the active player casts a
+    spell and pays its costs, before that spell resolves. Use this window to counter the
+    spell or respond to its setup.</li>
 </ul>
-<p>In physical play: after any such action, the non-active player says "I want to
-respond" before the action resolves. If no response is declared, the action
-proceeds.</p>
+<p>In physical play, signal intent before the action resolves: the non-active player
+says "I respond" and declares their spell. If no response is declared, the action
+resolves without interruption.</p>
 
-<h3 id="paying-for-reactive-spells">Paying for Reactive Spells</h3>
-<p>Getting Essence on your opponent's turn requires planning ahead:</p>
+<h3 id="paying-for-reactive-spells">Funding a Reactive Play</h3>
+<p>You have no Essence income on your opponent's turn, so resources must come from
+what you've prepared or what you're willing to sacrifice:</p>
 <ul>
-  <li><strong>Exhausting creatures:</strong> Any ready creature you control with an Exhaust
-    ability (e.g., "Exhaust: Gain 1 Essence") may be used during a Reactive
-    Window. That creature is now exhausted — gain the benefit, but that
-    creature cannot block.</li>
-  <li><strong>Sacrificing creatures:</strong> You may <a href="#sacrifice">sacrifice</a> a creature
-    during a Reactive Window and choose Offering (Essence) or Consume (SP)
-    as normal.</li>
-  <li><strong>SP-cost spells:</strong> Spells with no Essence cost (only SP) are naturally
-    playable without any Essence income. Your SP pool is always accessible.</li>
-  <li><strong>Temporal Cache / Spell Vault tokens:</strong> Pre-load tokens during your turns.
-    Spend tokens as Essence during any Reactive Window.</li>
-  <li><strong><a href="#kw-toll">Toll</a> for Essence:</strong> You may
-    <a href="#kw-toll">Toll(1)</a> to gain 1 Essence at any time — including during
-    Reactive Windows. Universal fallback for funding reactive plays. Note:
-    Toll-generated Essence is non-income Essence and subject to
-    <a href="#feedback">Feedback</a> if unspent at end of turn.</li>
+  <li><strong>SP-cost spells:</strong> Spells with only an SP cost need no Essence at all.
+    Your SP pool is always available.</li>
+  <li><strong>Exhausting creatures:</strong> A ready creature with an Exhaust ability may use
+    it during a Reactive Window. The creature becomes exhausted and cannot block this
+    combat — weigh the trade-off carefully.</li>
+  <li><strong>Sacrificing creatures:</strong> You may <a href="#sacrifice">sacrifice</a> a
+    creature during a Reactive Window, choosing Offering (Essence) or Consume (SP) as
+    normal.</li>
+  <li><strong>Temporal Cache / Spell Vault tokens:</strong> Store tokens during your turns and
+    spend them as Essence during any Reactive Window.</li>
+  <li><strong><a href="#kw-toll">Toll</a> for Essence:</strong>
+    <a href="#kw-toll">Toll(1)</a> to gain 1 Essence — available at any time, including
+    during Reactive Windows. A reliable last resort, but Toll-generated Essence is
+    non-income and triggers <a href="#feedback">Feedback</a> if unspent at end of turn.</li>
 </ul>
 
-<h3 id="reactive-casting-rules">Reactive Casting Rules</h3>
+<h3 id="reactive-casting-rules">Rules for Reactive Spells</h3>
 <ul>
-  <li>Any spell may be played during a Reactive Window if you can pay its cost.</li>
-  <li><strong>One spell per window.</strong> The non-active player gets one chance to respond.
-    That reactive spell resolves immediately — it does not open a new Reactive
-    Window. There are no chains or stacks.</li>
-  <li>Spells played during a Reactive Window are <strong>permanently
-    <a href="#zone-removed">removed from the game</a></strong> (Removed zone), even if they
-    would normally be <a href="#cycled">Cycled</a>. Exception: spells with the
-    <a href="#kw-reaction"><strong>Reaction</strong></a> keyword follow their normal cycle/burn
-    behavior when played reactively (a Cycled Reaction spell goes to discard,
-    a <a href="#burned">Burned</a> Reaction spell goes to Removed as usual).</li>
-  <li><strong>Counter spells</strong> (e.g., Temporal Interrupt) cancel the triggering spell
-    entirely — it does not resolve. The countered spell still goes to the
-    appropriate zone (Removed if it was Burned, discard if Cycled). Both
-    players lose their spell and any resources spent.</li>
-  <li>Creatures cannot be played directly from hand during Reactive Windows
-    (they require <a href="#main-phase">Main Phase</a> summoning). See
-    <a href="#errata"><strong>Errata</strong></a> for card-specific exceptions.</li>
+  <li>Any spell may be played during a Reactive Window, provided you can pay its cost.</li>
+  <li><strong>One spell per window.</strong> You get one chance to respond. The reactive spell
+    resolves immediately — it does not open another window. There are no chains, stacks,
+    or priority passes.</li>
+  <li>Spells cast during a Reactive Window are <strong>permanently
+    <a href="#zone-removed">removed from the game</a></strong>, even if they would normally
+    Cycle. Exception: spells with the
+    <a href="#kw-reaction"><strong>Reaction</strong></a> keyword keep their normal cycle/burn
+    behavior when played reactively.</li>
+  <li><strong>Counterspells</strong> cancel the triggering spell entirely — it does not resolve.
+    The countered spell still moves to its appropriate zone (Removed if Burned, discard if
+    Cycled). Both players lose the resources they spent.</li>
+  <li>Creatures cannot be played from hand during Reactive Windows — summoning requires the
+    <a href="#main-phase">Main Phase</a>. See <a href="#errata">Errata</a> for card-specific
+    exceptions (e.g., Spell Vault).</li>
   <li>Enchantments and Equipment cannot be played during Reactive Windows.</li>
 </ul>
 
@@ -1924,15 +1931,21 @@ freshly drafted marketplace, so available cards vary game to game.</p>
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="hero-powers">Hero Powers</h2>
 
-<p>Each hero has a unique power:</p>
+<p>Every hero carries a unique power that defines part of their playstyle. Powers come
+in two forms:</p>
+<ul>
+  <li><strong>Passive</strong> — triggers automatically each turn with no action required.</li>
+  <li><strong>Exhaust</strong> — an activated ability you use once per turn as a Main Phase
+    action. Exhaust your hero card when used; it readies at the start of your next turn.</li>
+</ul>
 
 <table>
   <tr><th>Hero</th><th>Power</th><th>Type</th><th>Effect</th></tr>
-  <tr><td><strong>Bone Tyrant</strong></td><td>Grave Touch</td><td>Activated (2SP, once/turn)</td><td>Return target creature from your <a href="#zone-graveyard">graveyard</a> to your hand. You may cast it for 1 less Essence this turn.</td></tr>
-  <tr><td><strong>Crimson Ranger</strong></td><td>Marked Prey</td><td>Activated (free, once/turn)</td><td>Deal 1 damage to target creature.</td></tr>
-  <tr><td><strong>Iron Warden</strong></td><td>Iron Discipline</td><td>Passive</td><td>At end of turn, heal 1 damage from each of your creatures.</td></tr>
-  <tr><td><strong>Thread-Cutter</strong></td><td>Fate's Glimpse</td><td>Activated (1E + 1SP, once/turn)</td><td>Draw 1 card, then target opponent discards 1 card from their hand.</td></tr>
-  <tr><td><strong>Void Scholar</strong></td><td>Arcane Conversion</td><td>Activated (1SP, once/turn)</td><td>Gain 2 Essence.</td></tr>
+  <tr><td><strong>Bone Tyrant</strong></td><td>Grave Touch</td><td>Exhaust (2SP, once/turn)</td><td>Return target creature from your <a href="#zone-graveyard">graveyard</a> to your hand. You may cast it for 1 less Essence this turn.</td></tr>
+  <tr><td><strong>Crimson Ranger</strong></td><td>Marked Prey</td><td>Exhaust (free, once/turn)</td><td>Deal 1 damage to target creature.</td></tr>
+  <tr><td><strong>Iron Warden</strong></td><td>Iron Discipline</td><td>Passive</td><td>At end of turn, heal 1 damage from each creature you control.</td></tr>
+  <tr><td><strong>Thread-Cutter</strong></td><td>Fate's Glimpse</td><td>Exhaust (1E + 1SP, once/turn)</td><td>Draw 1 card, then your opponent discards 1 card from their hand.</td></tr>
+  <tr><td><strong>Void Scholar</strong></td><td>Arcane Conversion</td><td>Exhaust (1SP, once/turn)</td><td>Gain 2 Essence.</td></tr>
 </table>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -2009,44 +2022,42 @@ exhausted — the creature or hero it is attached to remains ready and unaffecte
 <a href="#draw-phase">Draw</a> &rarr;
 <a href="#income-step">Income</a> &rarr;
 <a href="#upkeep-step">Upkeep</a> &rarr;
-<a href="#main-phase">Main</a> (<a href="#combat">combat</a> inside) &rarr;
+<a href="#main-phase">Main</a> (with optional <a href="#combat">combat</a>) &rarr;
 <a href="#end-phase">End</a></p>
 
-<p><strong>Essence:</strong> Resets to 0 each turn. Gain from: hero income, exhausting
-creatures, discarding cards, <a href="#sacrifice">sacrificing</a>
-(<a href="#offering">Offering</a>), <a href="#hero-powers">hero powers</a>, enchantments,
-Temporal Cache / Spell Vault / Bone Tithe tokens,
-<a href="#kw-toll">Toll(1)</a> (pay 1 LP or SP &rarr; gain 1 Essence, any time).
-Unspent non-income Essence: <a href="#kw-toll">Toll(1)</a> per point at end of
-every turn — checked for both players, not just the active player
-(<a href="#feedback">Feedback</a>).</p>
+<p><strong>Essence:</strong> Resets to 0 each Income Step. Sources: hero base income,
+permanents in play, exhausting creatures, discarding cards (1 Essence each),
+<a href="#sacrifice">sacrificing</a> (<a href="#offering">Offering</a>),
+<a href="#hero-powers">hero powers</a>, stored tokens (Temporal Cache / Spell Vault /
+Bone Tithe), or <a href="#kw-toll">Toll(1)</a> (pay 1 LP or SP to gain 1 Essence —
+any time). Unspent non-income Essence at end of turn: Toll(1) per point, both
+players (<a href="#feedback">Feedback</a>).</p>
 
-<p><strong>SP costs:</strong> Spells, some enchantments, some hero powers. SP does not
-regenerate naturally. Recover via: <a href="#consume">Consume</a>
-(<a href="#sacrifice">sacrifice</a>), specific card effects (Clarity, etc.).</p>
+<p><strong>SP:</strong> Spent on spells, enchantments, and some hero powers. Does not
+recover naturally. Regain via <a href="#consume">Consume</a>
+(sacrifice a creature for SP equal to its SV) or specific card effects.</p>
 
-<p><strong>Hand limit:</strong> 5 cards at end of turn. Draw to 5 + 1 extra at start.
-Every <a href="#end-phase">End Phase</a> discard (voluntary or forced):
-<a href="#kw-toll">Toll(1)</a>.</p>
+<p><strong>Hand limit:</strong> 5 cards at end of turn. You draw to 5 + 1 bonus card each
+turn. Every <a href="#end-phase">End Phase</a> discard — voluntary or forced:
+<a href="#kw-toll">Toll(1)</a> per card.</p>
 
-<p><strong><a href="#reactive-play">Reactive Windows</a>:</strong> After opponent casts a spell
-(<a href="#spell-window">Spell Window</a>) or declares attackers
-(<a href="#attack-window">Attack Window</a>), you may play one spell in response.
-No chains — it resolves immediately. Counter spells cancel the triggering
-spell. Reactive spells are permanently
-<a href="#zone-removed">removed from the game</a>, unless they have the
-<a href="#kw-reaction">Reaction</a> keyword (which lets them cycle/burn normally).
-Pay costs via SP pool, Temporal Cache / Spell Vault tokens, creature
-exhaustion, <a href="#sacrifice">sacrifice</a>, or
-<a href="#kw-toll">Toll(1)</a> for 1 Essence.</p>
+<p><strong><a href="#reactive-play">Reactive Windows</a>:</strong> You may cast one spell in
+response to your opponent declaring attackers
+(<a href="#attack-window">Attack Window</a>) or casting a spell
+(<a href="#spell-window">Spell Window</a>). The reactive spell resolves immediately —
+no chains. Counterspells cancel the triggering spell entirely. Reactive spells are
+permanently <a href="#zone-removed">removed from the game</a> unless they carry the
+<a href="#kw-reaction">Reaction</a> keyword.</p>
 
-<p><strong><a href="#unmade">Unmade</a>:</strong> Creatures removed by Unmake effects go to the
-<a href="#zone-removed">Removed</a> zone (not
-<a href="#zone-graveyard">Graveyard</a>). Cannot be recursed.</p>
+<p><strong><a href="#unmade">Unmade</a>:</strong> Unmade creatures go to the
+<a href="#zone-removed">Removed</a> zone, not the Graveyard. No death triggers fire.
+Cannot be recursed by any effect.</p>
 
-<p><strong><a href="#lp-sp-maximum">LP/SP maximum:</a></strong> Neither can exceed the hero's starting value. Excess healing or recovery is lost.</p>
+<p><strong><a href="#lp-sp-maximum">LP/SP cap:</a></strong> Neither resource can exceed its
+hero's starting value. Excess healing or recovery is simply lost.</p>
 
-<p><strong>Win:</strong> Opponent LP = 0 or SP = 0.</p>
+<p><strong>Victory:</strong> Your opponent's LP or SP reaches 0. Checked instantly whenever
+either resource changes.</p>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <div class="glossary">
@@ -2145,8 +2156,8 @@ exhaustion, <a href="#sacrifice">sacrifice</a>, or
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="errata">Errata</h2>
 
-<p><em>Card-specific rulings that extend or clarify printed card text. Rules in this
-section apply only to the named card.</em></p>
+<p>Card-specific rulings that extend or clarify printed card text. The rules below
+apply only to the named card and override the general rules where they conflict.</p>
 
 <h3 id="errata-spell-vault">Spell Vault</h3>
 <p>Spell Vault allows cards stored under it to be played at <strong>any time</strong> on any
