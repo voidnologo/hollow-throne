@@ -32,6 +32,28 @@
     font-weight: 400; font-style: italic; font-display: swap;
   }
 
+  /* Card CSS uses 'Fira Sans' and 'Fira Code' — declare with correct path */
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url('../assets/fonts/FiraSans-Regular.ttf') format('truetype');
+    font-weight: 400; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url('../assets/fonts/FiraSans-Bold.ttf') format('truetype');
+    font-weight: 700; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Fira Sans';
+    src: url('../assets/fonts/FiraSans-Italic.ttf') format('truetype');
+    font-weight: 400; font-style: italic; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Fira Code';
+    src: url('../assets/fonts/FiraCode-Bold.ttf') format('truetype');
+    font-weight: 700; font-display: swap;
+  }
+
   /* ── Design Tokens ────────────────────────────────────── */
   :root {
     --void:        #060810;
@@ -378,12 +400,618 @@
     to   { opacity: 1; transform: scale(1);    filter: drop-shadow(0 0 60px rgba(200,168,75,0.2)); }
   }
 
+  /* ════════════════════════════════════════════════════════
+     INLINE CARD ANATOMY SYSTEM  (classes prefixed ac-)
+  ════════════════════════════════════════════════════════ */
+
+  .anatomy-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 2.5rem auto;
+    max-width: 800px;
+  }
+
+  .ac-col {
+    width: 190px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .ac-card-col { flex-shrink: 0; }
+
+  .ac-label {
+    position: absolute;
+    left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    transform: translateY(-50%);
+  }
+
+  .ac-label-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0 10px;
+  }
+
+  .ac-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gold-dim);
+    min-width: 10px;
+    opacity: 0.6;
+  }
+
+  .ac-label-dot {
+    width: 5px; height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0.8;
+  }
+
+  /* ── Card CSS (inlined from print-cards.css — identical to print rendering) ── */
+
+  .hero-warden {
+    --hero-primary: #6b7d8e; --hero-secondary: #8b2020; --hero-accent: #c45a20;
+    --hero-bg-start: #e8ddd0; --hero-bg-end: #d4c4b0; --hero-frame: #4a5a68;
+    --hero-art-start: #6b7d8e; --hero-art-mid: #4a5a68; --hero-art-end: #2a3a48;
+  }
+  .hero-scholar {
+    --hero-primary: #5a2d82; --hero-secondary: #1a8a6a; --hero-accent: #c44a8a;
+    --hero-bg-start: #e0d4ec; --hero-bg-end: #c8b8d8; --hero-frame: #3a1a5a;
+    --hero-art-start: #5a2d82; --hero-art-mid: #2a1a4a; --hero-art-end: #1a0a2a;
+  }
+  .hero-ranger {
+    --hero-primary: #a02020; --hero-secondary: #2a5a2a; --hero-accent: #c4a020;
+    --hero-bg-start: #e8d4d0; --hero-bg-end: #d8b8b4; --hero-frame: #6a1010;
+    --hero-art-start: #a02020; --hero-art-mid: #6a1010; --hero-art-end: #3a0808;
+  }
+  .hero-tyrant {
+    --hero-primary: #8a7e60; --hero-secondary: #4a6a2a; --hero-accent: #4a7acc;
+    --hero-bg-start: #e8e0d0; --hero-bg-end: #d4c8a0; --hero-frame: #5a5040;
+    --hero-art-start: #8a7e60; --hero-art-mid: #5a5040; --hero-art-end: #2a2820;
+  }
+  .hero-cutter {
+    --hero-primary: #2a6e6e; --hero-secondary: #5a3a7a; --hero-accent: #40b0a0;
+    --hero-bg-start: #d4e4e4; --hero-bg-end: #b8ccd0; --hero-frame: #1a4a4a;
+    --hero-art-start: #2a6e6e; --hero-art-mid: #1a4a4a; --hero-art-end: #0a2a2a;
+  }
+  .hero-market {
+    --hero-primary: #AA8520; --hero-secondary: #654321; --hero-accent: #DAA520;
+    --hero-bg-start: #ece4d0; --hero-bg-end: #d8cc9c; --hero-frame: #7a6010;
+    --hero-art-start: #AA8520; --hero-art-mid: #7a6010; --hero-art-end: #4a3a08;
+  }
+
+  .card {
+    width: 63mm; height: 88mm;
+    border: 2pt solid var(--hero-frame, #333);
+    border-radius: 2.5mm;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    background: linear-gradient(170deg, var(--hero-bg-start, #e8ddd0) 0%, var(--hero-bg-end, #d4c4b0) 100%);
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(0,0,0,0.03) 0%, transparent 70%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,0,0,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 90%, rgba(0,0,0,0.03) 0%, transparent 50%);
+    pointer-events: none; z-index: 0;
+  }
+  .card::after {
+    content: ''; position: absolute;
+    top: 1.5mm; left: 1.5mm; right: 1.5mm; bottom: 1.5mm;
+    border: 0.4pt solid rgba(0,0,0,0.15); border-radius: 1.5mm;
+    pointer-events: none; z-index: 5;
+  }
+
+  .card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 2mm 3mm 1.5mm; flex-shrink: 0;
+    background: linear-gradient(180deg, rgba(20,15,10,0.85) 0%, rgba(30,25,18,0.78) 100%);
+    position: relative; z-index: 1;
+  }
+  .card-name {
+    font-family: 'Cinzel', 'Georgia', serif; font-weight: 700; font-size: 10pt;
+    color: #f0e8d8; letter-spacing: 0.3pt; line-height: 1.1;
+    flex: 1; min-width: 0; text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+  .card-cost {
+    display: flex; align-items: center; gap: 1mm; margin-left: 1.5mm; flex-shrink: 0;
+  }
+  .icon { display: inline-block; vertical-align: middle; }
+  .cost-pip {
+    display: inline-flex; align-items: center; justify-content: center;
+    position: relative; width: 6.5mm; height: 6.5mm;
+  }
+  .cost-pip .icon { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
+  .cost-pip .cost-num {
+    position: relative; z-index: 1;
+    font-family: 'Fira Code', monospace; font-weight: 700; font-size: 9pt; line-height: 1;
+    text-shadow: 0 0 2px rgba(0,0,0,0.8), 0 1px 1px rgba(0,0,0,0.6);
+  }
+  .cost-pip.essence { color: #b89530; }
+  .cost-pip.essence .icon { fill: #b89530; }
+  .cost-pip.essence .cost-num { color: #fff; }
+  .cost-pip.sp { color: #6a5a8e; }
+  .cost-pip.sp .icon { fill: #6a5a8e; }
+  .cost-pip.sp .cost-num { color: #fff; }
+
+  .card-art {
+    height: 43mm; flex-shrink: 0; position: relative; z-index: 1; overflow: hidden;
+  }
+  .card-art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+  .card-divider {
+    height: 2mm; flex-shrink: 0; position: relative; z-index: 1;
+    background: linear-gradient(90deg,
+      transparent 0%, var(--hero-frame, #444) 15%,
+      var(--hero-primary, #666) 40%, var(--hero-primary, #666) 60%,
+      var(--hero-frame, #444) 85%, transparent 100%);
+    opacity: 0.6;
+  }
+  .card-divider::before {
+    content: ''; position: absolute; top: -0.5mm; left: 0; right: 0; height: 1mm;
+    background: linear-gradient(90deg,
+      transparent 0%, var(--hero-bg-start, #e8ddd0) 8%, transparent 12%,
+      var(--hero-bg-start, #e8ddd0) 20%, transparent 25%, transparent 75%,
+      var(--hero-bg-start, #e8ddd0) 80%, transparent 88%,
+      var(--hero-bg-start, #e8ddd0) 92%, transparent 100%);
+  }
+
+  .card-typeline {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.8mm 3mm; flex-shrink: 0; position: relative; z-index: 1;
+    font-family: 'Fira Sans', sans-serif; font-size: 7pt; color: #555;
+    text-transform: uppercase; letter-spacing: 0.4pt;
+    background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.02) 100%);
+    border-bottom: 0.3pt solid rgba(0,0,0,0.1);
+  }
+  .buy-badge {
+    display: inline-block; font-size: 6.5pt; font-weight: 700;
+    background: linear-gradient(135deg, #AA8520, #886818);
+    color: #fff; padding: 0.3mm 1.5mm; border-radius: 1mm;
+  }
+
+  .card-textbox {
+    flex: 1; padding: 1.5mm 3mm; position: relative; z-index: 1;
+    display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;
+  }
+  .card-textbox::before {
+    content: ''; position: absolute; top: 0; left: 2mm; right: 2mm; bottom: 0;
+    background: rgba(245,235,220,0.55); border-radius: 1mm; z-index: -1;
+  }
+  .card-keywords {
+    font-family: 'Fira Sans', sans-serif; font-size: 7.5pt; font-style: italic;
+    color: #444; text-align: center; margin-bottom: 0.8mm; padding-bottom: 0.8mm;
+    border-bottom: 0.3pt solid rgba(0,0,0,0.08);
+  }
+  .card-text { font-family: 'Fira Sans', sans-serif; font-size: 7.5pt; line-height: 1.3; color: #222; }
+  .card-text .ability { margin-bottom: 0.5mm; }
+
+  .card-stats {
+    display: flex; justify-content: center; align-items: center;
+    gap: 3mm; padding: 1.5mm 3mm; flex-shrink: 0;
+    background: linear-gradient(0deg, rgba(20,15,10,0.85) 0%, rgba(30,25,18,0.75) 100%);
+    position: relative; z-index: 1;
+  }
+  .stat-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    position: relative; width: 8mm; height: 8mm;
+  }
+  .stat-badge .icon { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0.85; }
+  .stat-badge .stat-num {
+    position: relative; z-index: 1;
+    font-family: 'Fira Code', monospace; font-weight: 700; font-size: 11pt; line-height: 1; color: #fff;
+    text-shadow: 0 0 3px rgba(0,0,0,0.9), 0 1px 1px rgba(0,0,0,0.7);
+  }
+  .stat-badge.atk { color: #8b3a3a; }
+  .stat-badge.atk .icon { fill: #8b3a3a; }
+  .stat-badge.def { color: #4a6e52; }
+  .stat-badge.def .icon { fill: #4a6e52; stroke: #4a6e52; }
+  .stat-badge.sv { color: #7a7068; }
+  .stat-badge.sv .icon { fill: #7a7068; width: 7mm; height: 7mm; }
+  .stat-badge.sv .stat-num { font-size: 9pt; }
+
+  /* ── Hero Card — Full-Bleed Layout ───────────────────── */
+  .card.hero-card::before, .card.hero-card::after { display: none; }
+  .card.hero-card { background: #0a0805; }
+  .hero-fullbleed-art { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
+  .hero-fullbleed-art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .hero-overlay-bottom {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+    background: linear-gradient(to top, rgba(10,8,5,0.92) 0%, rgba(10,8,5,0.85) 60%, rgba(10,8,5,0) 100%);
+    padding: 8mm 3mm 2.5mm;
+  }
+  .hero-name-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0 0 1mm; margin-bottom: 1mm;
+    border-bottom: 0.3pt solid rgba(255,255,255,0.15);
+  }
+  .hero-overlay-name {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 13pt; color: #fff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.6);
+  }
+  .hero-tag {
+    font-family: 'Cinzel', serif; font-size: 7pt; font-weight: 700;
+    color: rgba(255,255,255,0.8); letter-spacing: 1.5pt; text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  }
+  .hero-resources {
+    display: flex; justify-content: space-around; align-items: center; padding: 1mm 3mm;
+  }
+  .hero-resource {
+    display: flex; flex-direction: column; align-items: center; gap: 0.5mm; position: relative;
+  }
+  .hero-resource .icon { width: 7mm; height: 7mm; opacity: 0.85; }
+  .hero-resource-num {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -70%);
+    font-family: 'Fira Code', monospace; font-weight: 700; font-size: 10pt; line-height: 1; color: #fff;
+    text-shadow: 0 0 3px rgba(0,0,0,0.9), 0 1px 2px rgba(0,0,0,0.7); z-index: 1;
+  }
+  .hero-resource.lp { color: #8b3a3a; }
+  .hero-resource.lp .icon { fill: #8b3a3a; }
+  .hero-resource.sp { color: #6a5a8e; }
+  .hero-resource.sp .icon { fill: #6a5a8e; }
+  .hero-resource.ep { color: #b89530; }
+  .hero-resource.ep .icon { fill: #b89530; }
+  .hero-resource-label {
+    font-family: 'Fira Sans', sans-serif; font-size: 6pt; font-weight: 700;
+    color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5pt;
+  }
+  .hero-power {
+    margin: 0; padding: 2mm 2.5mm; background: rgba(0,0,0,0.3);
+    border: 0.3pt solid rgba(255,255,255,0.12); border-radius: 1.5mm;
+  }
+  .power-name {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 9pt; color: #f0e8d8; display: block;
+  }
+  .power-type {
+    font-family: 'Fira Sans', sans-serif; font-size: 7pt; color: rgba(255,255,255,0.6);
+    text-transform: uppercase; letter-spacing: 0.3pt; display: block; margin-bottom: 0.5mm;
+  }
+  .power-text {
+    font-family: 'Fira Sans', sans-serif; font-size: 8pt; line-height: 1.35;
+    color: rgba(255,255,255,0.85); margin-top: 1mm;
+  }
+
+  /* ── Anatomy Legend ───────────────────────────────────── */
+  .anatomy-legend {
+    max-width: 680px;
+    margin: 2rem auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2.5rem;
+  }
+
+  .anatomy-legend dt {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    margin-bottom: 0.15rem;
+  }
+
+  .anatomy-legend dd {
+    font-size: 0.84rem;
+    color: var(--bone-dim);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     GAME BOARD LAYOUT DIAGRAM
+  ════════════════════════════════════════════════════════ */
+
+  .board-diagram {
+    margin: 2rem auto;
+    max-width: 840px;
+    background: radial-gradient(ellipse at 50% 50%, #0e1a2e 0%, #080e1a 60%, #04080f 100%);
+    border: 1px solid rgba(200,168,75,0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'FiraSans', sans-serif;
+  }
+
+  .board-side {
+    padding: 14px 18px 12px;
+  }
+
+  .board-side.opponent { border-bottom: 1px solid rgba(200,168,75,0.1); }
+
+  .board-player-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    opacity: 0.65;
+    margin-bottom: 9px;
+  }
+
+  .board-main-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .board-zone {
+    border: 1px solid rgba(200,168,75,0.2);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.025);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .board-zone-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bone-dim);
+    line-height: 1.3;
+    padding: 0 3px;
+  }
+
+  .board-zone-sub {
+    font-size: 0.44rem;
+    color: var(--bone-faint);
+    font-style: italic;
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+
+  .board-zone.hero-zone {
+    width: 68px;
+    height: 96px;
+    border-color: rgba(200,168,75,0.4);
+    background: rgba(200,168,75,0.04);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .board-zone.hero-zone img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+    display: block;
+  }
+
+  .board-zone.hero-zone .board-zone-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(6,4,20,0.84);
+    padding: 3px 4px;
+    border-radius: 0 0 4px 4px;
+    color: var(--gold);
+  }
+
+  .board-zone.battlefield {
+    flex: 1;
+    height: 96px;
+    border-style: dashed;
+    border-color: rgba(200,168,75,0.14);
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 5px;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .board-creature-slot {
+    width: 36px;
+    height: 50px;
+    border-radius: 3px;
+    border: 1px solid rgba(200,168,75,0.2);
+    background: rgba(255,255,255,0.03);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .board-creature-slot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.7;
+    display: block;
+  }
+
+  .board-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .board-pile-row { display: flex; gap: 5px; }
+
+  .board-zone.pile-zone {
+    width: 56px;
+    height: 46px;
+    flex-shrink: 0;
+  }
+
+  .board-zone.pile-zone.card-back {
+    background: radial-gradient(ellipse at 50% 38%, #1e3258 0%, #0d1830 55%, #06080e 100%);
+    border-color: rgba(200,168,75,0.3);
+  }
+
+  .board-zone.graveyard-zone {
+    width: 56px;
+    height: 40px;
+    flex-shrink: 0;
+    border-color: rgba(100,130,80,0.4);
+    background: rgba(60,80,40,0.06);
+  }
+
+  .board-zone.graveyard-zone .board-zone-label { color: #8aaa70; }
+
+  .board-zone.removed-zone {
+    width: 56px;
+    height: 40px;
+    flex-shrink: 0;
+    border-color: rgba(120,70,70,0.4);
+    background: rgba(100,40,40,0.06);
+  }
+
+  .board-zone.removed-zone .board-zone-label { color: #a07878; }
+
+  .board-zone.enchant-zone {
+    height: 28px;
+    flex-shrink: 0;
+    border-color: rgba(110,80,170,0.35);
+    background: rgba(70,40,120,0.06);
+    flex-direction: row;
+    gap: 5px;
+    padding: 0 8px;
+    align-items: center;
+  }
+
+  .board-zone.enchant-zone .board-zone-label { color: #a890e0; }
+
+  .board-bottom-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+    align-items: flex-end;
+  }
+
+  .board-token-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .board-tokens { display: flex; gap: 4px; }
+
+  .board-token {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.5rem;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    flex-shrink: 0;
+  }
+
+  .board-token.dmg    { background: rgba(140,40,40,0.45); border: 1px solid rgba(200,80,80,0.5);  color: #e08080; }
+  .board-token.ess    { background: rgba(180,140,30,0.4);  border: 1px solid rgba(200,168,75,0.6); color: #e8c46a; }
+  .board-token.bone   { background: rgba(100,88,60,0.4);   border: 1px solid rgba(160,140,90,0.5); color: #c8b880; }
+
+  .board-token-label {
+    font-size: 0.42rem;
+    color: var(--bone-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .board-market {
+    padding: 10px 18px;
+    background: rgba(200,168,75,0.03);
+    border-top: 1px solid rgba(200,168,75,0.14);
+    border-bottom: 1px solid rgba(200,168,75,0.14);
+  }
+
+  .board-market-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 8px;
+    opacity: 0.85;
+  }
+
+  .board-market-cards {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .board-market-card {
+    width: 40px;
+    height: 56px;
+    border-radius: 3px;
+    border: 1px solid rgba(200,168,75,0.25);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .board-market-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.7;
+    display: block;
+  }
+
+  .board-market-card-back {
+    width: 100%; height: 100%;
+    background: radial-gradient(ellipse at 50% 38%, #1e3258 0%, #0d1830 55%, #06080e 100%);
+  }
+
+  .board-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem 2rem;
+    max-width: 720px;
+    margin: 1.5rem auto 0;
+  }
+
+  .board-legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+  }
+
+  .board-legend-swatch {
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .board-legend-text {
+    font-size: 0.82rem;
+    color: var(--bone-dim);
+    line-height: 1.45;
+  }
+
+  .board-legend-text strong { color: var(--bone); }
+
   /* ── Responsive ─────────────────────────────────────────── */
   @media (max-width: 640px) {
     .toc ul   { columns: 1; }
     .glossary dl { columns: 1; }
     .frame-corner { display: none; }
     .rulebook { padding: 3rem 1.25rem 4rem; }
+    .anatomy-wrap { flex-direction: column; align-items: center; }
+    .ac-col { width: 100%; height: auto !important; position: static; }
+    .ac-label { position: static; transform: none; margin: 0.25rem 0;
+      background: rgba(200,168,75,0.07); padding: 3px 8px; border-radius: 3px; }
+    .ac-label-line, .ac-label-dot { display: none; }
+    .anatomy-legend { grid-template-columns: 1fr; }
+    .board-main-row { flex-wrap: wrap; }
+    .board-zone.battlefield { min-width: 100%; order: -1; }
+    .board-legend { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -423,8 +1051,10 @@
 <ul>
   <li><a href="#overview">Overview</a></li>
   <li><a href="#setup">Setup</a></li>
+  <li><a href="#game-layout">Game Layout</a></li>
   <li><a href="#win-conditions">Win Conditions</a></li>
   <li><a href="#card-types">Card Types</a></li>
+  <li><a href="#card-anatomy">Card Anatomy</a></li>
   <li><a href="#turn-structure">Turn Structure</a></li>
   <li><a href="#combat">Combat</a></li>
   <li><a href="#reactive-play">Reactive Play</a></li>
@@ -474,6 +1104,196 @@ Win by reducing your opponent's <strong>Life Points (LP)</strong> or
 </ol>
 
 <!-- ═══════════════════════════════════════════════════════ -->
+<h2 id="game-layout">Game Layout</h2>
+
+<p>There is no strictly required table arrangement, but each zone must be clearly
+visible to your opponent. A typical setup is shown below.</p>
+
+<div class="board-diagram">
+
+  <!-- ── Opponent side ─────────────────────────────── -->
+  <div class="board-side opponent">
+    <div class="board-player-tag">↑ Opponent</div>
+    <div class="board-main-row">
+
+      <div class="board-zone hero-zone">
+        <img src="../assets/art/void-scholar-hero.webp" alt="Opponent hero">
+        <div class="board-zone-label">Hero</div>
+      </div>
+
+      <div style="flex:1; display:flex; flex-direction:column; gap:6px; min-width:0;">
+        <div class="board-zone enchant-zone" style="width:100%;">
+          <div class="board-zone-label">Enchantments</div>
+        </div>
+        <div class="board-zone battlefield">
+          <div class="board-creature-slot"><img src="../assets/art/void-scholar-arcane-familiar.webp" alt=""></div>
+          <div class="board-creature-slot"><img src="../assets/art/void-scholar-mind-flayer.webp" alt=""></div>
+          <div class="board-creature-slot"></div>
+          <div class="board-creature-slot"></div>
+          <div class="board-creature-slot"></div>
+        </div>
+      </div>
+
+      <div class="board-right-col">
+        <div class="board-pile-row">
+          <div class="board-zone pile-zone card-back">
+            <div class="board-zone-label">Deck</div>
+            <div class="board-zone-sub">face-down</div>
+          </div>
+          <div class="board-zone pile-zone">
+            <div class="board-zone-label">Discard</div>
+            <div class="board-zone-sub">cycled spells</div>
+          </div>
+        </div>
+        <div class="board-pile-row">
+          <div class="board-zone graveyard-zone">
+            <div class="board-zone-label">Graveyard</div>
+          </div>
+          <div class="board-zone removed-zone">
+            <div class="board-zone-label">Removed</div>
+            <div class="board-zone-sub">burned / unmade</div>
+          </div>
+        </div>
+        <div class="board-bottom-row">
+          <div class="board-token-group">
+            <div class="board-tokens">
+              <div class="board-token dmg">✦</div>
+              <div class="board-token dmg">✦</div>
+            </div>
+            <div class="board-token-label">Damage</div>
+          </div>
+          <div class="board-token-group">
+            <div class="board-tokens">
+              <div class="board-token ess">◆</div>
+              <div class="board-token ess">◆</div>
+              <div class="board-token ess">◆</div>
+            </div>
+            <div class="board-token-label">Essence</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- .board-side.opponent -->
+
+  <!-- ── Marketplace ────────────────────────────────── -->
+  <div class="board-market">
+    <div class="board-market-label">— Marketplace (The Armory) —</div>
+    <div class="board-market-cards">
+      <div class="board-market-card"><img src="../assets/art/marketplace-pit-fiend.webp" alt=""></div>
+      <div class="board-market-card"><img src="../assets/art/marketplace-deep-one.webp" alt=""></div>
+      <div class="board-market-card"><img src="../assets/art/marketplace-gargoyle-sentinel.webp" alt=""></div>
+      <div class="board-market-card"><img src="../assets/art/marketplace-shadow-stalker.webp" alt=""></div>
+      <div class="board-market-card"><img src="../assets/art/marketplace-cursed-knight.webp" alt=""></div>
+      <div class="board-market-card"><div class="board-market-card-back"></div></div>
+      <div class="board-market-card"><div class="board-market-card-back"></div></div>
+      <div class="board-market-card"><div class="board-market-card-back"></div></div>
+      <div class="board-market-card"><div class="board-market-card-back"></div></div>
+      <div class="board-market-card"><div class="board-market-card-back"></div></div>
+    </div>
+  </div>
+
+  <!-- ── Your side ──────────────────────────────────── -->
+  <div class="board-side">
+    <div class="board-main-row">
+
+      <div class="board-zone hero-zone">
+        <img src="../assets/art/iron-warden-hero.webp" alt="Your hero">
+        <div class="board-zone-label">Hero</div>
+      </div>
+
+      <div style="flex:1; display:flex; flex-direction:column; gap:6px; min-width:0;">
+        <div class="board-zone enchant-zone" style="width:100%;">
+          <div class="board-zone-label">Enchantments</div>
+        </div>
+        <div class="board-zone battlefield">
+          <div class="board-creature-slot"><img src="../assets/art/iron-warden-warhorse-knight.webp" alt=""></div>
+          <div class="board-creature-slot"><img src="../assets/art/iron-warden-iron-golem.webp" alt=""></div>
+          <div class="board-creature-slot"></div>
+          <div class="board-creature-slot"></div>
+          <div class="board-creature-slot"></div>
+        </div>
+      </div>
+
+      <div class="board-right-col">
+        <div class="board-pile-row">
+          <div class="board-zone pile-zone card-back">
+            <div class="board-zone-label">Deck</div>
+            <div class="board-zone-sub">face-down</div>
+          </div>
+          <div class="board-zone pile-zone">
+            <div class="board-zone-label">Discard</div>
+            <div class="board-zone-sub">cycled spells</div>
+          </div>
+        </div>
+        <div class="board-pile-row">
+          <div class="board-zone graveyard-zone">
+            <div class="board-zone-label">Graveyard</div>
+          </div>
+          <div class="board-zone removed-zone">
+            <div class="board-zone-label">Removed</div>
+            <div class="board-zone-sub">burned / unmade</div>
+          </div>
+        </div>
+        <div class="board-bottom-row">
+          <div class="board-token-group">
+            <div class="board-tokens">
+              <div class="board-token dmg">✦</div>
+            </div>
+            <div class="board-token-label">Damage</div>
+          </div>
+          <div class="board-token-group">
+            <div class="board-tokens">
+              <div class="board-token ess">◆</div>
+              <div class="board-token ess">◆</div>
+            </div>
+            <div class="board-token-label">Essence</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="board-player-tag" style="margin-top: 9px; margin-bottom: 0;">You ↓</div>
+  </div><!-- .board-side -->
+
+</div><!-- .board-diagram -->
+
+<div class="board-legend">
+  <div class="board-legend-item">
+    <div class="board-legend-swatch" style="border:1px solid rgba(200,168,75,0.4); background:rgba(200,168,75,0.04);"></div>
+    <div class="board-legend-text"><strong>Hero</strong> — Your hero card, face-up. Shows LP, SP, E/Turn, and hero power.</div>
+  </div>
+  <div class="board-legend-item">
+    <div class="board-legend-swatch" style="border:1px dashed rgba(200,168,75,0.15);"></div>
+    <div class="board-legend-text"><strong>Battlefield</strong> — Where summoned creatures stand. Creatures here can attack or block.</div>
+  </div>
+  <div class="board-legend-item">
+    <div class="board-legend-swatch" style="border:1px solid rgba(110,80,170,0.35); background:rgba(70,40,120,0.06);"></div>
+    <div class="board-legend-text"><strong>Enchantments</strong> — Active enchantments in play. Some have ongoing upkeep costs.</div>
+  </div>
+  <div class="board-legend-item">
+    <div class="board-legend-swatch" style="background:radial-gradient(ellipse at 50% 38%, #1e3258, #0d1830, #06080e);"></div>
+    <div class="board-legend-text"><strong>Deck</strong> — Your draw pile, face-down. When empty, reshuffle Discard and take Toll(2).</div>
+  </div>
+  <div class="board-legend-item">
+    <div class="board-legend-swatch" style="border:1px solid rgba(200,168,75,0.2);"></div>
+    <div class="board-legend-text"><strong>Discard</strong> — Used Cycled spells and destroyed permanents. Reshuffles when you need to draw.</div>
+  </div>
+  <div class="board-legend-item">
+    <div class="board-legend-swatch" style="border:1px solid rgba(100,130,80,0.4); background:rgba(60,80,40,0.06);"></div>
+    <div class="board-legend-text"><strong>Graveyard</strong> — Dead creatures. Can be targeted by resurrection or recursion effects.</div>
+  </div>
+  <div class="board-legend-item">
+    <div class="board-legend-swatch" style="border:1px solid rgba(120,70,70,0.4); background:rgba(100,40,40,0.06);"></div>
+    <div class="board-legend-text"><strong>Removed</strong> — Permanently out of the game: Burned spells, Unmade creatures, reactively-cast spells, Devoured cards. Nothing here can be retrieved.</div>
+  </div>
+  <div class="board-legend-item">
+    <div class="board-legend-swatch" style="border:1px solid rgba(200,168,75,0.25); background:rgba(200,168,75,0.03);"></div>
+    <div class="board-legend-text"><strong>Marketplace</strong> — Shared center strip: 10 card types, 2 copies each (20 total). Buy cards here during your Main Phase.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="win-conditions">Win Conditions</h2>
 
 <p>You win when your opponent's <strong>LP reaches 0</strong> (killed in combat) or their
@@ -517,6 +1337,335 @@ discard. Equipment on a creature that leaves the field of play goes to your disc
 
 <h3 id="enchantments">Enchantments</h3>
 <p>Permanent effects that stay on the battlefield. Some have upkeep costs.</p>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2 id="card-anatomy">Card Anatomy</h2>
+
+<p>Every card shares a common structure. Knowing each zone makes the rules easier to follow at a glance.</p>
+
+<h3>Hero Card</h3>
+
+<div class="anatomy-wrap">
+  <!-- Left callouts -->
+  <div class="ac-col left" style="height:88mm;">
+    <div class="ac-label" style="top:28%">
+      <span class="ac-label-text">Full-Bleed Artwork</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+    <div class="ac-label" style="top:67%">
+      <span class="ac-label-text">Hero Name</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+    <div class="ac-label" style="top:88%">
+      <span class="ac-label-text">Hero Power</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+  </div>
+
+  <!-- Iron Warden hero card — real card HTML -->
+  <div class="ac-card-col">
+    <div class="card hero-warden hero-card">
+      <div class="hero-fullbleed-art">
+        <img src="../assets/art/iron-warden-hero.webp" alt="Iron Warden">
+      </div>
+      <div class="hero-overlay-bottom">
+        <div class="hero-name-row">
+          <span class="hero-overlay-name">Iron Warden</span>
+          <span class="hero-tag">Hero</span>
+        </div>
+        <div class="hero-resources">
+          <div class="hero-resource lp">
+            <svg class="icon" viewBox="0 0 24 24" fill="#8b3a3a"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z"/></svg>
+            <span class="hero-resource-num">27</span>
+            <span class="hero-resource-label">LP</span>
+          </div>
+          <div class="hero-resource sp">
+            <svg class="icon" viewBox="0 0 24 24" fill="#6a5a8e"><path d="M12 4C6 4 1.5 10 1 12c.5 2 5 8 11 8s10.5-6 11-8c-.5-2-5-8-11-8zm0 2c4.5 0 8 4.2 8.8 6-.8 1.8-4.3 6-8.8 6s-8-4.2-8.8-6c.8-1.8 4.3-6 8.8-6z"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="2" opacity="0.3"/></svg>
+            <span class="hero-resource-num">15</span>
+            <span class="hero-resource-label">SP</span>
+          </div>
+          <div class="hero-resource ep">
+            <svg class="icon" viewBox="0 0 24 24" fill="#b89530"><path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/><path d="M12 1L8 8L12 12L16 8Z" opacity="0.3"/><path d="M12 12L8 8L4 12L8 16Z" opacity="0.15"/><path d="M12 12L16 8L20 12L16 16Z" opacity="0.15"/><path d="M12 23L8 16L12 12L16 16Z" opacity="0.3"/></svg>
+            <span class="hero-resource-num">2</span>
+            <span class="hero-resource-label">E/Turn</span>
+          </div>
+        </div>
+        <div class="hero-power">
+          <div class="power-name">Iron Discipline</div>
+          <div class="power-type">Passive</div>
+          <div class="power-text">At the end of your turn, heal 1 damage from each creature you control.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right callouts -->
+  <div class="ac-col right" style="height:88mm;">
+    <div class="ac-label" style="top:67%">
+      <div class="ac-label-dot"></div>
+      <div class="ac-label-line"></div>
+      <span class="ac-label-text">"Hero" Tag</span>
+    </div>
+    <div class="ac-label" style="top:77%">
+      <div class="ac-label-dot"></div>
+      <div class="ac-label-line"></div>
+      <span class="ac-label-text">LP / SP / E per Turn</span>
+    </div>
+  </div>
+</div>
+
+<dl class="anatomy-legend">
+  <div>
+    <dt>Full-Bleed Artwork</dt>
+    <dd>Hero portraits fill the entire card face. Each hero has a distinct visual identity tied to their archetype.</dd>
+  </div>
+  <div>
+    <dt>Hero Name &amp; Tag</dt>
+    <dd>The hero's name. The <em>Hero</em> tag confirms this is a hero card rather than a summoned creature.</dd>
+  </div>
+  <div>
+    <dt>LP (Life Points)</dt>
+    <dd>Combat health. Unblocked creatures deal damage here. Reaches 0 = defeat.</dd>
+  </div>
+  <div>
+    <dt>SP (Sanity Points)</dt>
+    <dd>Spell resource. Spent on hero powers and SP-cost cards. Some keywords drain it directly (Horrify, Eldritch). Reaches 0 = defeat.</dd>
+  </div>
+  <div>
+    <dt>E/Turn (Essence per Turn)</dt>
+    <dd>Essence income received each Income Step. Your primary resource for playing cards.</dd>
+  </div>
+  <div>
+    <dt>Hero Power</dt>
+    <dd><strong>Passive</strong> — triggers automatically each turn. <strong>Exhaust</strong> — activated once per turn as an action; the hero card is exhausted after use.</dd>
+  </div>
+</dl>
+
+<h3 style="margin-top:2.5rem;">Creature Card</h3>
+
+<div class="anatomy-wrap">
+  <!-- Left callouts -->
+  <div class="ac-col left" style="height:88mm;">
+    <div class="ac-label" style="top:5%">
+      <span class="ac-label-text">Name</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+    <div class="ac-label" style="top:32%">
+      <span class="ac-label-text">Artwork</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+    <div class="ac-label" style="top:62%">
+      <span class="ac-label-text">Type Line</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+    <div class="ac-label" style="top:76%">
+      <span class="ac-label-text">Ability Text</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+  </div>
+
+  <!-- Warhorse Knight — Iron Warden creature — real card HTML -->
+  <div class="ac-card-col">
+    <div class="card hero-warden">
+      <div class="card-header">
+        <span class="card-name">Warhorse Knight</span>
+        <span class="card-cost">
+          <span class="cost-pip essence">
+            <svg class="icon" viewBox="0 0 24 24" fill="#b89530"><path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/><path d="M12 1L8 8L12 12L16 8Z" opacity="0.3"/><path d="M12 12L8 8L4 12L8 16Z" opacity="0.15"/><path d="M12 12L16 8L20 12L16 16Z" opacity="0.15"/><path d="M12 23L8 16L12 12L16 16Z" opacity="0.3"/></svg>
+            <span class="cost-num">3</span>
+          </span>
+        </span>
+      </div>
+      <div class="card-art">
+        <img src="../assets/art/iron-warden-warhorse-knight.webp" alt="Warhorse Knight">
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-typeline"><span>Creature</span></div>
+      <div class="card-textbox">
+        <div class="card-text">
+          <div class="ability">When Warhorse Knight attacks, target other creature you control gets +1&nbsp;ATK this turn.</div>
+        </div>
+      </div>
+      <div class="card-stats">
+        <div class="stat-badge atk">
+          <svg class="icon" viewBox="0 0 24 24" fill="#8b3a3a"><path d="M13 1l-1.5 1.5L11 6l-1 2-2.5 2.5L6 12l1 1 2.5-1.5L12 10l.5 3.5L11 15l-4 4-1.5 2L7 22.5l2-1.5L13 17l1.5-1.5L15 12l2-3.5 1-2L19.5 5 21 3.5 20.5 3l-1.5 1.5-1.5.5-2 1L12 8l-.5-1.5L13 3l.5-1.5z"/><path d="M8.5 13L6 14.5 5 14l1-1.5L8.5 11zM15.5 8L18 6.5l1 1-1 1.5L15.5 10z" opacity="0.7"/></svg>
+          <span class="stat-num">3</span>
+        </div>
+        <div class="stat-badge def">
+          <svg class="icon" viewBox="0 0 24 24" fill="#4a6e52"><path d="M4 3L4 13c0 3.5 3.5 6.5 8 9 4.5-2.5 8-5.5 8-9V3L12 1Z"/><path d="M8 9l4-3.5L16 9" stroke="#4a6e52" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/><path d="M8 13l4-3.5L16 13" stroke="#4a6e52" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/></svg>
+          <span class="stat-num">2</span>
+        </div>
+        <div class="stat-badge sv">
+          <svg class="icon" viewBox="0 0 24 24" fill="#7a7068"><path d="M12 2C7.5 2 4 5.5 4 10c0 2.5 1 4.5 2.5 6l-.5 3 2.5-1 1 2.5L11 19l1 3 1-3 1.5 2.5 1-2.5 2.5 1-.5-3C19 14.5 20 12.5 20 10c0-4.5-3.5-8-8-8z"/><ellipse cx="9" cy="10" rx="2" ry="2.5" opacity="0.3"/><ellipse cx="15" cy="10" rx="2" ry="2.5" opacity="0.3"/><path d="M11 13.5l1 1.5 1-1.5z" opacity="0.3"/></svg>
+          <span class="stat-num">2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right callouts -->
+  <div class="ac-col right" style="height:88mm;">
+    <div class="ac-label" style="top:5%">
+      <div class="ac-label-dot"></div>
+      <div class="ac-label-line"></div>
+      <span class="ac-label-text">Play Cost</span>
+    </div>
+    <div class="ac-label" style="top:94%">
+      <div class="ac-label-dot"></div>
+      <div class="ac-label-line"></div>
+      <span class="ac-label-text">ATK / DEF / SV</span>
+    </div>
+  </div>
+</div>
+
+<dl class="anatomy-legend">
+  <div>
+    <dt>Name</dt>
+    <dd>The card's name. Used for targeting, unique restrictions, and card-specific errata.</dd>
+  </div>
+  <div>
+    <dt>Play Cost</dt>
+    <dd>Resources spent to play the card from hand. Gold crystal = Essence; eye = SP. Both may appear on a single card.</dd>
+  </div>
+  <div>
+    <dt>Artwork</dt>
+    <dd>Illustrative art unique to each card. No rules effect — a strong visual cue for the card's identity at a glance.</dd>
+  </div>
+  <div>
+    <dt>Type Line</dt>
+    <dd>Card type (Creature, Spell, Equipment, Enchantment) and subtype if any — e.g., <em>Spell — Cycled</em> or <em>Spell — Burned</em>.</dd>
+  </div>
+  <div>
+    <dt>Ability Text</dt>
+    <dd>Rules text for the card's effects. Keywords appear in italic above ability text when applicable.</dd>
+  </div>
+  <div>
+    <dt>ATK (Attack)</dt>
+    <dd>Damage dealt in combat. If unblocked, deals LP damage directly to the defending hero.</dd>
+  </div>
+  <div>
+    <dt>DEF (Defense)</dt>
+    <dd>Durability. A creature dies when accumulated damage equals or exceeds its DEF.</dd>
+  </div>
+  <div>
+    <dt>SV (Sacrifice Value)</dt>
+    <dd>Resource gained when you <a href="#sacrifice">sacrifice</a> this creature — SP recovery (Consume) or Essence (Offering), your choice.</dd>
+  </div>
+</dl>
+
+<h3 style="margin-top:2.5rem;">Marketplace Card</h3>
+
+<div class="anatomy-wrap">
+  <!-- Left callouts -->
+  <div class="ac-col left" style="height:88mm;">
+    <div class="ac-label" style="top:5%">
+      <span class="ac-label-text">Name</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+    <div class="ac-label" style="top:32%">
+      <span class="ac-label-text">Artwork</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+    <div class="ac-label" style="top:76%">
+      <span class="ac-label-text">Ability Text</span>
+      <div class="ac-label-line"></div>
+      <div class="ac-label-dot"></div>
+    </div>
+  </div>
+
+  <!-- Mercenary Captain — marketplace card — real card HTML -->
+  <div class="ac-card-col">
+    <div class="card hero-market">
+      <div class="card-header">
+        <span class="card-name">Mercenary Captain</span>
+        <span class="card-cost">
+          <span class="cost-pip essence">
+            <svg class="icon" viewBox="0 0 24 24" fill="#b89530"><path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/><path d="M12 1L8 8L12 12L16 8Z" opacity="0.3"/><path d="M12 12L8 8L4 12L8 16Z" opacity="0.15"/><path d="M12 12L16 8L20 12L16 16Z" opacity="0.15"/><path d="M12 23L8 16L12 12L16 16Z" opacity="0.3"/></svg>
+            <span class="cost-num">3</span>
+          </span>
+        </span>
+      </div>
+      <div class="card-art">
+        <img src="../assets/art/marketplace-mercenary-captain.webp" alt="Mercenary Captain">
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-typeline">
+        <span>Creature</span>
+        <span class="buy-badge">Buy 3E</span>
+      </div>
+      <div class="card-textbox">
+        <div class="card-text">
+          <div class="ability">Your other creatures get +1 ATK.</div>
+        </div>
+      </div>
+      <div class="card-stats">
+        <div class="stat-badge atk">
+          <svg class="icon" viewBox="0 0 24 24" fill="#8b3a3a"><path d="M13 1l-1.5 1.5L11 6l-1 2-2.5 2.5L6 12l1 1 2.5-1.5L12 10l.5 3.5L11 15l-4 4-1.5 2L7 22.5l2-1.5L13 17l1.5-1.5L15 12l2-3.5 1-2L19.5 5 21 3.5 20.5 3l-1.5 1.5-1.5.5-2 1L12 8l-.5-1.5L13 3l.5-1.5z"/><path d="M8.5 13L6 14.5 5 14l1-1.5L8.5 11zM15.5 8L18 6.5l1 1-1 1.5L15.5 10z" opacity="0.7"/></svg>
+          <span class="stat-num">3</span>
+        </div>
+        <div class="stat-badge def">
+          <svg class="icon" viewBox="0 0 24 24" fill="#4a6e52"><path d="M4 3L4 13c0 3.5 3.5 6.5 8 9 4.5-2.5 8-5.5 8-9V3L12 1Z"/><path d="M8 9l4-3.5L16 9" stroke="#4a6e52" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/><path d="M8 13l4-3.5L16 13" stroke="#4a6e52" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/></svg>
+          <span class="stat-num">2</span>
+        </div>
+        <div class="stat-badge sv">
+          <svg class="icon" viewBox="0 0 24 24" fill="#7a7068"><path d="M12 2C7.5 2 4 5.5 4 10c0 2.5 1 4.5 2.5 6l-.5 3 2.5-1 1 2.5L11 19l1 3 1-3 1.5 2.5 1-2.5 2.5 1-.5-3C19 14.5 20 12.5 20 10c0-4.5-3.5-8-8-8z"/><ellipse cx="9" cy="10" rx="2" ry="2.5" opacity="0.3"/><ellipse cx="15" cy="10" rx="2" ry="2.5" opacity="0.3"/><path d="M11 13.5l1 1.5 1-1.5z" opacity="0.3"/></svg>
+          <span class="stat-num">2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right callouts -->
+  <div class="ac-col right" style="height:88mm;">
+    <div class="ac-label" style="top:5%">
+      <div class="ac-label-dot"></div>
+      <div class="ac-label-line"></div>
+      <span class="ac-label-text">Play Cost</span>
+    </div>
+    <div class="ac-label" style="top:62%">
+      <div class="ac-label-dot"></div>
+      <div class="ac-label-line"></div>
+      <span class="ac-label-text">Buy Cost</span>
+    </div>
+    <div class="ac-label" style="top:94%">
+      <div class="ac-label-dot"></div>
+      <div class="ac-label-line"></div>
+      <span class="ac-label-text">ATK / DEF / SV</span>
+    </div>
+  </div>
+</div>
+
+<dl class="anatomy-legend">
+  <div>
+    <dt>Play Cost</dt>
+    <dd>Essence spent to play this card <em>from hand</em> onto the battlefield. Paid when you summon it during your Main Phase.</dd>
+  </div>
+  <div>
+    <dt>Buy Cost (on type line)</dt>
+    <dd>Essence spent to <em>acquire</em> this card from the marketplace — it goes to your hand. Distinct from the play cost; you pay both over two separate turns.</dd>
+  </div>
+  <div>
+    <dt>Type Line</dt>
+    <dd>Card type plus the gold <strong>Buy</strong> badge showing the marketplace acquisition cost.</dd>
+  </div>
+  <div>
+    <dt>Ability Text</dt>
+    <dd>Rules text for the card's effects, identical in structure to hero deck cards.</dd>
+  </div>
+  <div>
+    <dt>ATK / DEF / SV</dt>
+    <dd>Creature stats — same meaning as hero deck creatures. Marketplace creatures are played like any other creature once acquired.</dd>
+  </div>
+</dl>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="turn-structure">Turn Structure</h2>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hollow Throne — Card Back Design Preview</title>
+<style>
+  @font-face {
+    font-family: 'Cinzel';
+    src: url('../assets/fonts/Cinzel-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0a0e18;
+    color: #e0d5be;
+    font-family: Georgia, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+    gap: 0;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    color: #9a8e7c;
+    text-align: center;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+
+  /* ── Comparison row ──────────────────────────────── */
+  .compare-row {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .compare-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .compare-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #7a6530;
+  }
+
+  .compare-desc {
+    font-size: 0.72rem;
+    color: #9a8e7c;
+    text-align: center;
+    max-width: 180px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* ── Card back dimensions ────────────────────────── */
+  .card-back {
+    width: 200px;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+  }
+
+  /* Grain overlay — shared */
+  .card-back::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 300px 300px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ── CURRENT design ──────────────────────────────── */
+  .card-back.current {
+    background-color: #080e1e;
+    background-image: radial-gradient(
+      ellipse at 50% 40%,
+      #0e1a32 0%, #080e1e 55%, #060810 100%
+    );
+  }
+
+  /* ── OPTION A: Uniformly lighter ─────────────────── */
+  /* Same hue, every stop ~30% brighter */
+  .card-back.option-a {
+    background-color: #0d1830;
+    background-image: radial-gradient(
+      ellipse at 50% 40%,
+      #182840 0%, #0d1830 55%, #080e1e 100%
+    );
+  }
+
+  /* ── OPTION B: Stronger gradient, lighter center ─── */
+  /* Edges stay very dark; center is noticeably lighter */
+  .card-back.option-b {
+    background-color: #080e1e;
+    background-image: radial-gradient(
+      ellipse at 50% 38%,
+      #203868 0%, #0f1e3a 35%, #080e1e 65%, #04060e 100%
+    );
+  }
+
+  /* ── Shared card elements ────────────────────────── */
+
+  /* Gold corner brackets */
+  .corner {
+    position: absolute;
+    width: 16%;
+    height: 11%;
+    border-color: #7a6530;
+    border-style: solid;
+    opacity: 0.3;
+    z-index: 3;
+  }
+  .corner.tl { top: 3%;   left: 4%;   border-width: 1.5px 0 0 1.5px; }
+  .corner.tr { top: 3%;   right: 4%;  border-width: 1.5px 1.5px 0 0; }
+  .corner.bl { bottom: 3%; left: 4%;  border-width: 0 0 1.5px 1.5px; }
+  .corner.br { bottom: 3%; right: 4%; border-width: 0 1.5px 1.5px 0; }
+
+  /* Corner dots */
+  .corner::before {
+    content: '';
+    position: absolute;
+    width: 5px; height: 5px;
+    background: #7a6530;
+    border-radius: 50%;
+    opacity: 0.75;
+  }
+  .corner.tl::before { top: -1px; left: -1px; }
+  .corner.tr::before { top: -1px; right: -1px; }
+  .corner.bl::before { bottom: -1px; left: -1px; }
+  .corner.br::before { bottom: -1px; right: -1px; }
+
+  /* Emblem */
+  .emblem {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -56%);
+    width: 78%;
+    height: auto;
+    z-index: 3;
+  }
+
+  /* Title block */
+  .title-block {
+    position: absolute;
+    bottom: 8%;
+    left: 0; right: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    text-align: center;
+  }
+
+  .hairline {
+    width: 46%;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, #c8a84b, transparent);
+  }
+
+  /* ── Annotation ──────────────────────────────────── */
+  .note-section {
+    margin-top: 48px;
+    max-width: 620px;
+    text-align: center;
+  }
+
+  .note-section h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #c8a84b;
+    margin-bottom: 16px;
+  }
+
+  .change-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+    text-align: left;
+    margin-bottom: 24px;
+  }
+
+  .change-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .change-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #c8a84b;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .change-text {
+    font-size: 0.8rem;
+    color: #9a8e7c;
+    line-height: 1.5;
+  }
+
+  .change-text strong { color: #e0d5be; }
+
+  .approval-note {
+    font-size: 0.78rem;
+    color: #7a6530;
+    font-style: italic;
+    border-top: 1px solid rgba(200,168,75,0.15);
+    padding-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Card Back Design Preview</h1>
+<p class="subtitle">Review proposed changes before applying to logo-stickers.html</p>
+
+<div class="compare-row">
+
+  <!-- Current design -->
+  <div class="compare-col">
+    <div class="compare-label">Current</div>
+    <div class="card-back current">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <img src="../../../assets/print-and-play/throne-emblem.png" alt="" class="emblem">
+      <div class="title-block">
+        <p class="card-title">Hollow Throne</p>
+        <div class="hairline"></div>
+        <!-- Original has "Everything has a cost" tagline — shown for comparison -->
+        <p style="font-family:'Cinzel',serif; font-size:0.42rem; font-weight:700;
+                  letter-spacing:0.28em; text-transform:uppercase; color:#c8a84b;
+                  opacity:0.65; text-align:center;">Everything has a cost</p>
+      </div>
+    </div>
+    <div class="compare-desc">Base: #080e1e<br>with tagline text</div>
+  </div>
+
+  <!-- Option A: Uniformly lighter -->
+  <div class="compare-col">
+    <div class="compare-label">Option A — Lighter</div>
+    <div class="card-back option-a">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <img src="../../../assets/print-and-play/throne-emblem.png" alt="" class="emblem">
+      <div class="title-block">
+        <p class="card-title">Hollow Throne</p>
+        <div class="hairline"></div>
+      </div>
+    </div>
+    <div class="compare-desc">Same royal blue hue,<br>~30% brighter across all stops.<br>No tagline.</div>
+  </div>
+
+  <!-- Option B: Stronger gradient -->
+  <div class="compare-col">
+    <div class="compare-label">Option B — Gradient</div>
+    <div class="card-back option-b">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <img src="../../../assets/print-and-play/throne-emblem.png" alt="" class="emblem">
+      <div class="title-block">
+        <p class="card-title">Hollow Throne</p>
+        <div class="hairline"></div>
+      </div>
+    </div>
+    <div class="compare-desc">Edges stay very dark;<br>center noticeably lighter,<br>more dramatic vignette. No tagline.</div>
+  </div>
+
+</div><!-- .compare-row -->
+
+<div class="note-section">
+  <h2>Changes from Current</h2>
+  <div class="change-list">
+    <div class="change-item">
+      <div class="change-dot"></div>
+      <div class="change-text"><strong>Tagline removed</strong> — "Everything has a cost" text is no longer shown on the card back.</div>
+    </div>
+    <div class="change-item">
+      <div class="change-dot"></div>
+      <div class="change-text"><strong>Blue lightened</strong> — Same royal navy hue retained; either uniformly brighter (A) or stronger center gradient (B).</div>
+    </div>
+    <div class="change-item">
+      <div class="change-dot"></div>
+      <div class="change-text"><strong>Gold brackets unchanged</strong> — Corner brackets and "HOLLOW THRONE" title text remain exactly as-is.</div>
+    </div>
+    <div class="change-item">
+      <div class="change-dot"></div>
+      <div class="change-text"><strong>Throne emblem unchanged</strong> — Emblem size, position, and composition are identical in both options.</div>
+    </div>
+  </div>
+  <p class="approval-note">Approve an option above to apply the changes to <code>assets/print-and-play/logo-stickers.html</code>.</p>
+</div>
+
+</body>
+</html>
