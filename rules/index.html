@@ -1050,20 +1050,19 @@
 <h2>Contents</h2>
 <ul>
   <li><a href="#overview">Overview</a></li>
+  <li><a href="#win-conditions">Win Conditions</a></li>
   <li><a href="#setup">Setup</a></li>
   <li><a href="#game-layout">Game Layout</a></li>
-  <li><a href="#win-conditions">Win Conditions</a></li>
   <li><a href="#card-types">Card Types</a></li>
   <li><a href="#card-anatomy">Card Anatomy</a></li>
   <li><a href="#turn-structure">Turn Structure</a></li>
   <li><a href="#combat">Combat</a></li>
   <li><a href="#reactive-play">Reactive Play</a></li>
-  <li><a href="#sacrifice">Sacrifice</a></li>
   <li><a href="#keywords">Keywords</a></li>
   <li><a href="#zones">Zones</a></li>
   <li><a href="#marketplace">The Marketplace</a></li>
   <li><a href="#hero-powers">Hero Powers</a></li>
-  <li><a href="#special-rules">Special Rules</a></li>
+  <li><a href="#core-rules">Core Rules</a></li>
   <li><a href="#quick-reference">Quick Reference</a></li>
   <li><a href="#glossary">Glossary</a></li>
   <li><a href="#errata">Errata</a></li>
@@ -1073,34 +1072,46 @@
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="overview">Overview</h2>
 
-<p>Two players, each commanding a unique hero, battle using decks of themed cards.
-Deploy creatures, cast spells, attach equipment, and invoke powerful enchantments.
-Win by reducing your opponent's <strong>Life Points (LP)</strong> or
-<strong>Sanity Points (SP)</strong> to zero.</p>
+<p>Hollow Throne is a dark fantasy 1v1 card game. Two players, each commanding a unique
+hero with their own playstyle and signature power, build their forces and battle to
+destroy their opponent. Deploy creatures, cast spells, attach equipment, and invoke
+enchantments that twist the rules of the game in your favor.</p>
 
-<p><strong>Components per player:</strong></p>
+<p>Each hero has two vital resources: <strong>Life Points (LP)</strong>, their physical
+resilience, and <strong>Sanity Points (SP)</strong>, their mental fortitude and magical
+reserves. Exhaust your opponent's body or break their mind — either path leads to
+victory.</p>
+
+<p><strong>Each player brings:</strong></p>
 <ul>
-  <li>1 Hero card</li>
-  <li>15-card deck (chosen from hero's ~19-card pool before the match)</li>
-  <li>Access to a shared <a href="#marketplace">Marketplace (The Armory)</a></li>
+  <li>1 Hero card (sets your LP, SP, Essence income, and unique hero power)</li>
+  <li>A 15-card deck, chosen before the match from your hero's ~19-card pool</li>
+  <li>Access to the shared <a href="#marketplace">Marketplace (The Armory)</a> — neutral cards available to both players</li>
 </ul>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2 id="win-conditions">Win Conditions</h2>
+
+<p>You win when your opponent's <strong>LP reaches 0</strong> — their forces crushed in battle — or their
+<strong>SP reaches 0</strong> — their will and sanity broken. Win conditions are checked the instant
+either resource changes, mid-combat or mid-turn. The game ends immediately.</p>
+<p>If both players reach 0 simultaneously, the active player loses.</p>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="setup">Setup</h2>
 
 <ol>
-  <li><strong>Choose heroes.</strong> Each player selects a hero.</li>
-  <li><strong>Build decks.</strong> From your hero's card pool (~19 cards), choose 15 to form
-    your deck. The remaining cards are set aside (not used this match).</li>
-  <li><strong>Draft the marketplace.</strong> Each player secretly picks 3 neutral card types
-    they want available. Reveal picks simultaneously and merge into one list
-    (overlapping picks just count once). Fill remaining slots with random
-    draws until the marketplace has exactly 10 types, 2 copies each (20 cards
-    total).</li>
-  <li><strong>Set starting resources.</strong> Each player sets LP and SP to their hero's
-    starting values. Place the hero card face-up.</li>
-  <li><strong>Shuffle and draw.</strong> Shuffle your 15-card deck. Draw 5 cards.</li>
-  <li><strong>Determine first player.</strong> Flip a coin or choose randomly.</li>
+  <li><strong>Choose heroes.</strong> Each player selects one of the available heroes.</li>
+  <li><strong>Build decks.</strong> From your hero's card pool (~19 cards), select 15 to form
+    your deck for this match. Set the remaining cards aside — they are not used.</li>
+  <li><strong>Draft the marketplace.</strong> Each player secretly selects 3 neutral card types
+    they want available. Reveal choices simultaneously and combine into a single list
+    (duplicate selections count only once). Continue adding random card types until the
+    marketplace contains exactly 10 distinct types — 2 copies of each — for 20 cards total.</li>
+  <li><strong>Set starting resources.</strong> Set your LP and SP trackers to your hero's starting
+    values. Place your hero card face-up in your hero zone.</li>
+  <li><strong>Shuffle and draw.</strong> Shuffle your 15-card deck and draw 5 cards.</li>
+  <li><strong>Determine first player.</strong> Flip a coin or agree randomly.</li>
 </ol>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -1294,49 +1305,58 @@ visible to your opponent. A typical setup is shown below.</p>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<h2 id="win-conditions">Win Conditions</h2>
-
-<p>You win when your opponent's <strong>LP reaches 0</strong> (killed in combat) or their
-<strong>SP reaches 0</strong> (driven to madness). Both are checked immediately whenever
-a resource changes. If both players would reach 0 simultaneously, the active
-player loses.</p>
-
-<!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="card-types">Card Types</h2>
 
+<p>Every card in your deck or the marketplace belongs to one of four types. Card type
+determines where it can be played, how long it stays in play, and what happens to
+it after use.</p>
+
 <h3 id="creatures">Creatures</h3>
-<p>Permanent cards with ATK (attack power), DEF (health), and SV (sacrifice
-value). Creatures fight in <a href="#combat">combat</a> and can be
-<a href="#sacrifice">sacrificed</a> for resources.</p>
+<p>Permanent cards that occupy your battlefield. Each creature has three stats:
+<strong>ATK</strong> (damage dealt in combat), <strong>DEF</strong> (how much damage
+it can absorb before dying), and <strong>SV</strong> (the resource value you receive
+if you sacrifice it). Creatures form your primary offense and defense.</p>
 <p><strong id="summoning-sickness">Summoning sickness:</strong> Creatures cannot attack
-the turn they enter play. They <em>can</em> block and use special abilities.</p>
+the turn they enter play — they need time to get their bearings. They <em>can</em>
+block incoming attacks and use special abilities immediately.</p>
 
 <h3 id="spells">Spells</h3>
-<p>One-time effects. Two subtypes:</p>
+<p>One-time effects that resolve immediately when cast, then move to a zone based on
+their subtype:</p>
 <ul>
-  <li><strong id="cycled">Cycled:</strong> After use, goes to your
-    <a href="#zone-discard">discard pile</a> (will be reshuffled).</li>
-  <li><strong id="burned">Burned:</strong> After use,
-    <a href="#zone-removed">removed from the game</a> permanently. More powerful
-    but irreplaceable.</li>
+  <li><strong id="cycled">Cycled:</strong> After use, the card goes to your
+    <a href="#zone-discard">discard pile</a> and will eventually reshuffle back into
+    your deck. Repeatable over the course of a long game.</li>
+  <li><strong id="burned">Burned:</strong> After use, the card is
+    <a href="#zone-removed">permanently removed from the game</a>. Burned spells tend
+    to be more powerful — but you only get one use, ever.</li>
 </ul>
-<p>Spells are normally played during your <a href="#main-phase">Main Phase</a>.
-They may also be played during
-<a href="#reactive-play"><strong>Reactive Windows</strong></a> on your opponent's turn —
-but any spell played reactively is <strong>permanently removed from the game</strong>
-(goes to the <a href="#zone-removed">Removed</a> zone), even if it would normally
-be Cycled. Exception: spells with the
-<a href="#kw-reaction"><strong>Reaction</strong></a> keyword follow their normal
+<p>Spells are normally cast during your <a href="#main-phase">Main Phase</a>. They can
+also be cast during <a href="#reactive-play"><strong>Reactive Windows</strong></a> on
+your opponent's turn — but any spell played reactively is <strong>permanently removed
+from the game</strong>, even if it would normally Cycle. The one exception: spells with
+the <a href="#kw-reaction"><strong>Reaction</strong></a> keyword keep their normal
 cycle/burn behavior when played reactively. See
-<a href="#reactive-play"><strong>Reactive Play</strong></a> for full rules.</p>
+<a href="#reactive-play"><strong>Reactive Play</strong></a> for the full rules.</p>
 
 <h3 id="equipment">Equipment</h3>
-<p>Permanent attachments. Attach to a creature or your hero (as specified).
-One equipment per creature/hero. Attaching a new one sends the old one to
-discard. Equipment on a creature that leaves the field of play goes to your discard.</p>
+<p>Permanent cards that attach to a creature or your hero, granting bonuses or
+activated abilities for as long as they remain in play. Only one equipment may
+be attached to each creature or hero at a time — attaching a new one immediately
+sends the old one to your discard pile. If the equipped creature leaves the
+battlefield for any reason, the equipment also goes to your discard.</p>
+<p>Some equipment have abilities you can trigger by exhausting the equipment itself
+(rotating it sideways). Only the equipment becomes exhausted when this happens —
+the creature or hero wearing it is unaffected and remains ready.</p>
 
 <h3 id="enchantments">Enchantments</h3>
-<p>Permanent effects that stay on the battlefield. Some have upkeep costs.</p>
+<p>Permanent cards that occupy your enchantment zone and reshape the game's rules
+while in play. Unlike creatures, enchantments don't fight — they alter ongoing
+conditions: boosting your income, punishing your opponent's actions, empowering
+your creatures each turn, or enabling powerful synergies across multiple turns.</p>
+<p>Some enchantments have upkeep costs paid during your
+<a href="#upkeep-step">Upkeep Step</a>. If you cannot or choose not to pay, the
+enchantment is destroyed and sent to your discard pile.</p>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="card-anatomy">Card Anatomy</h2>
@@ -1674,12 +1694,9 @@ discard. Equipment on a creature that leaves the field of play goes to your disc
 
 <h3 id="ready-step">1. Ready Step</h3>
 <ul>
-  <li><strong>Ready</strong> all your exhausted permanents (creatures, equipment).</li>
-  <li>Clear temporary buffs from last turn.</li>
-  <li>Apply passive <a href="#hero-powers">hero powers</a> and enchantment auras.</li>
-  <li><strong>Process <a href="#kw-bleed">Bleed</a>:</strong> Each creature with a bleed token
-    takes 1 damage, then the token is removed. Your hero takes any stacked bleed
-    damage, then it clears.</li>
+  <li><strong>Ready</strong> all your exhausted permanents (creatures, equipment, and your hero card if exhausted).</li>
+  <li>Clear all temporary buffs and modifiers granted during the previous turn.</li>
+  <li><strong>Process <a href="#kw-bleed">Bleed</a>:</strong> Each creature or hero carrying a bleed token takes 1 damage, then the token is removed.</li>
 </ul>
 
 <h3 id="draw-phase">2. Draw Phase</h3>
@@ -1695,9 +1712,9 @@ into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
 
 <h3 id="income-step">3. Income Step</h3>
 <ul>
-  <li><strong>Reset Essence to 0</strong>, then gain your hero's Essence per turn.</li>
-  <li>Add bonus Essence from enchantments, equipment, or other sources (e.g., Leyline Conduit, Bleed the Land).</li>
-  <li>Essence does NOT carry over between turns.</li>
+  <li><strong>Reset Essence to 0</strong>, then gain your hero's base Essence per turn.</li>
+  <li>Add bonus Essence granted by any permanents currently in play (enchantments, equipment, or other card effects that increase your income).</li>
+  <li>Essence does not carry over — any unspent income is lost at the end of your turn.</li>
 </ul>
 
 <h3 id="upkeep-step">4. Upkeep Step</h3>
@@ -1728,6 +1745,15 @@ into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
 
 <p>You may take actions before AND after combat.</p>
 
+<h3 id="sacrifice">Sacrifice</h3>
+<p>You may sacrifice any creature you control at any time during your Main Phase, or during a
+<a href="#reactive-play">Reactive Window</a>. Choose one:</p>
+<ul>
+  <li><strong id="consume">Consume:</strong> Recover SP equal to the creature's <strong>SV</strong> (Sacrifice Value).</li>
+  <li><strong id="offering">Offering:</strong> Gain Essence equal to the creature's <strong>SV</strong>.</li>
+</ul>
+<p>Any triggered abilities on the sacrificed creature resolve first (e.g., "When this creature dies, deal 1 damage"). The creature then moves to your <a href="#zone-graveyard">graveyard</a>.</p>
+
 <h3 id="end-phase">6. End Phase</h3>
 <ul>
   <li>Passive healing effects trigger (e.g., Iron Discipline).</li>
@@ -1745,38 +1771,41 @@ into a new deck and take <a href="#kw-toll"><strong>Toll(2)</strong></a>
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="combat">Combat</h2>
 
-<p>Combat happens once per turn during your <a href="#main-phase">Main Phase</a>.</p>
+<p>Combat may occur once per turn, during your <a href="#main-phase">Main Phase</a>. You
+choose when to initiate it, and you may take other actions before and after.</p>
 
 <h3 id="declare-attackers">1. Declare Attackers</h3>
-<p>Choose any number of your ready, non-<a href="#summoning-sickness">summoning-sick</a>
-creatures to attack. Each attacker becomes <strong>exhausted</strong>.</p>
-<p><strong>Attack triggers</strong> happen now
-(<a href="#kw-horrify">Horrify</a>, Warhorse Knight buffs, etc.).</p>
-<p>After attackers are declared, your opponent may use a
-<a href="#reactive-play"><strong>Reactive Window</strong></a>
-before blockers are assigned.</p>
+<p>Choose any number of your ready creatures that are not affected by
+<a href="#summoning-sickness">summoning sickness</a> to attack. Each attacker becomes
+<strong>exhausted</strong> when declared — they commit to the attack regardless of
+what follows.</p>
+<p>Attack triggers resolve now (keywords like <a href="#kw-horrify">Horrify</a>, on-attack
+abilities, etc.). Your opponent then has a
+<a href="#reactive-play"><strong>Reactive Window</strong></a> before blockers are assigned.</p>
 
 <h3 id="declare-blockers">2. Declare Blockers</h3>
-<p>Your opponent assigns their ready creatures as blockers. Each blocker
-blocks one attacker. Multiple blockers cannot block the same attacker.
-An attacker with no blocker deals damage to the defending hero.</p>
-<p><strong>Blocking restrictions:</strong></p>
+<p>The defending player assigns ready creatures as blockers. Each blocker blocks exactly
+one attacker; multiple creatures cannot gang up on a single attacker. Any attacker
+left unblocked deals its damage directly to the defending hero's LP.</p>
+<p><strong>Restrictions:</strong></p>
 <ul>
   <li>Exhausted creatures cannot block.</li>
   <li>Only creatures with <a href="#kw-flying"><strong>Flying</strong></a> or
-    <a href="#kw-reach"><strong>Reach</strong></a> can block a Flying attacker.</li>
+    <a href="#kw-reach"><strong>Reach</strong></a> can block a creature with Flying.</li>
 </ul>
 
 <h3 id="resolve-damage">3. Resolve Damage</h3>
-<p>All combat damage is <strong>simultaneous.</strong></p>
+<p>All combat damage resolves <strong>simultaneously</strong> — there is no priority order
+within a single combat.</p>
 <ul>
-  <li><strong>Blocked attackers:</strong> Attacker and blocker deal their ATK as damage to
-    each other. Damage is applied to DEF (tracked as damage counters).</li>
-  <li><strong>Unblocked attackers:</strong> Deal their ATK as LP damage to the defending hero.</li>
-  <li><a href="#kw-vampiric"><strong>Vampiric</strong></a> creatures that deal combat damage
-    to a creature or hero heal that much LP to their controller.</li>
-  <li>Creatures reduced to 0 or fewer DEF die (go to owner's
-    <a href="#zone-graveyard">graveyard</a>).</li>
+  <li><strong>Blocked:</strong> Attacker and blocker each deal their ATK as damage to one
+    another. Damage accumulates on each creature as counters against their DEF.</li>
+  <li><strong>Unblocked:</strong> The attacker deals its ATK directly as LP damage to the
+    defending hero.</li>
+  <li>Creatures at 0 or fewer DEF die immediately, moving to their owner's
+    <a href="#zone-graveyard">graveyard</a>.</li>
+  <li><a href="#kw-vampiric"><strong>Vampiric</strong></a> creatures that deal damage heal
+    their controller an equal amount of LP.</li>
 </ul>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -1838,20 +1867,6 @@ proceeds.</p>
 </ul>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<h2 id="sacrifice">Sacrifice</h2>
-
-<p>During your <a href="#main-phase">Main Phase</a> or a
-<a href="#reactive-play">Reactive Window</a>, you may sacrifice any creature you
-control. Choose one:</p>
-<ul>
-  <li><strong id="consume">Consume:</strong> Recover SP equal to the creature's SV.</li>
-  <li><strong id="offering">Offering:</strong> Gain Essence equal to the creature's SV.</li>
-</ul>
-<p>Sacrifice triggers on the creature resolve first (e.g., Conscript's
-"deal 1 damage"). Then the creature goes to your
-<a href="#zone-graveyard">graveyard</a>.</p>
-
-<!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="keywords">Keywords</h2>
 
 <table>
@@ -1873,34 +1888,38 @@ control. Choose one:</p>
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="zones">Zones</h2>
 
-<table>
-  <tr><th>Zone</th><th>Description</th></tr>
-  <tr id="zone-battlefield"><td><strong>Battlefield</strong></td><td>Creatures, enchantments, and equipped items in play.</td></tr>
-  <tr id="zone-deck"><td><strong>Deck</strong></td><td>Face-down draw pile.</td></tr>
-  <tr id="zone-discard"><td><strong>Discard</strong></td><td>Used <a href="#cycled">cycled</a> spells, destroyed equipment/enchantments. Reshuffles into deck.</td></tr>
-  <tr id="zone-graveyard"><td><strong>Graveyard</strong></td><td>Dead creatures. Can be targeted by resurrection effects.</td></tr>
-  <tr id="zone-hand"><td><strong>Hand</strong></td><td>Cards you hold (limit 5 at end of turn).</td></tr>
-  <tr id="zone-removed"><td><strong>Removed</strong></td><td>Permanently out of the game. Contains: <a href="#burned">Burned</a> spells (single-use spells after use), non-<a href="#kw-reaction">Reaction</a> spells played during <a href="#reactive-play">Reactive Windows</a>, <a href="#unmade">Unmade</a> creatures, and cards removed by <a href="#kw-devouring">Devouring</a>. Nothing in the Removed zone can be retrieved by any effect.</td></tr>
-</table>
+<p>Each area of play has distinct rules for what enters, what can leave, and how cards there
+interact with effects. The board diagram above shows where each zone sits physically;
+this section covers the rules for each.</p>
 
-<p>When your deck is empty and you need to draw, shuffle your
-<a href="#zone-discard"><strong>discard</strong></a> pile into a new deck
-(<a href="#kw-toll"><strong>Toll(2)</strong></a> <a href="#cycle-damage">cycle damage</a>).
-Your <a href="#zone-graveyard">graveyard</a> does NOT reshuffle into the deck.
-The <a href="#zone-removed">Removed</a> zone never reshuffles.</p>
+<table>
+  <tr><th>Zone</th><th>Rules</th></tr>
+  <tr id="zone-battlefield"><td><strong>Battlefield</strong></td><td>Where active permanents live: creatures, enchantments, and attached equipment. Cards here can attack, block, be targeted, and use abilities.</td></tr>
+  <tr id="zone-hand"><td><strong>Hand</strong></td><td>Cards held privately. Maximum 5 at end of turn. You may look at your own hand at any time; your opponent may not.</td></tr>
+  <tr id="zone-deck"><td><strong>Deck</strong></td><td>Your face-down draw pile. When empty and you need to draw, reshuffle your Discard into a new deck and take <a href="#cycle-damage">Toll(2)</a>. If both deck and discard are empty, take <a href="#draw-damage">Draw Damage</a> instead.</td></tr>
+  <tr id="zone-discard"><td><strong>Discard</strong></td><td>Used <a href="#cycled">Cycled</a> spells, destroyed or replaced equipment, and destroyed enchantments. This pile reshuffles into your deck when you need to draw from an empty deck.</td></tr>
+  <tr id="zone-graveyard"><td><strong>Graveyard</strong></td><td>Dead creatures. Your graveyard is public and can be targeted by resurrection and recursion effects. It does <em>not</em> reshuffle into your deck.</td></tr>
+  <tr id="zone-removed"><td><strong>Removed</strong></td><td>Permanently out of the game. Contains: <a href="#burned">Burned</a> spells after use, non-<a href="#kw-reaction">Reaction</a> spells played during <a href="#reactive-play">Reactive Windows</a>, <a href="#unmade">Unmade</a> creatures, and cards removed by <a href="#kw-devouring">Devouring</a>. Nothing in this zone can ever be retrieved by any effect.</td></tr>
+</table>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="marketplace">The Marketplace (The Armory)</h2>
 
-<p>A shared pool of neutral cards available to both players.</p>
+<p>The Marketplace is a shared row of neutral cards running down the center of the
+table, accessible to both players. It offers mercenaries, spells, and equipment
+that no hero deck contains — a common resource that both players compete to control
+and exploit.</p>
+
 <p><strong>Buying:</strong> During your <a href="#main-phase">Main Phase</a>, pay a card's
-<strong>buy cost</strong> in Essence. The card goes to your hand. You can play it the
-same turn if you have the resources.</p>
-<p><strong>Stock:</strong> 2 copies of each card type. Once both copies are bought, that
-card is gone.</p>
-<p><strong>Draft (setup):</strong> Each player secretly picks 3 types. Merge into one list
-(overlapping picks just count once), then fill remaining slots with random
-draws to reach exactly 10 types. Always 10 types (20 cards) per game.</p>
+<strong>buy cost</strong> in Essence to acquire it. The card goes directly to your hand
+and can be played that same turn if you have the resources to do so.</p>
+
+<p><strong>Stock:</strong> The marketplace contains 2 copies of each card type. Once both
+copies of a card have been purchased, that card is no longer available. Act early
+if you want something before your opponent takes it.</p>
+
+<p><strong>Draft (setup):</strong> See <a href="#setup">Setup</a> step 3. Each match uses a
+freshly drafted marketplace, so available cards vary game to game.</p>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="hero-powers">Hero Powers</h2>
@@ -1917,77 +1936,70 @@ draws to reach exactly 10 types. Always 10 types (20 cards) per game.</p>
 </table>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<h2 id="special-rules">Special Rules</h2>
-
-<h3 id="cycle-damage">Cycle Damage</h3>
-<p>Every time you reshuffle your <a href="#zone-discard">discard pile</a> into a new
-deck: <a href="#kw-toll"><strong>Toll(2)</strong></a>.
-<a href="#burned">Burned</a> spells and dead creatures thin your deck, accelerating
-reshuffles.</p>
-
-<h3 id="damage-on-creatures">Damage on Creatures</h3>
-<p>Damage <strong>persists</strong> on creatures between turns. A creature with 3 DEF that
-takes 2 damage has 1 DEF remaining. It stays damaged until healed or it dies.</p>
-
-<h3 id="discard-pain">Discard Pain</h3>
-<p>Every discard during the <a href="#end-phase">End Phase</a>:
-<a href="#kw-toll"><strong>Toll(1)</strong></a> — whether voluntary or forced by the hand
-limit. Discarding cards due to card/creature effects during other phases
-is free.</p>
-
-<h3 id="draw-damage">Draw Damage</h3>
-<p>If you must draw but have no deck AND no discard pile, take <strong>1 LP per
-missing card</strong>. This is not a Toll — it is LP damage only.</p>
-
-<h3 id="equipment-swapping">Equipment Swapping</h3>
-<p>One equipment per creature (or hero). Attaching a new equipment sends the
-old one to your <a href="#zone-discard">discard pile</a>.</p>
-
-<h3 id="exhausting-equipment">Exhausting Equipment</h3>
-<p>When you exhaust an equipment card to activate its ability, only the
-equipment becomes exhausted. The creature or hero it is attached to is
-unaffected and remains ready.</p>
-
-<h3 id="lp-sp-maximum">LP and SP Maximum</h3>
-<p>LP and SP cannot exceed their hero's starting values. Any healing or recovery
-that would push a resource above its starting value is capped — the excess is
-lost. This applies to all sources: Vampiric combat damage, Consume (sacrifice),
-card effects, and any other gain.</p>
+<h2 id="core-rules">Core Rules</h2>
 
 <h3 id="feedback">Feedback</h3>
-<p>Essence gathered beyond your hero's income is volatile. At the end of
-<strong>every</strong> turn, <strong>both</strong> players check for unspent non-income
-Essence. Each point of unspent Essence from non-income sources
-(<a href="#sacrifice">sacrifice</a>, discard-for-Essence, Toll-for-Essence,
-exhaust abilities, <a href="#hero-powers">hero powers</a>):
-<a href="#kw-toll"><strong>Toll(1)</strong></a> per point to that player. Essence from
-your <a href="#income-step">Income Step</a> (hero base + enchantment + equipment bonuses) is
-safe — you are not punished for unspent income. Then all remaining Essence
-is lost.</p>
-<p><strong>Spending order:</strong> Income Essence is always spent first. If you have 3
-income Essence and 3 generated Essence but only spend 3 total, the 3 income
-is consumed — the 3 generated Essence remains unspent and triggers Feedback.
-You cannot choose to "spend" generated Essence first to avoid the penalty.</p>
-<p>This applies to both players, not just the active player. If you sacrifice a
-creature during a <a href="#reactive-play">Reactive Window</a> on your opponent's
-turn and gain Essence via <a href="#offering">Offering</a>, that Essence feeds back at
-the end of your opponent's turn if unspent. Every resource you actively
-generate must be spent or it hurts.</p>
+<p>Essence is volatile — generating more than you spend has consequences. At the end of
+<strong>every</strong> turn, <strong>both</strong> players check for unspent non-income Essence.
+Each unspent point from non-income sources — <a href="#sacrifice">sacrifice</a> (Offering),
+discard-for-Essence, Toll-for-Essence, exhaust abilities, and
+<a href="#hero-powers">hero powers</a> — costs
+<a href="#kw-toll"><strong>Toll(1)</strong></a> per point to that player.</p>
+<p>Essence from your <a href="#income-step">Income Step</a> (hero base income plus any
+permanent bonuses) is exempt. You are never penalized for leaving income unspent.</p>
+<p><strong>Spending order:</strong> Income Essence is always spent first. If you hold 3 income
+Essence and 3 generated Essence and spend only 3 total, the income is consumed — the
+3 generated Essence remains unspent and triggers Feedback. You cannot choose to
+spend generated Essence first to avoid the penalty.</p>
+<p>Feedback applies to both players, not just the active player. If you generate Essence
+via Offering during a <a href="#reactive-play">Reactive Window</a> on your opponent's turn
+and leave it unspent, it triggers Feedback at the end of their turn. Every resource
+you actively generate must be used, or it costs you.</p>
 
 <h3 id="unmade">Unmade</h3>
-<p>Some card effects <strong>Unmake</strong> a creature instead of destroying it. An Unmade
-creature is placed in the <a href="#zone-removed"><strong>Removed</strong></a> zone
-permanently — it does not go to the <a href="#zone-graveyard">Graveyard</a>. The
-creature has not <strong>died</strong> — no death triggers, sacrifice triggers, or any
-other leave-play effects fire. It cannot be returned to play by any effect
-(Grave Touch, Mass Reanimate, Blood Bond, or any other recursion). Only
-explicit card text that says
-"Unmake" causes this; normal destruction always sends creatures to the
-Graveyard.</p>
-<p><strong>Exception:</strong> A card whose trigger text explicitly names Unmake
-(e.g., Bone Tithe: "dies or is Unmade") fires when a creature is Unmade because
-the card itself says so — this is not a death trigger firing. Such cards are the
-only effects that acknowledge an Unmake.</p>
+<p>Some card effects <strong>Unmake</strong> a creature rather than destroy it. An Unmade creature
+goes to the <a href="#zone-removed"><strong>Removed</strong></a> zone permanently — not the
+<a href="#zone-graveyard">Graveyard</a>. The creature has not <em>died</em>: no death triggers
+fire, no sacrifice triggers fire, and no leave-play effects resolve. It cannot be
+returned by any recursion effect (Grave Touch, Mass Reanimate, Blood Bond, or anything
+similar). Only card text that explicitly says "Unmake" causes this. Normal destruction
+always sends creatures to the Graveyard.</p>
+<p><strong>Exception:</strong> Cards whose trigger text explicitly names Unmake — such as
+Bone Tithe ("dies or is Unmade") — do fire when a creature is Unmade, because the card
+itself opts in. This is not a death trigger. Only cards that say "Unmade" in their text
+acknowledge an Unmake event.</p>
+
+<h3 id="damage-on-creatures">Damage on Creatures</h3>
+<p>Damage persists on creatures between turns. A creature with 3 DEF that takes 2 damage
+has 1 effective DEF remaining. It stays wounded until healed or it dies. There is no
+end-of-turn damage reset.</p>
+
+<h3 id="lp-sp-maximum">LP and SP Maximum</h3>
+<p>LP and SP cannot exceed their hero's starting values. Any healing or recovery that
+would push a resource above its starting value is simply lost — the excess is wasted.
+This applies to all sources: Vampiric combat damage, Consume, card effects, and hero
+powers.</p>
+
+<h3 id="cycle-damage">Cycle Damage</h3>
+<p>Every time you reshuffle your <a href="#zone-discard">discard pile</a> into a new deck,
+take <a href="#kw-toll"><strong>Toll(2)</strong></a>. Burned spells and dead creatures thin
+your deck permanently, shortening the time between reshuffles — and the pain they bring.</p>
+
+<h3 id="discard-pain">Discard Pain</h3>
+<p>Every card discarded during the <a href="#end-phase">End Phase</a> costs
+<a href="#kw-toll"><strong>Toll(1)</strong></a>, whether the discard is voluntary or forced
+by the hand limit. Discards caused by card or creature effects during other phases are free.</p>
+
+<h3 id="draw-damage">Draw Damage</h3>
+<p>If you must draw but have no deck and no discard pile to reshuffle, take
+<strong>1 LP per missing card</strong>. This is direct LP damage — not a Toll, and not
+split between LP and SP.</p>
+
+<h3 id="equipment-swapping">Equipment</h3>
+<p>Only one equipment may be attached to each creature or hero at a time. Attaching a new
+equipment immediately sends the old one to your <a href="#zone-discard">discard pile</a>.
+When you exhaust an equipment to activate its ability, only the equipment becomes
+exhausted — the creature or hero it is attached to remains ready and unaffected.</p>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="quick-reference">Quick Reference</h2>
