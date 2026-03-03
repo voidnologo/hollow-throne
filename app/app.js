@@ -49,7 +49,7 @@ const showEssenceToggle = document.getElementById('show-essence-toggle');
 const storedShowEssence = localStorage.getItem('showEssence');
 const showEssenceDefault = storedShowEssence === null ? true : storedShowEssence === 'true';
 
-const state = { lp: 20, sp: 20, essence: 0, essenceBase: 0, showEssence: showEssenceDefault };
+const state = { lp: 20, sp: 20, lpMax: 20, spMax: 20, essence: 0, essenceBase: 0, showEssence: showEssenceDefault };
 const displays = { lp: lpDisplay, sp: spDisplay, essence: essenceDisplay };
 
 showEssenceToggle.checked = state.showEssence;
@@ -66,6 +66,8 @@ document.querySelectorAll('.btn[data-stat]').forEach(btn => {
     const newVal = state[stat] + delta;
 
     if (newVal < 0) return;
+    if (stat === 'lp' && newVal > state.lpMax) return;
+    if (stat === 'sp' && newVal > state.spMax) return;
 
     state[stat] = newVal;
     render();
@@ -145,6 +147,8 @@ function rebuildHeroGrid() {
 function selectHero(hero) {
   state.lp = hero.lp;
   state.sp = hero.sp;
+  state.lpMax = hero.lp;
+  state.spMax = hero.sp;
   state.essence = hero.essence;
   state.essenceBase = hero.essence;
   render();
