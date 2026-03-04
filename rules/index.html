@@ -1071,6 +1071,7 @@
   <li><a href="#win-conditions">Win Conditions</a></li>
   <li><a href="#setup">Setup</a></li>
   <li><a href="#game-layout">Game Layout</a></li>
+  <li><a href="#resolving-effects">Resolving Effects</a></li>
   <li><a href="#card-types">Card Types</a></li>
   <li><a href="#card-anatomy">Card Anatomy</a></li>
   <li><a href="#zones">Zones</a></li>
@@ -1340,6 +1341,14 @@ visible to your opponent. A typical setup is shown below.</p>
     <div class="board-legend-text"><strong>Marketplace</strong> — Shared zone: 10 card types, 2 copies each (20 total). Buy cards here during your Main Phase.</div>
   </div>
 </div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<h2 id="resolving-effects">Resolving Effects</h2>
+
+<p>You must resolve all card effects that can be resolved. Some effects have
+targeting requirements — a valid target must exist for the card to be played
+at all. Effects that say "you may" are optional; all other effects are
+mandatory.</p>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="card-types">Card Types</h2>
@@ -1763,7 +1772,7 @@ phases, though most phases are quick and automatic:</p>
 <h3 id="ready-step">1. Ready Step</h3>
 <ul>
   <li><strong>Ready</strong> all your exhausted permanents (creatures, equipment, and your hero card if exhausted).</li>
-  <li><strong>Process <a href="#kw-bleed">Bleed</a>:</strong> Each creature or hero carrying a bleed token takes 1 damage, then the token is removed.</li>
+  <li><strong>Process <a href="#kw-bleed">Bleed</a>:</strong> Each creature with Bleed loses 1 DEF per token; your hero loses 1 LP per token. Then all Bleed tokens are removed. Bleed is not damage — it cannot be prevented or reduced by <a href="#kw-shield">Shield</a>.</li>
 </ul>
 
 <h3 id="draw-phase">2. Draw Phase</h3>
@@ -1944,7 +1953,7 @@ dies, deal 1 damage"). The creature then moves to your <a href="#zone-graveyard"
 
 <table>
   <tr><th>Keyword</th><th>Effect</th></tr>
-  <tr id="kw-bleed"><td><strong>Bleed</strong></td><td>When this creature deals combat damage, place a bleed token on the damaged target. At the start of that target's controller's next turn, the token deals 1 damage to that creature or hero, then is removed. Card effects may also place bleed tokens directly, independent of combat.</td></tr>
+  <tr id="kw-bleed"><td><strong>Bleed</strong></td><td>When this creature deals combat damage, place a Bleed token on the damaged target. At the start of that target's controller's next turn, the target loses 1 DEF (or 1 LP if a hero) per Bleed token, then all Bleed tokens are removed. Bleed is not damage — it cannot be prevented or reduced by <a href="#kw-shield">Shield</a> or other damage prevention effects. Card effects may also place Bleed tokens directly, independent of combat.</td></tr>
   <tr id="kw-devouring"><td><strong>Devouring</strong></td><td>When this creature deals combat damage to a player, prevent that damage. Instead, remove the top card of that player's deck from the game (<a href="#zone-removed">Removed</a> zone).</td></tr>
   <tr id="kw-eldritch"><td><strong>Eldritch</strong></td><td>When this creature enters play, opponent loses 2 SP.</td></tr>
   <tr id="kw-flying"><td><strong>Flying</strong></td><td>Can only be blocked by creatures with Flying or <a href="#kw-reach">Reach</a>.</td></tr>
@@ -1993,7 +2002,7 @@ in two forms:</p>
   <tr><td><strong>Bone Tyrant</strong></td><td>Grave Touch</td><td>Exhaust (2SP, once/turn)</td><td>Return target creature from your <a href="#zone-graveyard">graveyard</a> to your hand. You may cast it for 1 less Essence this turn.</td></tr>
   <tr><td><strong>Crimson Ranger</strong></td><td>Marked Prey</td><td>Exhaust (free, once/turn)</td><td>Deal 1 damage to target creature.</td></tr>
   <tr><td><strong>Iron Warden</strong></td><td>Iron Discipline</td><td>Passive</td><td>At end of turn, heal 1 damage from each creature you control.</td></tr>
-  <tr><td><strong>Thread-Cutter</strong></td><td>Fate's Glimpse</td><td>Exhaust (1E + 1SP, once/turn)</td><td>Draw 1 card, then your opponent discards 1 card from their hand.</td></tr>
+  <tr><td><strong>Thread-Cutter</strong></td><td>Fate's Glimpse</td><td>Exhaust (free + optional 1SP)</td><td>Look at the top card of target player's deck. You may then spend 1 SP to choose whether the card is drawn by its owner or Milled.</td></tr>
   <tr><td><strong>Void Scholar</strong></td><td>Arcane Conversion</td><td>Exhaust (1SP, once/turn)</td><td>Gain 2 Essence.</td></tr>
 </table>
 
@@ -2034,7 +2043,8 @@ acknowledge an Unmake event.</p>
 <h3 id="damage-on-creatures">Damage on Creatures</h3>
 <p>Damage persists on creatures between turns. A creature with 3 DEF that takes 2 damage
 has 1 effective DEF remaining. It stays wounded until healed or it dies. There is no
-end-of-turn damage reset.</p>
+end-of-turn damage reset. A creature reduced to 0 or fewer DEF dies regardless of the
+source — combat damage, card effects, <a href="#kw-bleed">Bleed</a>, or any other cause.</p>
 
 <h3 id="lp-sp-maximum">LP and SP Maximum</h3>
 <p>LP and SP cannot exceed their hero's starting values. Any healing or recovery that
@@ -2117,7 +2127,7 @@ either resource changes.</p>
   <dd><a href="#reactive-play">Reactive Window</a> that opens after attackers are declared, before blockers.</dd>
 
   <dt><a href="#kw-bleed">Bleed</a></dt>
-  <dd>Keyword. Places a bleed token on a damaged target; the token deals 1 damage at the start of that target's controller's next turn. Can also be placed directly by card effects.</dd>
+  <dd>Keyword. Places a Bleed token on a damaged target; the target loses 1 DEF (or 1 LP if a hero) per token at the start of their controller's next turn. Not damage — bypasses Shield. Can also be placed directly by card effects.</dd>
 
   <dt><a href="#burned">Burned</a></dt>
   <dd>Spell subtype. After use, placed in the <a href="#zone-removed">Removed zone</a>.</dd>
@@ -2156,7 +2166,7 @@ either resource changes.</p>
   <dd>Keyword. Defender loses 1 SP when this creature attacks.</dd>
 
   <dt>LP (Life Points)</dt>
-  <dd>Health resource. Reaches 0 = defeat. Lost to combat damage, <a href="#kw-toll">Toll</a>, spells, <a href="#kw-bleed">Bleed</a>.</dd>
+  <dd>Health resource. Reaches 0 = defeat. Lost to combat damage, <a href="#kw-toll">Toll</a>, spells, <a href="#kw-bleed">Bleed</a> (direct LP loss, not damage).</dd>
 
   <dt><a href="#kw-mill">Mill(N)</a></dt>
   <dd>Keyword. Move the top N cards of target player's deck to their discard pile. Does nothing if the deck is empty — does not force a cycle.</dd>
