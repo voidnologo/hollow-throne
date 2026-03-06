@@ -1961,6 +1961,7 @@ dies, deal 1 damage"). The creature then moves to your <a href="#zone-graveyard"
   <tr id="kw-mill"><td><strong>Mill(N)</strong></td><td>Move the top N cards of target player's deck to their <a href="#zone-discard">Discard</a> pile. If the deck is empty, the effect does nothing for missing cards — the player is not forced to cycle.</td></tr>
   <tr id="kw-reach"><td><strong>Reach</strong></td><td>Can block <a href="#kw-flying">Flying</a> creatures.</td></tr>
   <tr id="kw-reaction"><td><strong>Reaction</strong></td><td>This spell follows its normal cycle/burn behavior when played during a <a href="#reactive-play">Reactive Window</a>, instead of being permanently removed.</td></tr>
+  <tr id="kw-scry"><td><strong>Scry(N)</strong></td><td>Look at the top N cards of target deck. They remain on top in their original order. Cards that Scry may add further effects — draw, mill, or remove — as specified in their text.</td></tr>
   <tr id="kw-shield"><td><strong>Shield</strong></td><td>Reduce damage from each source by 1.</td></tr>
   <tr id="kw-toll"><td><strong>Toll(N)</strong></td><td>Lose N total from your LP and/or SP, divided however you choose. Each point is assigned individually (e.g., Toll(2) = 2 LP, 2 SP, or 1 LP + 1 SP).</td></tr>
   <tr id="kw-unique"><td><strong>Unique</strong></td><td>Only one copy can be in play at a time (per player).</td></tr>
@@ -2002,7 +2003,7 @@ in two forms:</p>
   <tr><td><strong>Bone Tyrant</strong></td><td>Grave Touch</td><td>Exhaust (2SP, once/turn)</td><td>Return target creature from your <a href="#zone-graveyard">graveyard</a> to your hand. You may cast it for 1 less Essence this turn.</td></tr>
   <tr><td><strong>Crimson Ranger</strong></td><td>Marked Prey</td><td>Exhaust (free, once/turn)</td><td>Deal 1 damage to target creature.</td></tr>
   <tr><td><strong>Iron Warden</strong></td><td>Iron Discipline</td><td>Passive</td><td>At end of turn, heal 1 damage from each creature you control.</td></tr>
-  <tr><td><strong>Thread-Cutter</strong></td><td>Fate's Glimpse</td><td>Exhaust (free + optional 1SP)</td><td>Look at the top card of target player's deck. You may then spend 1 SP to choose whether the card is drawn by its owner or Milled.</td></tr>
+  <tr><td><strong>Thread-Cutter</strong></td><td>Fate's Glimpse</td><td>Exhaust (free + optional 1SP)</td><td><a href="#kw-scry">Scry(1)</a> target player's deck. You may then spend 1 SP to choose whether the card is drawn by its owner or Milled.</td></tr>
   <tr><td><strong>Void Scholar</strong></td><td>Arcane Conversion</td><td>Exhaust (1SP, once/turn)</td><td>Gain 2 Essence.</td></tr>
 </table>
 
@@ -2179,6 +2180,9 @@ either resource changes.</p>
 
   <dt><a href="#kw-reaction">Reaction</a></dt>
   <dd>Keyword. Spell keeps normal cycle/burn behavior when played reactively.</dd>
+
+  <dt><a href="#kw-scry">Scry(N)</a></dt>
+  <dd>Keyword. Look at the top N cards of target deck. They remain on top in their original order. Cards may add effects on top of the peek.</dd>
 
   <dt><a href="#reactive-play">Reactive Window</a></dt>
   <dd>A window during your opponent's turn where you may play one spell. Two types: <a href="#attack-window">Attack Window</a> and <a href="#spell-window">Spell Window</a>.</dd>
