@@ -1366,10 +1366,11 @@ equipment and card effects, and can receive
 <a href="#kw-bleed">Bleed</a> tokens and damage from combat or abilities.</p>
 
 <h3 id="creatures">Creatures</h3>
-<p>Permanent cards that occupy your battlefield. Each creature has three stats:
-<strong>ATK</strong> (damage dealt in combat), <strong>DEF</strong> (how much damage
-it can absorb before dying), and <strong>SV</strong> (the resource value you receive
-if you sacrifice it). Creatures form your primary offense and defense.</p>
+<p>Permanent cards that occupy your battlefield. Each creature has two stats:
+<strong>ATK</strong> (damage dealt in combat) and <strong>DEF</strong> (how much
+damage it can absorb before dying). Creatures form your primary offense and
+defense, and can be <a href="#sacrifice">sacrificed</a> for resources
+(see <strong>Sacrifice Value</strong> below).</p>
 <p><strong id="summoning-sickness">Summoning sickness:</strong> Creatures cannot attack
 the turn they enter play — they need time to get their bearings. They <em>can</em>
 block incoming attacks and use special abilities immediately.</p>
@@ -1594,7 +1595,7 @@ enchantment is destroyed and sent to your discard pile.</p>
     <div class="ac-label" style="top:94%">
       <div class="ac-label-dot"></div>
       <div class="ac-label-line"></div>
-      <span class="ac-label-text">ATK / DEF / SV</span>
+      <span class="ac-label-text">ATK / DEF</span>
     </div>
   </div>
 </div>
@@ -1610,7 +1611,8 @@ enchantment is destroyed and sent to your discard pile.</p>
       <svg style="width:1.1em;height:1.1em;vertical-align:middle;display:inline-block;margin:0 1px 0 4px" viewBox="0 0 24 24" fill="#b89530"><path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/><path d="M12 1L8 8L12 12L16 8Z" opacity="0.3"/><path d="M12 12L8 8L4 12L8 16Z" opacity="0.15"/><path d="M12 12L16 8L20 12L16 16Z" opacity="0.15"/><path d="M12 23L8 16L12 12L16 16Z" opacity="0.3"/></svg>
       = Essence;
       <svg style="width:1.1em;height:1.1em;vertical-align:middle;display:inline-block;margin:0 1px 0 4px" viewBox="0 0 24 24" fill="#6a5a8e"><path d="M12 4C6 4 1.5 10 1 12c.5 2 5 8 11 8s10.5-6 11-8c-.5-2-5-8-11-8zm0 2c4.5 0 8 4.2 8.8 6-.8 1.8-4.3 6-8.8 6s-8-4.2-8.8-6c.8-1.8 4.3-6 8.8-6z"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="2" opacity="0.3"/></svg>
-      = SP. Both may appear on a single card.</dd>
+      = SP. Both may appear on a single card. The play cost also determines the
+      creature's <strong><a href="#sacrifice">Sacrifice Value</a></strong>.</dd>
   </div>
   <div>
     <dt>Artwork</dt>
@@ -1631,10 +1633,6 @@ enchantment is destroyed and sent to your discard pile.</p>
   <div>
     <dt>DEF (Defense)</dt>
     <dd>Durability. A creature dies when accumulated damage equals or exceeds its DEF.</dd>
-  </div>
-  <div>
-    <dt>SV (Sacrifice Value)</dt>
-    <dd>Resource gained when you <a href="#sacrifice">sacrifice</a> this creature — SP recovery (Consume) or Essence (Offering), your choice.</dd>
   </div>
 </dl>
 
@@ -1717,7 +1715,7 @@ enchantment is destroyed and sent to your discard pile.</p>
     <div class="ac-label" style="top:94%">
       <div class="ac-label-dot"></div>
       <div class="ac-label-line"></div>
-      <span class="ac-label-text">ATK / DEF / SV</span>
+      <span class="ac-label-text">ATK / DEF</span>
     </div>
   </div>
 </div>
@@ -1740,7 +1738,7 @@ enchantment is destroyed and sent to your discard pile.</p>
     <dd>Rules text for the card's effects, identical in structure to hero deck cards.</dd>
   </div>
   <div>
-    <dt>ATK / DEF / SV</dt>
+    <dt>ATK / DEF</dt>
     <dd>Creature stats — same meaning as hero deck creatures. Marketplace creatures are played like any other creature once acquired.</dd>
   </div>
 </dl>
@@ -1942,9 +1940,13 @@ what you've prepared or what you're willing to sacrifice:</p>
 <p>You may sacrifice any creature you control during your <a href="#main-phase">Main Phase</a>
 or during a <a href="#reactive-play">Reactive Window</a>. Choose one:</p>
 <ul>
-  <li><strong id="offering">Offering:</strong> Gain Essence equal to the creature's <strong>SV</strong> (Sacrifice Value).</li>
-  <li><strong id="consume">Consume:</strong> Recover SP equal to the creature's <strong>SV</strong>.</li>
+  <li><strong id="offering">Offering:</strong> Gain Essence equal to the creature's <strong>Sacrifice Value (SV)</strong>.</li>
+  <li><strong id="consume">Consume:</strong> Recover SP equal to the creature's <strong>Sacrifice Value (SV)</strong>.</li>
 </ul>
+<p><strong>Sacrifice Value (SV)</strong> is derived from the creature's casting
+cost: <strong>SV = total cost − 1</strong>, with a minimum of 1. Total cost
+includes both Essence and SP. SV is not printed on the card — compute it from
+the cost shown in the upper-right corner.</p>
 <p>Any triggered abilities on the sacrificed creature resolve first (e.g., "When this creature
 dies, deal 1 damage"). The creature then moves to your <a href="#zone-graveyard">graveyard</a>.</p>
 
