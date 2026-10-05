@@ -472,230 +472,13 @@
     opacity: 0.8;
   }
 
-  /* ── Card CSS (inlined from print-cards.css — identical to print rendering) ── */
-
-  .hero-warden {
-    --hero-primary: #6b7d8e; --hero-secondary: #8b2020; --hero-accent: #c45a20;
-    --hero-bg-start: #e8ddd0; --hero-bg-end: #d4c4b0; --hero-frame: #4a5a68;
-    --hero-art-start: #6b7d8e; --hero-art-mid: #4a5a68; --hero-art-end: #2a3a48;
-  }
-  .hero-scholar {
-    --hero-primary: #5a2d82; --hero-secondary: #1a8a6a; --hero-accent: #c44a8a;
-    --hero-bg-start: #e0d4ec; --hero-bg-end: #c8b8d8; --hero-frame: #3a1a5a;
-    --hero-art-start: #5a2d82; --hero-art-mid: #2a1a4a; --hero-art-end: #1a0a2a;
-  }
-  .hero-ranger {
-    --hero-primary: #a02020; --hero-secondary: #2a5a2a; --hero-accent: #c4a020;
-    --hero-bg-start: #e8d4d0; --hero-bg-end: #d8b8b4; --hero-frame: #6a1010;
-    --hero-art-start: #a02020; --hero-art-mid: #6a1010; --hero-art-end: #3a0808;
-  }
-  .hero-tyrant {
-    --hero-primary: #8a7e60; --hero-secondary: #4a6a2a; --hero-accent: #4a7acc;
-    --hero-bg-start: #e8e0d0; --hero-bg-end: #d4c8a0; --hero-frame: #5a5040;
-    --hero-art-start: #8a7e60; --hero-art-mid: #5a5040; --hero-art-end: #2a2820;
-  }
-  .hero-cutter {
-    --hero-primary: #2a6e6e; --hero-secondary: #5a3a7a; --hero-accent: #40b0a0;
-    --hero-bg-start: #d4e4e4; --hero-bg-end: #b8ccd0; --hero-frame: #1a4a4a;
-    --hero-art-start: #2a6e6e; --hero-art-mid: #1a4a4a; --hero-art-end: #0a2a2a;
-  }
-  .hero-market {
-    --hero-primary: #AA8520; --hero-secondary: #654321; --hero-accent: #DAA520;
-    --hero-bg-start: #ece4d0; --hero-bg-end: #d8cc9c; --hero-frame: #7a6010;
-    --hero-art-start: #AA8520; --hero-art-mid: #7a6010; --hero-art-end: #4a3a08;
-  }
-
-  .card {
-    width: 63mm; height: 88mm;
-    border: 2pt solid var(--hero-frame, #333);
+  /* Anatomy examples are images rendered by the print pipeline (scripts/print/rulebook_cards.py). */
+  .ac-card-img {
+    display: block;
+    width: 63.5mm;
+    height: 88.9mm;
     border-radius: 2.5mm;
-    position: relative; overflow: hidden;
-    display: flex; flex-direction: column;
-    background: linear-gradient(170deg, var(--hero-bg-start, #e8ddd0) 0%, var(--hero-bg-end, #d4c4b0) 100%);
-  }
-  .card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background:
-      radial-gradient(ellipse at 20% 50%, rgba(0,0,0,0.03) 0%, transparent 70%),
-      radial-gradient(ellipse at 80% 20%, rgba(0,0,0,0.04) 0%, transparent 60%),
-      radial-gradient(ellipse at 50% 90%, rgba(0,0,0,0.03) 0%, transparent 50%);
-    pointer-events: none; z-index: 0;
-  }
-  .card::after {
-    content: ''; position: absolute;
-    top: 1.5mm; left: 1.5mm; right: 1.5mm; bottom: 1.5mm;
-    border: 0.4pt solid rgba(0,0,0,0.15); border-radius: 1.5mm;
-    pointer-events: none; z-index: 5;
-  }
-
-  .card-header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 2mm 3mm 1.5mm; flex-shrink: 0;
-    background: linear-gradient(180deg, rgba(20,15,10,0.85) 0%, rgba(30,25,18,0.78) 100%);
-    position: relative; z-index: 1;
-  }
-  .card-name {
-    font-family: 'Cinzel', 'Georgia', serif; font-weight: 700; font-size: 10pt;
-    color: #f0e8d8; letter-spacing: 0.3pt; line-height: 1.1;
-    flex: 1; min-width: 0; text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  }
-  .card-cost {
-    display: flex; align-items: center; gap: 1mm; margin-left: 1.5mm; flex-shrink: 0;
-  }
-  .icon { display: inline-block; vertical-align: middle; }
-  .cost-pip {
-    display: inline-flex; align-items: center; justify-content: center;
-    position: relative; width: 6.5mm; height: 6.5mm;
-  }
-  .cost-pip .icon { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
-  .cost-pip .cost-num {
-    position: relative; z-index: 1;
-    font-family: 'Fira Code', monospace; font-weight: 700; font-size: 9pt; line-height: 1;
-    text-shadow: 0 0 2px rgba(0,0,0,0.8), 0 1px 1px rgba(0,0,0,0.6);
-  }
-  .cost-pip.essence { color: #b89530; }
-  .cost-pip.essence .icon { fill: #b89530; }
-  .cost-pip.essence .cost-num { color: #fff; }
-  .cost-pip.sp { color: #6a5a8e; }
-  .cost-pip.sp .icon { fill: #6a5a8e; }
-  .cost-pip.sp .cost-num { color: #fff; }
-
-  .card-art {
-    height: 43mm; flex-shrink: 0; position: relative; z-index: 1; overflow: hidden;
-  }
-  .card-art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-
-  .card-divider {
-    height: 2mm; flex-shrink: 0; position: relative; z-index: 1;
-    background: linear-gradient(90deg,
-      transparent 0%, var(--hero-frame, #444) 15%,
-      var(--hero-primary, #666) 40%, var(--hero-primary, #666) 60%,
-      var(--hero-frame, #444) 85%, transparent 100%);
-    opacity: 0.6;
-  }
-  .card-divider::before {
-    content: ''; position: absolute; top: -0.5mm; left: 0; right: 0; height: 1mm;
-    background: linear-gradient(90deg,
-      transparent 0%, var(--hero-bg-start, #e8ddd0) 8%, transparent 12%,
-      var(--hero-bg-start, #e8ddd0) 20%, transparent 25%, transparent 75%,
-      var(--hero-bg-start, #e8ddd0) 80%, transparent 88%,
-      var(--hero-bg-start, #e8ddd0) 92%, transparent 100%);
-  }
-
-  .card-typeline {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0.8mm 3mm; flex-shrink: 0; position: relative; z-index: 1;
-    font-family: 'Fira Sans', sans-serif; font-size: 7pt; color: #555;
-    text-transform: uppercase; letter-spacing: 0.4pt;
-    background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.02) 100%);
-    border-bottom: 0.3pt solid rgba(0,0,0,0.1);
-  }
-  .buy-badge {
-    display: inline-block; font-size: 6.5pt; font-weight: 700;
-    background: linear-gradient(135deg, #AA8520, #886818);
-    color: #fff; padding: 0.3mm 1.5mm; border-radius: 1mm;
-  }
-
-  .card-textbox {
-    flex: 1; padding: 1.5mm 3mm; position: relative; z-index: 1;
-    display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden;
-  }
-  .card-textbox::before {
-    content: ''; position: absolute; top: 0; left: 2mm; right: 2mm; bottom: 0;
-    background: rgba(245,235,220,0.55); border-radius: 1mm; z-index: -1;
-  }
-  .card-keywords {
-    font-family: 'Fira Sans', sans-serif; font-size: 7.5pt; font-style: italic;
-    color: #444; text-align: center; margin-bottom: 0.8mm; padding-bottom: 0.8mm;
-    border-bottom: 0.3pt solid rgba(0,0,0,0.08);
-  }
-  .card-text { font-family: 'Fira Sans', sans-serif; font-size: 7.5pt; line-height: 1.3; color: #222; }
-  .card-text .ability { margin-bottom: 0.5mm; }
-
-  .card-stats {
-    display: flex; justify-content: center; align-items: center;
-    gap: 3mm; padding: 1.5mm 3mm; flex-shrink: 0;
-    background: linear-gradient(0deg, rgba(20,15,10,0.85) 0%, rgba(30,25,18,0.75) 100%);
-    position: relative; z-index: 1;
-  }
-  .stat-badge {
-    display: inline-flex; align-items: center; justify-content: center;
-    position: relative; width: 8mm; height: 8mm;
-  }
-  .stat-badge .icon { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0.85; }
-  .stat-badge .stat-num {
-    position: relative; z-index: 1;
-    font-family: 'Fira Code', monospace; font-weight: 700; font-size: 11pt; line-height: 1; color: #fff;
-    text-shadow: 0 0 3px rgba(0,0,0,0.9), 0 1px 1px rgba(0,0,0,0.7);
-  }
-  .stat-badge.atk { color: #8b3a3a; }
-  .stat-badge.atk .icon { fill: #8b3a3a; }
-  .stat-badge.def { color: #4a6e52; }
-  .stat-badge.def .icon { fill: #4a6e52; stroke: #4a6e52; }
-  .stat-badge.sv { color: #7a7068; }
-  .stat-badge.sv .icon { fill: #7a7068; width: 7mm; height: 7mm; }
-  .stat-badge.sv .stat-num { font-size: 9pt; }
-
-  /* ── Hero Card — Full-Bleed Layout ───────────────────── */
-  .card.hero-card::before, .card.hero-card::after { display: none; }
-  .card.hero-card { background: #0a0805; }
-  .hero-fullbleed-art { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
-  .hero-fullbleed-art img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-  .hero-overlay-bottom {
-    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-    background: linear-gradient(to top, rgba(10,8,5,0.92) 0%, rgba(10,8,5,0.85) 60%, rgba(10,8,5,0) 100%);
-    padding: 8mm 3mm 2.5mm;
-  }
-  .hero-name-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 0 0 1mm; margin-bottom: 1mm;
-    border-bottom: 0.3pt solid rgba(255,255,255,0.15);
-  }
-  .hero-overlay-name {
-    font-family: 'Cinzel', serif; font-weight: 700; font-size: 13pt; color: #fff;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.6);
-  }
-  .hero-tag {
-    font-family: 'Cinzel', serif; font-size: 7pt; font-weight: 700;
-    color: rgba(255,255,255,0.8); letter-spacing: 1.5pt; text-transform: uppercase;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-  }
-  .hero-resources {
-    display: flex; justify-content: space-around; align-items: center; padding: 1mm 3mm;
-  }
-  .hero-resource {
-    display: flex; flex-direction: column; align-items: center; gap: 0.5mm; position: relative;
-  }
-  .hero-resource .icon { width: 7mm; height: 7mm; opacity: 0.85; }
-  .hero-resource-num {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -70%);
-    font-family: 'Fira Code', monospace; font-weight: 700; font-size: 10pt; line-height: 1; color: #fff;
-    text-shadow: 0 0 3px rgba(0,0,0,0.9), 0 1px 2px rgba(0,0,0,0.7); z-index: 1;
-  }
-  .hero-resource.lp { color: #8b3a3a; }
-  .hero-resource.lp .icon { fill: #8b3a3a; }
-  .hero-resource.sp { color: #6a5a8e; }
-  .hero-resource.sp .icon { fill: #6a5a8e; }
-  .hero-resource.ep { color: #b89530; }
-  .hero-resource.ep .icon { fill: #b89530; }
-  .hero-resource-label {
-    font-family: 'Fira Sans', sans-serif; font-size: 6pt; font-weight: 700;
-    color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5pt;
-  }
-  .hero-power {
-    margin: 0; padding: 2mm 2.5mm; background: rgba(0,0,0,0.3);
-    border: 0.3pt solid rgba(255,255,255,0.12); border-radius: 1.5mm;
-  }
-  .power-name {
-    font-family: 'Cinzel', serif; font-weight: 700; font-size: 9pt; color: #f0e8d8; display: block;
-  }
-  .power-type {
-    font-family: 'Fira Sans', sans-serif; font-size: 7pt; color: rgba(255,255,255,0.6);
-    text-transform: uppercase; letter-spacing: 0.3pt; display: block; margin-bottom: 0.5mm;
-  }
-  .power-text {
-    font-family: 'Fira Sans', sans-serif; font-size: 8pt; line-height: 1.35;
-    color: rgba(255,255,255,0.85); margin-top: 1mm;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
   }
 
   /* ── Anatomy Legend ───────────────────────────────────── */
@@ -1021,6 +804,7 @@
     .rulebook { padding: 3rem 1.25rem 4rem; }
     .anatomy-wrap { flex-direction: column; align-items: center; }
     .ac-col { width: 100%; height: auto !important; position: static; }
+    .ac-card-img { width: min(63.5mm, 78vw); height: auto; margin: 0.75rem 0; }
     .ac-label { position: static; transform: none; margin: 0.25rem 0;
       background: rgba(200,168,75,0.07); padding: 3px 8px; border-radius: 3px; }
     .ac-label-line, .ac-label-dot { display: none; }
@@ -1416,332 +1200,174 @@ enchantment is destroyed and sent to your discard pile.</p>
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="card-anatomy">Card Anatomy</h2>
 
-<p>Every card shares a common structure. Knowing each zone makes the rules easier to follow at a glance.</p>
+<p>Every card is painted edge to edge. Deck and marketplace cards carry a coloured <strong>rail</strong> down
+the left side: the cost at the top, the card's name running down it, and the creature's stats or the spell's
+fate at the foot. A torn <strong>slip</strong> at the bottom holds the type line and rules text. The rail's
+colour tells you whose deck the card belongs to.</p>
 
 <h3>Hero Card</h3>
 
 <div class="anatomy-wrap">
-  <!-- Left callouts -->
-  <div class="ac-col left" style="height:88mm;">
-    <div class="ac-label" style="top:28%">
-      <span class="ac-label-text">Full-Bleed Artwork</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
-    <div class="ac-label" style="top:67%">
-      <span class="ac-label-text">Hero Name</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
-    <div class="ac-label" style="top:88%">
-      <span class="ac-label-text">Hero Power</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
+  <div class="ac-col left" style="height:88.9mm;">
+    <div class="ac-label" style="top:8.6%"><span class="ac-label-text">Life (LP)</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:20.3%"><span class="ac-label-text">Sanity (SP)</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:32%"><span class="ac-label-text">Essence Income</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:84.8%"><span class="ac-label-text">Hero Power</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
   </div>
-
-  <!-- Iron Warden hero card — real card HTML -->
   <div class="ac-card-col">
-    <div class="card hero-warden hero-card">
-      <div class="hero-fullbleed-art">
-        <img src="../assets/art/iron-warden-hero.webp" alt="Iron Warden">
-      </div>
-      <div class="hero-overlay-bottom">
-        <div class="hero-name-row">
-          <span class="hero-overlay-name">Iron Warden</span>
-          <span class="hero-tag">Hero</span>
-        </div>
-        <div class="hero-resources">
-          <div class="hero-resource lp">
-            <svg class="icon" viewBox="0 0 24 24" fill="#8b3a3a"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z"/></svg>
-            <span class="hero-resource-num">27</span>
-            <span class="hero-resource-label">LP</span>
-          </div>
-          <div class="hero-resource sp">
-            <svg class="icon" viewBox="0 0 24 24" fill="#6a5a8e"><path d="M12 4C6 4 1.5 10 1 12c.5 2 5 8 11 8s10.5-6 11-8c-.5-2-5-8-11-8zm0 2c4.5 0 8 4.2 8.8 6-.8 1.8-4.3 6-8.8 6s-8-4.2-8.8-6c.8-1.8 4.3-6 8.8-6z"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="2" opacity="0.3"/></svg>
-            <span class="hero-resource-num">15</span>
-            <span class="hero-resource-label">SP</span>
-          </div>
-          <div class="hero-resource ep">
-            <svg class="icon" viewBox="0 0 24 24" fill="#b89530"><path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/><path d="M12 1L8 8L12 12L16 8Z" opacity="0.3"/><path d="M12 12L8 8L4 12L8 16Z" opacity="0.15"/><path d="M12 12L16 8L20 12L16 16Z" opacity="0.15"/><path d="M12 23L8 16L12 12L16 16Z" opacity="0.3"/></svg>
-            <span class="hero-resource-num">2</span>
-            <span class="hero-resource-label">E/Turn</span>
-          </div>
-        </div>
-        <div class="hero-power">
-          <div class="power-name">Iron Discipline</div>
-          <div class="power-type">Passive</div>
-          <div class="power-text">At the end of your turn, heal 1 damage from each creature you control.</div>
-        </div>
-      </div>
-    </div>
+    <img class="ac-card-img" src="../assets/cards/anatomy-hero.webp" width="240" height="336"
+      alt="Iron Warden hero card: Life 27, Sanity 15 and Income 2 in circles at the top left, the name down a banner on the right, and the Iron Discipline power on a slip at the bottom.">
   </div>
-
-  <!-- Right callouts -->
-  <div class="ac-col right" style="height:88mm;">
-    <div class="ac-label" style="top:67%">
-      <div class="ac-label-dot"></div>
-      <div class="ac-label-line"></div>
-      <span class="ac-label-text">"Hero" Tag</span>
-    </div>
-    <div class="ac-label" style="top:77%">
-      <div class="ac-label-dot"></div>
-      <div class="ac-label-line"></div>
-      <span class="ac-label-text">LP / SP / E per Turn</span>
-    </div>
+  <div class="ac-col right" style="height:88.9mm;">
+    <div class="ac-label" style="top:18.8%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Hero · Archetype</span></div>
+    <div class="ac-label" style="top:40%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Hero Name</span></div>
+    <div class="ac-label" style="top:91%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Power Text</span></div>
   </div>
 </div>
 
 <dl class="anatomy-legend">
   <div>
-    <dt>Full-Bleed Artwork</dt>
-    <dd>Hero portraits fill the entire card face. Each hero has a distinct visual identity tied to their archetype.</dd>
-  </div>
-  <div>
-    <dt>Hero Name &amp; Tag</dt>
-    <dd>The hero's name. The <em>Hero</em> tag confirms this is a hero card rather than a summoned creature.</dd>
-  </div>
-  <div>
-    <dt>LP (Life Points)</dt>
+    <dt>Life (LP)</dt>
     <dd>Combat health. Unblocked creatures deal damage here. Reaches 0 = defeat.</dd>
   </div>
   <div>
-    <dt>SP (Sanity Points)</dt>
+    <dt>Sanity (SP)</dt>
     <dd>Spell resource. Spent on hero powers and SP-cost cards. Some keywords drain it directly (Horrify, Eldritch). Reaches 0 = defeat.</dd>
   </div>
   <div>
-    <dt>E/Turn (Essence per Turn)</dt>
-    <dd>Essence income received each Income Step. Your primary resource for playing cards.</dd>
+    <dt>Essence Income</dt>
+    <dd>Essence you receive each Income Step. Your primary resource for playing and buying cards.</dd>
+  </div>
+  <div>
+    <dt>Hero Name &amp; Archetype</dt>
+    <dd>The hero's name runs down the banner on the right, beside the word <em>Hero</em> and the hero's archetype.</dd>
   </div>
   <div>
     <dt>Hero Power</dt>
-    <dd><strong>Passive</strong> — triggers automatically each turn. <strong>Exhaust</strong> — activated once per turn as an action; the hero card is exhausted after use.</dd>
+    <dd>The power's name, then its text. A <strong>Passive</strong> power works automatically. An activated power begins with a bold <strong>Exhaust:</strong> — use it once per turn by exhausting the hero card.</dd>
   </div>
 </dl>
 
 <h3 style="margin-top:2.5rem;">Creature Card</h3>
 
 <div class="anatomy-wrap">
-  <!-- Left callouts -->
-  <div class="ac-col left" style="height:88mm;">
-    <div class="ac-label" style="top:5%">
-      <span class="ac-label-text">Name</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
-    <div class="ac-label" style="top:32%">
-      <span class="ac-label-text">Artwork</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
-    <div class="ac-label" style="top:62%">
-      <span class="ac-label-text">Type Line</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
-    <div class="ac-label" style="top:76%">
-      <span class="ac-label-text">Ability Text</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
+  <div class="ac-col left" style="height:88.9mm;">
+    <div class="ac-label" style="top:8.6%"><span class="ac-label-text">Cost</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:31.8%"><span class="ac-label-text">Name</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:81.9%"><span class="ac-label-text">Attack (ATK)</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:92.3%"><span class="ac-label-text">Defense (DEF)</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
   </div>
-
-  <!-- Warhorse Knight — Iron Warden creature — real card HTML -->
   <div class="ac-card-col">
-    <div class="card hero-warden">
-      <div class="card-header">
-        <span class="card-name">Warhorse Knight</span>
-        <span class="card-cost">
-          <span class="cost-pip essence">
-            <svg class="icon" viewBox="0 0 24 24" fill="#b89530"><path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/><path d="M12 1L8 8L12 12L16 8Z" opacity="0.3"/><path d="M12 12L8 8L4 12L8 16Z" opacity="0.15"/><path d="M12 12L16 8L20 12L16 16Z" opacity="0.15"/><path d="M12 23L8 16L12 12L16 16Z" opacity="0.3"/></svg>
-            <span class="cost-num">3</span>
-          </span>
-        </span>
-      </div>
-      <div class="card-art">
-        <img src="../assets/art/iron-warden-warhorse-knight.webp" alt="Warhorse Knight">
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-typeline"><span>Creature</span></div>
-      <div class="card-textbox">
-        <div class="card-text">
-          <div class="ability">When Warhorse Knight attacks, target other creature you control gets +1&nbsp;ATK this turn.</div>
-        </div>
-      </div>
-      <div class="card-stats">
-        <div class="stat-badge atk">
-          <svg class="icon" viewBox="0 0 24 24" fill="#8b3a3a"><path d="M13 1l-1.5 1.5L11 6l-1 2-2.5 2.5L6 12l1 1 2.5-1.5L12 10l.5 3.5L11 15l-4 4-1.5 2L7 22.5l2-1.5L13 17l1.5-1.5L15 12l2-3.5 1-2L19.5 5 21 3.5 20.5 3l-1.5 1.5-1.5.5-2 1L12 8l-.5-1.5L13 3l.5-1.5z"/><path d="M8.5 13L6 14.5 5 14l1-1.5L8.5 11zM15.5 8L18 6.5l1 1-1 1.5L15.5 10z" opacity="0.7"/></svg>
-          <span class="stat-num">3</span>
-        </div>
-        <div class="stat-badge def">
-          <svg class="icon" viewBox="0 0 24 24" fill="#4a6e52"><path d="M4 3L4 13c0 3.5 3.5 6.5 8 9 4.5-2.5 8-5.5 8-9V3L12 1Z"/><path d="M8 9l4-3.5L16 9" stroke="#4a6e52" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/><path d="M8 13l4-3.5L16 13" stroke="#4a6e52" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/></svg>
-          <span class="stat-num">2</span>
-        </div>
-        <div class="stat-badge sv">
-          <svg class="icon" viewBox="0 0 24 24" fill="#7a7068"><path d="M12 2C7.5 2 4 5.5 4 10c0 2.5 1 4.5 2.5 6l-.5 3 2.5-1 1 2.5L11 19l1 3 1-3 1.5 2.5 1-2.5 2.5 1-.5-3C19 14.5 20 12.5 20 10c0-4.5-3.5-8-8-8z"/><ellipse cx="9" cy="10" rx="2" ry="2.5" opacity="0.3"/><ellipse cx="15" cy="10" rx="2" ry="2.5" opacity="0.3"/><path d="M11 13.5l1 1.5 1-1.5z" opacity="0.3"/></svg>
-          <span class="stat-num">2</span>
-        </div>
-      </div>
-    </div>
+    <img class="ac-card-img" src="../assets/cards/anatomy-creature.webp" width="240" height="336"
+      alt="Conscript creature card: Essence cost 1 at the top of the rail, the name down the rail, attack 1 and defense 1 at its foot, and a slip reading Exhaust: Gain 1 Essence above a rule and its sacrifice ability.">
   </div>
-
-  <!-- Right callouts -->
-  <div class="ac-col right" style="height:88mm;">
-    <div class="ac-label" style="top:5%">
-      <div class="ac-label-dot"></div>
-      <div class="ac-label-line"></div>
-      <span class="ac-label-text">Play Cost</span>
-    </div>
-    <div class="ac-label" style="top:94%">
-      <div class="ac-label-dot"></div>
-      <div class="ac-label-line"></div>
-      <span class="ac-label-text">ATK / DEF</span>
-    </div>
+  <div class="ac-col right" style="height:88.9mm;">
+    <div class="ac-label" style="top:40%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Artwork</span></div>
+    <div class="ac-label" style="top:79.9%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Type Line</span></div>
+    <div class="ac-label" style="top:84%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Exhaust Ability</span></div>
+    <div class="ac-label" style="top:91.5%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Other Abilities</span></div>
   </div>
 </div>
 
 <dl class="anatomy-legend">
   <div>
-    <dt>Name</dt>
-    <dd>The card's name. Used for targeting, unique restrictions, and card-specific errata.</dd>
+    <dt>Cost</dt>
+    <dd>What it takes to play the card from your hand. The gem marks <strong>Essence</strong>; the eye marks <strong>SP</strong>. A card with both shows both, stacked.</dd>
   </div>
   <div>
-    <dt>Play Cost</dt>
-    <dd>Resources spent to play the card from hand.
-      <svg style="width:1.1em;height:1.1em;vertical-align:middle;display:inline-block;margin:0 1px 0 4px" viewBox="0 0 24 24" fill="#b89530"><path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/><path d="M12 1L8 8L12 12L16 8Z" opacity="0.3"/><path d="M12 12L8 8L4 12L8 16Z" opacity="0.15"/><path d="M12 12L16 8L20 12L16 16Z" opacity="0.15"/><path d="M12 23L8 16L12 12L16 16Z" opacity="0.3"/></svg>
-      = Essence;
-      <svg style="width:1.1em;height:1.1em;vertical-align:middle;display:inline-block;margin:0 1px 0 4px" viewBox="0 0 24 24" fill="#6a5a8e"><path d="M12 4C6 4 1.5 10 1 12c.5 2 5 8 11 8s10.5-6 11-8c-.5-2-5-8-11-8zm0 2c4.5 0 8 4.2 8.8 6-.8 1.8-4.3 6-8.8 6s-8-4.2-8.8-6c.8-1.8 4.3-6 8.8-6z"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="2" opacity="0.3"/></svg>
-      = SP. Both may appear on a single card. The play cost also determines the
-      creature's <strong><a href="#sacrifice">Sacrifice Value</a></strong>.</dd>
-  </div>
-  <div>
-    <dt>Artwork</dt>
-    <dd>Illustrative art unique to each card. No rules effect — a strong visual cue for the card's identity at a glance.</dd>
+    <dt>Attack &amp; Defense</dt>
+    <dd>At the foot of the rail: <strong>ATK</strong> (sword) is the damage it deals in combat, <strong>DEF</strong> (shield) is how much damage it can take.</dd>
   </div>
   <div>
     <dt>Type Line</dt>
-    <dd>Card type (Creature, Spell, Equipment, Enchantment) and subtype if any — e.g., <em>Spell — Cycled</em> or <em>Spell — Burned</em>.</dd>
+    <dd>The card type at the top of the slip: Creature, Spell, Equipment or Enchantment, with the subtype where there is one.</dd>
   </div>
   <div>
-    <dt>Ability Text</dt>
-    <dd>Rules text for the card's effects. Keywords appear in italic above ability text when applicable.</dd>
+    <dt>Exhaust Ability</dt>
+    <dd>Activated abilities come first, starting with a bold <strong>Exhaust:</strong>, ruled off from the rest. Use one by exhausting the card, once per turn.</dd>
   </div>
   <div>
-    <dt>ATK (Attack)</dt>
-    <dd>Damage dealt in combat. If unblocked, deals LP damage directly to the defending hero.</dd>
+    <dt>Other Abilities</dt>
+    <dd>Keywords, triggered and passive abilities follow below the rule. <strong>Upkeep</strong> costs, when a card has them, come last.</dd>
+  </div>
+</dl>
+
+<h3 style="margin-top:2.5rem;">Spell Card</h3>
+
+<div class="anatomy-wrap">
+  <div class="ac-col left" style="height:88.9mm;">
+    <div class="ac-label" style="top:8.6%"><span class="ac-label-text">Essence Cost</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:20.5%"><span class="ac-label-text">SP Cost</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:49.5%"><span class="ac-label-text">Name</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:92.8%"><span class="ac-label-text">Fate Icon</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+  </div>
+  <div class="ac-card-col">
+    <img class="ac-card-img" src="../assets/cards/anatomy-spell.webp" width="240" height="336"
+      alt="Void Collapse spell card: Essence cost 3 and SP cost 2 stacked at the top of the rail, the name down the rail, the Burned icon (a burning card) at its foot, and a slip with the type line Spell · Burned and its effect.">
+  </div>
+  <div class="ac-col right" style="height:88.9mm;">
+    <div class="ac-label" style="top:79.9%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Spell · Burned</span></div>
+    <div class="ac-label" style="top:88%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Effect</span></div>
+  </div>
+</div>
+
+<dl class="anatomy-legend">
+  <div>
+    <dt>Essence &amp; SP Cost</dt>
+    <dd>This spell costs 3 Essence <em>and</em> 2 SP. Costs stack at the top of the rail, Essence first.</dd>
   </div>
   <div>
-    <dt>DEF (Defense)</dt>
-    <dd>Durability. A creature dies when accumulated damage equals or exceeds its DEF.</dd>
+    <dt>Fate Icon</dt>
+    <dd>Where a spell goes after it resolves, so you can tell at a glance. A <strong>burning card</strong> means <a href="#burned">Burned</a> (to the Removed zone). A <strong>looping arrow</strong> means <a href="#cycled">Cycled</a> (to your discard pile).</dd>
+  </div>
+  <div>
+    <dt>Type Line</dt>
+    <dd>Spells name their fate in words too: <em>Spell · Burned</em> or <em>Spell · Cycled</em>. A spell cast in a reactive window is usually removed instead — see <a href="#reactive-play">Reactive Play</a>.</dd>
+  </div>
+  <div>
+    <dt>Effect</dt>
+    <dd>What happens when the spell resolves.</dd>
   </div>
 </dl>
 
 <h3 style="margin-top:2.5rem;">Marketplace Card</h3>
 
 <div class="anatomy-wrap">
-  <!-- Left callouts -->
-  <div class="ac-col left" style="height:88mm;">
-    <div class="ac-label" style="top:5%">
-      <span class="ac-label-text">Name</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
-    <div class="ac-label" style="top:32%">
-      <span class="ac-label-text">Artwork</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
-    <div class="ac-label" style="top:76%">
-      <span class="ac-label-text">Ability Text</span>
-      <div class="ac-label-line"></div>
-      <div class="ac-label-dot"></div>
-    </div>
+  <div class="ac-col left" style="height:88.9mm;">
+    <div class="ac-label" style="top:8.6%"><span class="ac-label-text">Play Cost</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:44.8%"><span class="ac-label-text">Name</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
+    <div class="ac-label" style="top:87.1%"><span class="ac-label-text">ATK / DEF</span><div class="ac-label-line"></div><div class="ac-label-dot"></div></div>
   </div>
-
-  <!-- Mercenary Captain — marketplace card — real card HTML -->
   <div class="ac-card-col">
-    <div class="card hero-market">
-      <div class="card-header">
-        <span class="card-name">Mercenary Captain</span>
-        <span class="card-cost">
-          <span class="cost-pip essence">
-            <svg class="icon" viewBox="0 0 24 24" fill="#b89530"><path d="M12 1L5.5 5.5L4 12L5.5 18.5L12 23L18.5 18.5L20 12L18.5 5.5Z"/><path d="M12 1L8 8L12 12L16 8Z" opacity="0.3"/><path d="M12 12L8 8L4 12L8 16Z" opacity="0.15"/><path d="M12 12L16 8L20 12L16 16Z" opacity="0.15"/><path d="M12 23L8 16L12 12L16 16Z" opacity="0.3"/></svg>
-            <span class="cost-num">3</span>
-          </span>
-        </span>
-      </div>
-      <div class="card-art">
-        <img src="../assets/art/marketplace-mercenary-captain.webp" alt="Mercenary Captain">
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-typeline">
-        <span>Creature</span>
-        <span class="buy-badge">Buy 3E</span>
-      </div>
-      <div class="card-textbox">
-        <div class="card-text">
-          <div class="ability">Your other creatures get +1 ATK.</div>
-        </div>
-      </div>
-      <div class="card-stats">
-        <div class="stat-badge atk">
-          <svg class="icon" viewBox="0 0 24 24" fill="#8b3a3a"><path d="M13 1l-1.5 1.5L11 6l-1 2-2.5 2.5L6 12l1 1 2.5-1.5L12 10l.5 3.5L11 15l-4 4-1.5 2L7 22.5l2-1.5L13 17l1.5-1.5L15 12l2-3.5 1-2L19.5 5 21 3.5 20.5 3l-1.5 1.5-1.5.5-2 1L12 8l-.5-1.5L13 3l.5-1.5z"/><path d="M8.5 13L6 14.5 5 14l1-1.5L8.5 11zM15.5 8L18 6.5l1 1-1 1.5L15.5 10z" opacity="0.7"/></svg>
-          <span class="stat-num">3</span>
-        </div>
-        <div class="stat-badge def">
-          <svg class="icon" viewBox="0 0 24 24" fill="#4a6e52"><path d="M4 3L4 13c0 3.5 3.5 6.5 8 9 4.5-2.5 8-5.5 8-9V3L12 1Z"/><path d="M8 9l4-3.5L16 9" stroke="#4a6e52" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/><path d="M8 13l4-3.5L16 13" stroke="#4a6e52" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/></svg>
-          <span class="stat-num">2</span>
-        </div>
-        <div class="stat-badge sv">
-          <svg class="icon" viewBox="0 0 24 24" fill="#7a7068"><path d="M12 2C7.5 2 4 5.5 4 10c0 2.5 1 4.5 2.5 6l-.5 3 2.5-1 1 2.5L11 19l1 3 1-3 1.5 2.5 1-2.5 2.5 1-.5-3C19 14.5 20 12.5 20 10c0-4.5-3.5-8-8-8z"/><ellipse cx="9" cy="10" rx="2" ry="2.5" opacity="0.3"/><ellipse cx="15" cy="10" rx="2" ry="2.5" opacity="0.3"/><path d="M11 13.5l1 1.5 1-1.5z" opacity="0.3"/></svg>
-          <span class="stat-num">2</span>
-        </div>
-      </div>
-    </div>
+    <img class="ac-card-img" src="../assets/cards/anatomy-marketplace.webp" width="240" height="336"
+      alt="Wandering Healer marketplace card: play cost 2 at the top of the rail, a red Buy 3 stamp at the top right, attack 0 and defense 2 at the rail's foot, and a small A mark in the corner of the slip.">
   </div>
-
-  <!-- Right callouts -->
-  <div class="ac-col right" style="height:88mm;">
-    <div class="ac-label" style="top:5%">
-      <div class="ac-label-dot"></div>
-      <div class="ac-label-line"></div>
-      <span class="ac-label-text">Play Cost</span>
-    </div>
-    <div class="ac-label" style="top:62%">
-      <div class="ac-label-dot"></div>
-      <div class="ac-label-line"></div>
-      <span class="ac-label-text">Buy Cost</span>
-    </div>
-    <div class="ac-label" style="top:94%">
-      <div class="ac-label-dot"></div>
-      <div class="ac-label-line"></div>
-      <span class="ac-label-text">ATK / DEF</span>
-    </div>
+  <div class="ac-col right" style="height:88.9mm;">
+    <div class="ac-label" style="top:7.2%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Buy Cost</span></div>
+    <div class="ac-label" style="top:84%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Ability Text</span></div>
+    <div class="ac-label" style="top:94.1%"><div class="ac-label-dot"></div><div class="ac-label-line"></div><span class="ac-label-text">Set Mark (A / B)</span></div>
   </div>
 </div>
 
 <dl class="anatomy-legend">
   <div>
+    <dt>Buy Cost</dt>
+    <dd>The red stamp is the Essence it costs to <em>acquire</em> the card from the marketplace into your hand. Only marketplace cards have one.</dd>
+  </div>
+  <div>
     <dt>Play Cost</dt>
-    <dd>Essence spent to play this card <em>from hand</em> onto the battlefield. Paid when you summon it during your Main Phase.</dd>
+    <dd>Separate from the buy cost: once the card is in your hand, you pay this to play it, as with any deck card. Buying and playing happen on separate turns.</dd>
   </div>
   <div>
-    <dt>Buy Cost (on type line)</dt>
-    <dd>Essence spent to <em>acquire</em> this card from the marketplace — it goes to your hand. Distinct from the play cost; you pay both over two separate turns.</dd>
+    <dt>Set Mark (A / B)</dt>
+    <dd>Each player starts with their own copy of the marketplace. The letter in the slip's corner (A filled, B outlined) sorts the two sets apart after a game.</dd>
   </div>
   <div>
-    <dt>Type Line</dt>
-    <dd>Card type plus the gold <strong>Buy</strong> badge showing the marketplace acquisition cost.</dd>
-  </div>
-  <div>
-    <dt>Ability Text</dt>
-    <dd>Rules text for the card's effects, identical in structure to hero deck cards.</dd>
-  </div>
-  <div>
-    <dt>ATK / DEF</dt>
-    <dd>Creature stats — same meaning as hero deck creatures. Marketplace creatures are played like any other creature once acquired.</dd>
+    <dt>Everything Else</dt>
+    <dd>Marketplace cards read and play exactly like deck cards. Their rail is gold rather than a hero's colour.</dd>
   </div>
 </dl>
+
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <h2 id="zones">Zones</h2>
